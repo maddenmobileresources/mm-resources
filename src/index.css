@@ -1,0 +1,13 @@
+/* Load Tailwind v4 */
+@import "tailwindcss";
+
+/* Optional: basic styling overrides */
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #f9fafb;
+}
+
+.player-card img {
+  border-radius: 0.25rem;
+}
+
