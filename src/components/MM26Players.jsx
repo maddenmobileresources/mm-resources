@@ -468,7 +468,7 @@ function CompareTable({ selectedPlayers, togglePlayer, theme }) {
             </colgroup>
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
-                <th className={`compare-label-cell w-[22%] border px-1 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                <th className={`compare-label-cell compare-stat-heading-cell w-[22%] border px-1 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
                   Stat
                 </th>
                 {selectedPlayers.map((player) => (
@@ -874,7 +874,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                     ref={provided.innerRef}
                     className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}
                   >
-                    <th className={`compare-label-cell sticky left-0 z-10 w-[22%] border px-1 py-2 sm:px-4 ${
+                    <th className={`compare-label-cell compare-stat-heading-cell sticky left-0 z-10 w-[22%] border px-1 py-2 sm:px-4 ${
                       theme === "dark" ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-300"
                     }`}>
                       Stat

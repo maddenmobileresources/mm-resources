@@ -44,6 +44,10 @@ td {
   text-overflow: clip;
 }
 
+.compare-stat-heading-cell {
+  font-size: 1rem;
+}
+
 @media (max-width: 640px) {
   .compare-scroll {
     max-width: 100%;
@@ -84,6 +88,10 @@ td {
     line-height: 1.15;
     padding-left: 0.2rem !important;
     padding-right: 0.2rem !important;
+  }
+
+  .compare-stat-heading-cell {
+    font-size: 0.95rem;
   }
 
   .compare-group-cell {
