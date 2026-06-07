@@ -899,11 +899,11 @@ export default function PlayerProfile({
         </div>
       )}
       
-      <div className="flex flex-col lg:flex-row gap-4 p-4">
+      <div className="flex max-w-full flex-col gap-4 overflow-x-hidden p-3 sm:p-4 lg:flex-row">
         <div className="w-full lg:w-3/4 mb-6 lg:mb-0">
           <Link
             to="/players"
-            className="inline-block mt-[-8px] mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition-colors duration-200"
+            className="mb-4 mt-[-8px] inline-block max-w-full rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-md transition-colors duration-200 hover:bg-blue-700 sm:px-4 sm:text-base"
           >
             ← Back to Player Database
           </Link>
@@ -965,37 +965,37 @@ export default function PlayerProfile({
     </div>
   </div>
 )}
-          <div className="flex gap-4 items">
+          <div className="flex max-w-full flex-col gap-4 md:flex-row md:items-start">
             <img
               src={currentPlayer.image}
               alt={currentPlayer.name}
-              className={`w-64 h-80 object-contain rounded ${theme === 'dark' ? 'bg-black-900' : 'bg-white'}`}
+              className={`mx-auto h-auto max-h-[28rem] w-full max-w-[18rem] object-contain rounded md:mx-0 md:h-80 md:w-64 ${theme === 'dark' ? 'bg-black-900' : 'bg-white'}`}
             />
-            <div>
-              <h2 className="text-2xl font-bold">{currentPlayer.name}</h2>
+            <div className="min-w-0 max-w-full text-base leading-relaxed">
+              <h2 className="break-words text-2xl font-bold">{currentPlayer.name}</h2>
 {currentPlayer.released && (
   <p className={`text-sm mb-1 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>
     Released: {currentPlayer.released}
   </p>
 )}
-<p><strong>OVR:</strong> {currentPlayer.ovr}</p>
-              <p><strong>Height:</strong> {formatHeight(currentPlayer.height)}</p>
-              <p><strong>Weight (lbs.):</strong> {currentPlayer.weight ?? "N/A"}</p>           
-              <p><strong>Position:</strong> {currentPlayer.position}</p>
-              <p><strong>Team:</strong> {currentPlayer.team}</p>
-              <p><strong>Program:</strong> {Array.isArray(currentPlayer.program) ? currentPlayer.program.join(", ") : currentPlayer.program}</p>
-              <p><strong>Rarity:</strong> {currentPlayer.rarity}</p>
-              <p><strong>Archetype:</strong> {currentPlayer.archetype}</p>
+<p className="break-words"><strong>OVR:</strong> {currentPlayer.ovr}</p>
+              <p className="break-words"><strong>Height:</strong> {formatHeight(currentPlayer.height)}</p>
+              <p className="break-words"><strong>Weight (lbs.):</strong> {currentPlayer.weight ?? "N/A"}</p>           
+              <p className="break-words"><strong>Position:</strong> {currentPlayer.position}</p>
+              <p className="break-words"><strong>Team:</strong> {currentPlayer.team}</p>
+              <p className="break-words"><strong>Program:</strong> {Array.isArray(currentPlayer.program) ? currentPlayer.program.join(", ") : currentPlayer.program}</p>
+              <p className="break-words"><strong>Rarity:</strong> {currentPlayer.rarity}</p>
+              <p className="break-words"><strong>Archetype:</strong> {currentPlayer.archetype}</p>
               {currentPlayer.boost && (
-                <p><strong>Boost:</strong> {currentPlayer.boost}</p>
+                <p className="break-words"><strong>Boost:</strong> {currentPlayer.boost}</p>
               )}
               {currentPlayer.boostExpires && (
-                <p><strong>Boost Expires:</strong> {currentPlayer.boostExpires}</p>
+                <p className="break-words"><strong>Boost Expires:</strong> {currentPlayer.boostExpires}</p>
               )}
 
               <button
                 onClick={() => handleTogglePlayer(currentPlayer)}
-                className={`mt-4 px-4 py-2 rounded ${
+                className={`mt-4 w-full rounded px-4 py-2 md:w-auto ${
                   validPlayers.some((p) => p.id === currentPlayer.id)
                     ? "bg-red-500 text-white"
                     : "bg-green-500 text-white"
