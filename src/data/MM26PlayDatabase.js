@@ -1,0 +1,236 @@
+const plays = [
+  {
+    id: 1,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    obtainable: "Solo Challenges",
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 2,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 3,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 4,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 5,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 6,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 7,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 8,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 9,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 10,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 11,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 12,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 13,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 14,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 15,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 16,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 17,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 18,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 19,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 20,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+  {
+    id: 20,
+    name: "HB Dive",
+    type: "Run",
+    pbb: 150,
+    cost: 2500,
+    ovrBoost : 1,
+    playCount: 45,
+    averageYards: 4.2,
+    image: "https://via.placeholder.com/150?text=HB+Dive"
+  },
+];
+
+export default plays;
