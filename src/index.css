@@ -53,28 +53,28 @@ td {
 
   .compare-table {
     table-layout: fixed;
-    min-width: 46rem;
+    min-width: 42rem;
   }
 
   .compare-label-cell {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     line-height: 1.15;
-    padding-left: 0.35rem !important;
-    padding-right: 0.35rem !important;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
   }
 
   .compare-group-cell {
-    font-size: 0.95rem;
-    line-height: 1.15;
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-
-  .compare-value-cell {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.15;
     padding-left: 0.35rem !important;
     padding-right: 0.35rem !important;
+  }
+
+  .compare-value-cell {
+    font-size: 0.85rem;
+    line-height: 1.15;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
   }
 }
 
