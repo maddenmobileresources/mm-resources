@@ -120,6 +120,65 @@ td {
     color: rgb(243 244 246) !important;
     border-color: rgb(75 85 99) !important;
   }
+
+  .player-profile-trait-card,
+  .player-profile-compare-card,
+  .player-profile-stat-player-header {
+    color: #111827 !important;
+  }
+
+  .player-profile-trait-title,
+  .player-profile-compare-name,
+  .player-profile-stat-player-name {
+    color: #111827 !important;
+    font-weight: 800;
+  }
+
+  .player-profile-trait-desc,
+  .player-profile-compare-meta,
+  .player-profile-stat-player-meta {
+    color: #374151 !important;
+  }
+
+  .player-profile-trait-card {
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem !important;
+  }
+
+  .player-profile-trait-card img,
+  .player-profile-compare-card img {
+    flex-shrink: 0;
+  }
+
+  .player-profile-trait-title {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .player-profile-trait-desc {
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+
+  .player-profile-compare-card {
+    gap: 0.75rem;
+    padding: 0.75rem !important;
+  }
+
+  .player-profile-compare-card > div:first-child {
+    min-width: 0;
+  }
+
+  .player-profile-compare-name {
+    font-size: 0.95rem;
+    line-height: 1.15;
+  }
+
+  .player-profile-compare-meta {
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
 }
 
   html,

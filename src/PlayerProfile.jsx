@@ -1059,7 +1059,7 @@ export default function PlayerProfile({
                   return (
                     <div 
                       key={trait.name} 
-                      className={`${tierColor} p-3 rounded flex items-center gap-3`}
+                      className={`${tierColor} player-profile-trait-card p-3 rounded flex items-center gap-3`}
                     >
                       <img 
                         src={trait.icon} 
@@ -1070,8 +1070,8 @@ export default function PlayerProfile({
                         }}
                       />
                       <div className="flex-1">
-                        <div className="font-semibold text-black dark:text-white">{trait.name}</div>
-                        <div className="text-xs text-gray-800 dark:text-gray-300">
+                        <div className="player-profile-trait-title font-semibold text-black dark:text-white">{trait.name}</div>
+                        <div className="player-profile-trait-desc text-xs text-gray-800 dark:text-gray-300">
                           {trait.description}
                         </div>
                       </div>
@@ -1114,7 +1114,7 @@ export default function PlayerProfile({
   ref={provided.innerRef}
   {...provided.draggableProps}
   {...provided.dragHandleProps}
-  className={`${rarityClass} p-2 mb-2 rounded flex items-center justify-between`}
+  className={`${rarityClass} player-profile-compare-card p-2 mb-2 rounded flex items-center justify-between`}
 >
   <div
     className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity flex-1"
@@ -1125,9 +1125,9 @@ export default function PlayerProfile({
       alt={p.name}
       className={`w-12 h-12 object-contain rounded ${theme === 'dark' ? 'bg-zinc-800' : 'bg-gray-100'}`}
     />
-    <div>
-      <div className="font-semibold text-black dark:text-white">{p.name}</div>
-      <div className="text-xs text-gray-800 dark:text-gray-300">
+    <div className="min-w-0">
+      <div className="player-profile-compare-name font-semibold text-black dark:text-white">{p.name}</div>
+      <div className="player-profile-compare-meta text-xs text-gray-800 dark:text-gray-300">
         {p.ovr} OVR • {p.rarity} • {p.program} • {p.position.split("|")[0]} ({p.archetype})
       </div>
     </div>
@@ -1166,7 +1166,7 @@ export default function PlayerProfile({
                       return (
                         <th 
                           key={p.id} 
-                          className={`border p-2 ${rarityClass} text-center`}
+                          className={`player-profile-stat-player-header border p-2 ${rarityClass} text-center`}
                           style={{ width: `${100 / validPlayers.length}%`, borderColor }}
                         >
                           <div 
@@ -1174,7 +1174,7 @@ export default function PlayerProfile({
                             onClick={() => navigate(`/player/${p.id}`)}
                           >
                             <div className="flex justify-center items-center gap-2 w-full">
-                              <span className="font-semibold text-sm text-black dark:text-white">{p.name}</span>
+                              <span className="player-profile-stat-player-name font-semibold text-sm text-black dark:text-white">{p.name}</span>
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -1185,7 +1185,7 @@ export default function PlayerProfile({
                                 ✕
                               </button>
                             </div>
-                            <div className="text-xs leading-tight text-black dark:text-white">
+                            <div className="player-profile-stat-player-meta text-xs leading-tight text-black dark:text-white">
                               <div>{p.position.split("|")[0]} - {p.team}</div>
                               <div>{p.archetype}</div>
                             </div>
