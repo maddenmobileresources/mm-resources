@@ -24,18 +24,51 @@ td {
 
 .compare-label-cell {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
   font-size: clamp(0.56rem, 2.15vw, 0.875rem);
   line-height: 1.15;
 }
 
 .compare-group-cell {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
   font-size: clamp(0.7rem, 2.6vw, 1.125rem);
   line-height: 1.2;
 }
 
 .compare-value-cell {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+@media (max-width: 640px) {
+  .compare-table {
+    table-layout: fixed;
+  }
+
+  .compare-label-cell {
+    font-size: clamp(0.44rem, 1.8vw, 0.62rem);
+    line-height: 1.05;
+    padding-left: 0.125rem !important;
+    padding-right: 0.125rem !important;
+  }
+
+  .compare-group-cell {
+    font-size: clamp(0.62rem, 2.5vw, 0.78rem);
+    line-height: 1.08;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .compare-value-cell {
+    font-size: clamp(0.5rem, 2vw, 0.72rem);
+    line-height: 1.08;
+    padding-left: 0.125rem !important;
+    padding-right: 0.125rem !important;
+  }
 }
 
   html,
