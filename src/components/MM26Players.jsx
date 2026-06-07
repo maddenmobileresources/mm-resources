@@ -557,7 +557,7 @@ function InfoRow({ label, selectedPlayers, theme }) {
         return (
           <td 
             key={player.id} 
-            className={`compare-value-cell border px-1 py-1 text-center ${highlightClass} ${
+            className={`compare-value-cell compare-info-value-cell border px-1 py-1 text-center ${highlightClass} ${
               theme === "dark" ? "border-gray-600" : "border-gray-300"
             } ${hasHighlight ? "text-gray-900" : ""}`}
           >
@@ -608,7 +608,7 @@ function StatGroupRows({ group, selectedPlayers, theme }) {
             return (
               <td 
                 key={p.id} 
-                className={`compare-value-cell border px-1 py-1 text-center ${highlightClass} ${
+                className={`compare-value-cell ${hasHighlight ? "" : "compare-empty-value-cell"} border px-1 py-1 text-center ${highlightClass} ${
                   theme === "dark" ? "border-gray-600" : "border-gray-300"
                 } ${hasHighlight ? "text-gray-900" : ""}`}
               >
@@ -949,6 +949,8 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                             if (num === max) cellClass += " bg-green-200 text-gray-900";
                             else if (num === min) cellClass += " bg-red-200 text-gray-900";
                             else cellClass += " bg-yellow-100 text-gray-900";
+                          } else {
+                            cellClass += " compare-empty-value-cell";
                           }
                           
                           return (

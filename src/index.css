@@ -89,6 +89,15 @@ td {
     padding-left: 0.25rem !important;
     padding-right: 0.25rem !important;
   }
+
+  .compare-info-value-cell {
+    font-size: 0.78rem;
+  }
+
+  html.dark .compare-empty-value-cell {
+    background-color: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
 }
 
   html,
