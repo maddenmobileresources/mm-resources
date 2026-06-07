@@ -56,19 +56,27 @@ td {
     min-width: 100%;
   }
 
-  .compare-table.compare-count-4,
+  .compare-table.compare-count-4 {
+    min-width: 26rem;
+  }
+
   .compare-table.compare-count-5 {
-    min-width: 42rem;
+    min-width: 30rem;
   }
 
   .compare-label-cell {
-    font-size: 0.72rem;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: normal;
+    font-size: clamp(0.64rem, 2.55vw, 0.72rem);
     line-height: 1.15;
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
   }
 
   .compare-group-cell {
+    white-space: normal;
+    overflow: visible;
     font-size: 0.85rem;
     line-height: 1.15;
     padding-left: 0.35rem !important;
