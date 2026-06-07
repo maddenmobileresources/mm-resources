@@ -64,7 +64,7 @@ td {
   }
 
   .compare-stat-col {
-    width: 9.5rem;
+    width: 7.6rem;
   }
 
   .compare-table.compare-count-4 {
@@ -104,7 +104,7 @@ td {
   }
 
   .compare-info-value-cell {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
   }
 
   html.dark .compare-table td.compare-empty-value-cell {
