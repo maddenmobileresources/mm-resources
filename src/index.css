@@ -16,11 +16,27 @@
     min-height: 100vh;
   }
 
-  th,
-  td {
-    overflow-wrap: anywhere;
-    word-break: normal;
-  }
+th,
+td {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.compare-label-cell {
+  white-space: nowrap;
+  font-size: clamp(0.56rem, 2.15vw, 0.875rem);
+  line-height: 1.15;
+}
+
+.compare-group-cell {
+  white-space: nowrap;
+  font-size: clamp(0.7rem, 2.6vw, 1.125rem);
+  line-height: 1.2;
+}
+
+.compare-value-cell {
+  white-space: nowrap;
+}
 
   html,
   body,
