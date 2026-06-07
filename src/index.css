@@ -56,6 +56,13 @@ td {
     min-width: 100%;
   }
 
+  .compare-table.compare-count-1,
+  .compare-table.compare-count-2,
+  .compare-table.compare-count-3 {
+    width: 100%;
+    min-width: 100%;
+  }
+
   .compare-table.compare-count-4 {
     min-width: 26rem;
   }
@@ -81,7 +88,7 @@ td {
   .compare-table.compare-count-2 tr > td.compare-label-cell:first-child,
   .compare-table.compare-count-3 .compare-label-cell:first-child,
   .compare-table.compare-count-3 tr > td.compare-label-cell:first-child {
-    width: 30%;
+    width: 8.75rem;
   }
 
   .compare-group-cell {
@@ -104,9 +111,10 @@ td {
     font-size: 0.78rem;
   }
 
-  html.dark .compare-empty-value-cell {
-    background-color: rgb(39 39 42);
-    color: rgb(243 244 246);
+  html.dark .compare-table td.compare-empty-value-cell {
+    background-color: rgb(39 39 42) !important;
+    color: rgb(243 244 246) !important;
+    border-color: rgb(75 85 99) !important;
   }
 }
 
