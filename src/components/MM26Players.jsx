@@ -458,7 +458,7 @@ function CompareTable({ selectedPlayers, togglePlayer, theme }) {
           Select players to compare.
         </p>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="compare-scroll overflow-x-auto">
           <table className="compare-table table-fixed w-full text-xs border-collapse text-center sm:text-sm">
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
@@ -849,7 +849,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
         </button>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="compare-scroll overflow-x-auto">
         <DragDropContext onDragEnd={onDragEnd}>
           <table className={`compare-table w-full table-fixed border-collapse text-xs sm:text-sm ${
             theme === "dark" ? "bg-zinc-800" : "bg-white"

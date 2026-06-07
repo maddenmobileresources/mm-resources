@@ -45,29 +45,36 @@ td {
 }
 
 @media (max-width: 640px) {
+  .compare-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .compare-table {
     table-layout: fixed;
+    min-width: 46rem;
   }
 
   .compare-label-cell {
-    font-size: clamp(0.44rem, 1.8vw, 0.62rem);
-    line-height: 1.05;
-    padding-left: 0.125rem !important;
-    padding-right: 0.125rem !important;
+    font-size: 0.8rem;
+    line-height: 1.15;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
   }
 
   .compare-group-cell {
-    font-size: clamp(0.62rem, 2.5vw, 0.78rem);
-    line-height: 1.08;
-    padding-left: 0.25rem !important;
-    padding-right: 0.25rem !important;
+    font-size: 0.95rem;
+    line-height: 1.15;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
   }
 
   .compare-value-cell {
-    font-size: clamp(0.5rem, 2vw, 0.72rem);
-    line-height: 1.08;
-    padding-left: 0.125rem !important;
-    padding-right: 0.125rem !important;
+    font-size: 0.95rem;
+    line-height: 1.15;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
   }
 }
 
