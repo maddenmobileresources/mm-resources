@@ -84,16 +84,20 @@ td {
 
   .compare-table.compare-count-1 .compare-label-cell:first-child,
   .compare-table.compare-count-1 tr > td.compare-label-cell:first-child,
+  .compare-table.compare-count-1 tr > td.compare-group-cell:first-child,
   .compare-table.compare-count-2 .compare-label-cell:first-child,
   .compare-table.compare-count-2 tr > td.compare-label-cell:first-child,
+  .compare-table.compare-count-2 tr > td.compare-group-cell:first-child,
   .compare-table.compare-count-3 .compare-label-cell:first-child,
-  .compare-table.compare-count-3 tr > td.compare-label-cell:first-child {
+  .compare-table.compare-count-3 tr > td.compare-label-cell:first-child,
+  .compare-table.compare-count-3 tr > td.compare-group-cell:first-child {
     width: 8.75rem;
   }
 
   .compare-group-cell {
-    white-space: normal;
-    overflow: visible;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
     font-size: 0.85rem;
     line-height: 1.15;
     padding-left: 0.35rem !important;
