@@ -10,13 +10,13 @@ export default function HeaderBanner() {
         backgroundPosition: 'center'
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-3 py-3 flex items-center justify-center sm:px-6 sm:justify-between">
         <img 
           src="https://i.imgur.com/ZtjrAdo.png" 
           alt="MMR Logo" 
-          className="h-16 w-auto drop-shadow-lg"
+          className="h-14 max-w-full object-contain drop-shadow-lg sm:h-16"
         />
-        <div className="flex flex-col items-start text-right">
+        <div className="hidden flex-col items-start text-right md:flex">
           <h1 className="text-2xl sm:text-3xl font-serif font-bold tracking-wide drop-shadow-lg">
             Madden Mobile Resources
           </h1>

@@ -308,14 +308,14 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
 
 function FilterInput({ label, type, placeholder, value, onChange, min, theme }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex min-w-0 w-full flex-col sm:w-auto">
       <span className="font-bold">{label}</span>
       <input
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`border rounded px-2 py-1 min-w-[200px] ${
+        className={`w-full min-w-0 rounded border px-2 py-1 sm:min-w-[200px] ${
           theme === "dark" 
             ? "bg-zinc-800 text-gray-100 border-gray-600" 
             : "bg-white text-gray-900 border-gray-300"
@@ -328,12 +328,12 @@ function FilterInput({ label, type, placeholder, value, onChange, min, theme }) 
 
 function FilterSelect({ label, value, onChange, options, theme }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex min-w-0 w-full flex-col sm:w-auto">
       <span className="font-bold">{label}</span>
       <select 
         value={value} 
         onChange={(e) => onChange(e.target.value)} 
-        className={`border rounded px-2 py-1 ${
+        className={`w-full min-w-0 rounded border px-2 py-1 sm:min-w-[200px] ${
           theme === "dark" 
             ? "bg-zinc-800 text-gray-100 border-gray-600" 
             : "bg-white text-gray-900 border-gray-300"
@@ -348,14 +348,14 @@ function FilterSelect({ label, value, onChange, options, theme }) {
 }
 
 function StatFilterRow({ filter, index, updateStatFilter, removeStatFilter, showRemove, theme }) {
-  const selectClass = `border rounded px-2 py-1 ${
+  const selectClass = `w-full min-w-0 rounded border px-2 py-1 sm:w-auto ${
     theme === "dark" 
       ? "bg-zinc-800 text-gray-100 border-gray-600" 
       : "bg-white text-gray-900 border-gray-300"
   }`;
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
       <select
         value={filter.stat}
         onChange={(e) => updateStatFilter(index, "stat", e.target.value)}
@@ -383,7 +383,7 @@ function StatFilterRow({ filter, index, updateStatFilter, removeStatFilter, show
         placeholder="Value"
         value={filter.value}
         onChange={(e) => updateStatFilter(index, "value", e.target.value)}
-        className={`${selectClass} w-20`}
+        className={`${selectClass} sm:w-20`}
       />
       {showRemove && (
         <button onClick={() => removeStatFilter(index)} className="text-red-500 font-bold px-2 hover:text-red-600">
@@ -400,7 +400,7 @@ function PlayerRow({ player, selectedPlayers, togglePlayer, navigate, theme }) {
 
   return (
     <div
-      className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+      className={`flex min-w-0 flex-col gap-3 rounded-lg p-3 cursor-pointer transition-all duration-200 sm:flex-row sm:items-center sm:justify-between ${
         isSelected 
           ? "bg-green-100 dark:bg-green-900 border-2 border-green-500 shadow-md" 
           : theme === "dark"
@@ -413,7 +413,7 @@ function PlayerRow({ player, selectedPlayers, togglePlayer, navigate, theme }) {
         }
       }}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex min-w-0 items-center gap-3">
         <img 
           src={player.image} 
           alt={player.name} 
@@ -421,17 +421,17 @@ function PlayerRow({ player, selectedPlayers, togglePlayer, navigate, theme }) {
             theme === "dark" ? "border-gray-600 bg-zinc-800" : "border-gray-400 bg-white"
           }`}
         />
-        <div className="leading-tight">
+        <div className="min-w-0 leading-tight">
           <p className={`font-semibold ${isSelected ? "text-gray-900" : ""}`}>{player.name}</p>
-          <p className={`text-sm ${isSelected ? "text-gray-900" : theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
+          <p className={`break-words text-sm ${isSelected ? "text-gray-900" : theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
             {player.ovr} OVR • <span style={{ color: rarityColor }}>{player.rarity}</span> • {Array.isArray(player.program) ? player.program[0].replace(/ I$/, "") + " I & II" : player.program} • {player.position.split("|")[0]} ({player.archetype}) • {player.team}
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex shrink-0 items-center gap-3">
         <button
           onClick={(e) => { e.stopPropagation(); togglePlayer(player); }}
-          className={`px-4 py-2 rounded font-semibold transition-colors ${
+          className={`w-full rounded px-4 py-2 font-semibold transition-colors sm:w-auto ${
             isSelected
               ? "bg-red-500 text-white hover:bg-red-600"
               : "bg-green-500 text-white hover:bg-green-600"
@@ -647,9 +647,9 @@ function MainGrid({
     <div className={`flex flex-col lg:flex-row min-h-screen transition-colors duration-300 ${
   theme === "dark" ? "bg-zinc-900 text-gray-100" : "bg-gray-50 text-gray-900"
 }`}>
-  <div className="flex flex-1 gap-6 p-4 pt-2">
-    <main className="flex-1 p-4 pt-2">
-          <div className="flex flex-wrap gap-4 mb-4">
+  <div className="flex min-w-0 flex-1 flex-col gap-6 p-3 pt-2 lg:flex-row lg:p-4">
+    <main className="min-w-0 flex-1 p-0 pt-2 sm:p-4 sm:pt-2">
+          <div className="mb-4 flex min-w-0 flex-col gap-4 sm:flex-row sm:flex-wrap">
             <div className="w-full mb-2 flex flex-wrap items-start justify-between gap-4">
   <div>
     <h1 className="text-2xl font-bold">Player Database</h1>
@@ -692,7 +692,7 @@ function MainGrid({
 </div>
             <button 
               onClick={resetFilters} 
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 self-end"
+              className="w-full rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 sm:w-auto sm:self-end"
             >
               Reset Filters
             </button>
@@ -708,7 +708,7 @@ function MainGrid({
             <FilterInput label="Height (in.): ≥" type="number" placeholder="Min Height" value={minHeight} onChange={setMinHeight} min="0" theme={theme} />
             <FilterInput label="Weight (lbs.): ≥" type="number" placeholder="Min Weight" value={minWeight} onChange={setMinWeight} min="0" theme={theme} />
 
-            <div className="flex flex-col gap-2">
+            <div className="flex min-w-0 w-full flex-col gap-2">
               <span className="font-bold">Filter by Stats:</span>
               <div className="flex flex-col gap-2">
                 {statFilters.map((filter, index) => (
