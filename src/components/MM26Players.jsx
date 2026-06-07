@@ -515,7 +515,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
               e.stopPropagation();
               togglePlayer(player);
             }} 
-            className="text-red-500 font-bold hover:text-red-600"
+            className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600"
           >
             ✕
           </button>

@@ -1186,7 +1186,7 @@ export default function PlayerProfile({
                                   e.stopPropagation();
                                   handleTogglePlayer(p);
                                 }}
-                                className="text-red-500 font-bold hover:text-red-600"
+                                className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600"
                               >
                                 ✕
                               </button>

@@ -49,6 +49,18 @@ td {
 }
 
 @media (max-width: 640px) {
+  .mobile-compare-remove-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    padding: 0.125rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    touch-action: manipulation;
+  }
+
   .compare-scroll {
     max-width: 100%;
     overflow-x: auto;
