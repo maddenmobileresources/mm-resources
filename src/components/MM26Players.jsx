@@ -458,10 +458,10 @@ function CompareTable({ selectedPlayers, togglePlayer, theme }) {
         </p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table-fixed w-full text-sm border-collapse text-center">
+          <table className="table-fixed w-full text-xs border-collapse text-center sm:text-sm">
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
-                <th className={`border px-2 py-1 w-[25%] ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                <th className={`w-[22%] break-words border px-1 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
                   Stat
                 </th>
                 {selectedPlayers.map((player) => (
@@ -489,7 +489,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
   const rarityClass = rarityColors[player.rarity] || "bg-white border-gray-300";
   
   return (
-    <th className={`border px-2 py-1 ${rarityClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+    <th className={`break-words border px-1 py-1 align-top ${rarityClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
       <div 
         className="flex flex-col items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
         onClick={() => navigate(`/player/${player.id}`)}
@@ -499,8 +499,8 @@ function PlayerHeader({ player, togglePlayer, theme }) {
           alt={player.name} 
           className="h-14 w-auto object-contain mb-2" 
         />
-        <div className="flex justify-center items-center gap-2 w-full">
-          <span className="font-semibold text-gray-900">
+        <div className="flex w-full items-start justify-center gap-1">
+          <span className="min-w-0 break-words font-semibold leading-tight text-gray-900">
             {player.name}
           </span>
           <button 
@@ -513,7 +513,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
             ✕
           </button>
         </div>
-        <div className="text-xs text-gray-900">
+        <div className="break-words text-[10px] leading-tight text-gray-900 sm:text-xs">
   {player.position.split("|")[0]} - {player.team} | {player.archetype}
 </div>
       </div>
@@ -524,7 +524,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
 function InfoRow({ label, selectedPlayers, theme }) {
   return (
     <tr>
-      <td className={`bg-blue-600 text-white font-bold border px-2 py-1 text-center ${
+      <td className={`break-words bg-blue-600 text-white font-bold border px-1 py-1 text-center leading-tight ${
         theme === "dark" ? "border-gray-600" : "border-gray-300"
       }`}>
         {label}
@@ -556,7 +556,7 @@ function InfoRow({ label, selectedPlayers, theme }) {
         return (
           <td 
             key={player.id} 
-            className={`border px-2 py-1 text-center ${highlightClass} ${
+            className={`break-words border px-1 py-1 text-center ${
               theme === "dark" ? "border-gray-600" : "border-gray-300"
             } ${hasHighlight ? "text-gray-900" : ""}`}
           >
@@ -573,7 +573,7 @@ function StatGroupRows({ group, selectedPlayers, theme }) {
     <React.Fragment>
       <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
         <td 
-          className={`border px-2 py-2 text-left font-bold text-lg ${
+          className={`break-words border px-1 py-2 text-left text-base font-bold leading-tight sm:px-2 sm:text-lg ${
             theme === "dark" ? "border-gray-600" : "border-gray-300"
           }`}
         >
@@ -584,7 +584,7 @@ function StatGroupRows({ group, selectedPlayers, theme }) {
           return (
             <td 
               key={p.id} 
-              className={`border px-2 py-2 text-center font-bold ${
+              className={`break-words border px-1 py-2 text-center font-bold ${
                 theme === "dark" ? "border-gray-600 bg-gray-700 text-gray-100" : "border-gray-300 bg-gray-200 text-gray-900"
               }`}
             >
@@ -595,7 +595,7 @@ function StatGroupRows({ group, selectedPlayers, theme }) {
       </tr>
       {group.stats.map((stat) => (
         <tr key={stat}>
-          <td className={`bg-blue-600 text-white font-bold border px-2 py-1 text-center ${
+          <td className={`break-words bg-blue-600 text-white font-bold border px-1 py-1 text-center leading-tight ${
             theme === "dark" ? "border-gray-600" : "border-gray-300"
           }`}>
             {stat}
@@ -607,7 +607,7 @@ function StatGroupRows({ group, selectedPlayers, theme }) {
             return (
               <td 
                 key={p.id} 
-                className={`border px-2 py-1 text-center ${highlightClass} ${
+                className={`break-words border px-1 py-1 text-center ${highlightClass} ${
                   theme === "dark" ? "border-gray-600" : "border-gray-300"
                 } ${hasHighlight ? "text-gray-900" : ""}`}
               >
@@ -850,7 +850,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
 
       <div className="overflow-x-auto">
         <DragDropContext onDragEnd={onDragEnd}>
-          <table className={`w-full text-sm border-collapse ${
+          <table className={`w-full table-fixed border-collapse text-xs sm:text-sm ${
             theme === "dark" ? "bg-zinc-800" : "bg-white"
           }`}>
             <thead>
@@ -861,7 +861,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                     ref={provided.innerRef}
                     className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}
                   >
-                    <th className={`sticky left-0 z-10 border px-4 py-2 ${
+                    <th className={`sticky left-0 z-10 w-[22%] break-words border px-1 py-2 sm:px-4 ${
                       theme === "dark" ? "bg-gray-700 border-gray-600" : "bg-gray-200 border-gray-300"
                     }`}>
                       Stat
@@ -877,7 +877,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`border px-4 py-2 min-w-[150px] ${
+                            className={`break-words border px-1 py-2 align-top ${
                               theme === "dark" ? "border-gray-600" : "border-gray-300"
                             }`}
                           >
@@ -887,8 +887,8 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                                 alt={player.name} 
                                 className="h-16 w-auto object-contain"
                               />
-                              <h3 className="font-semibold text-center">{player.name}</h3>
-                              <p className={`text-xs ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+                              <h3 className="break-words text-center font-semibold leading-tight">{player.name}</h3>
+                              <p className={`break-words text-center text-[10px] leading-tight sm:text-xs ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
   {player.position.split("|")[0]} | {player.team}
 </p>
                               <button 
@@ -914,7 +914,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                   <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
                     <td 
                       colSpan={selectedPlayers.length + 1}
-                      className={`font-bold text-lg px-4 py-2 border ${
+                      className={`break-words border px-1 py-2 text-base font-bold sm:px-4 sm:text-lg ${
                         theme === "dark" ? "border-gray-600" : "border-gray-300"
                       }`}
                     >
@@ -932,7 +932,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
 
                     return (
                       <tr key={stat}>
-                        <td className={`px-4 py-2 font-medium border ${
+                        <td className={`break-words border px-1 py-2 font-medium leading-tight sm:px-4 ${
                           theme === "dark" ? "border-gray-600 bg-zinc-800" : "border-gray-300"
                         }`}>
                           {stat}
@@ -940,7 +940,7 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
                         {selectedPlayers.map((p, i) => {
                           const val = p.stats[category]?.[stat] ?? "-";
                           const num = values[i];
-                          let cellClass = `px-4 py-2 text-center border ${
+                          let cellClass = `break-words border px-1 py-2 text-center leading-tight sm:px-4 ${
                             theme === "dark" ? "border-gray-600" : "border-gray-300"
                           }`;
                           
