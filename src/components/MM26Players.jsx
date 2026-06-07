@@ -210,12 +210,12 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-3 my-6">
-      <div className="flex items-center justify-center gap-2">
+    <div className="my-6 flex max-w-full flex-col items-center gap-3 px-2">
+      <div className="flex max-w-full flex-wrap items-center justify-center gap-1 sm:gap-2">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded font-medium transition-colors ${
+          className={`rounded px-2 py-2 text-sm font-medium transition-colors sm:px-4 sm:text-base ${
             currentPage === 1
               ? theme === "dark"
                 ? "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -225,19 +225,20 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
                 : "bg-blue-500 text-white hover:bg-blue-600"
           }`}
         >
-          Previous
+          <span className="sm:hidden">Prev</span>
+          <span className="hidden sm:inline">Previous</span>
         </button>
 
         {getPageNumbers().map((page, index) => (
           <React.Fragment key={index}>
             {page === '...' ? (
-              <span className={`px-2 ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+              <span className={`px-1 text-sm sm:px-2 sm:text-base ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
                 ...
               </span>
             ) : (
               <button
                 onClick={() => onPageChange(page)}
-                className={`px-4 py-2 rounded font-medium transition-colors ${
+                className={`min-w-9 rounded px-2 py-2 text-sm font-medium transition-colors sm:min-w-11 sm:px-4 sm:text-base ${
                   currentPage === page
                     ? theme === "dark"
                       ? "bg-blue-600 text-white"
@@ -256,7 +257,7 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-4 py-2 rounded font-medium transition-colors ${
+          className={`rounded px-2 py-2 text-sm font-medium transition-colors sm:px-4 sm:text-base ${
             currentPage === totalPages
               ? theme === "dark"
                 ? "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -270,8 +271,8 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
         </button>
       </div>
 
-      <div className="flex items-center gap-2">
-        <span className={`text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+      <div className="flex max-w-full flex-wrap items-center justify-center gap-2">
+        <span className={`text-xs sm:text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
           Go to page:
         </span>
         <input
@@ -282,7 +283,7 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
           onChange={e => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Page #"
-          className={`w-20 px-2 py-1 rounded border text-sm ${
+          className={`w-16 rounded border px-2 py-1 text-xs sm:w-20 sm:text-sm ${
             theme === "dark"
               ? "bg-zinc-800 text-gray-100 border-gray-600"
               : "bg-white text-gray-900 border-gray-300"
@@ -290,7 +291,7 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
         />
         <button
           onClick={handleJump}
-          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+          className={`rounded px-3 py-1 text-xs font-medium transition-colors sm:text-sm ${
             theme === "dark"
               ? "bg-blue-600 text-white hover:bg-blue-700"
               : "bg-blue-500 text-white hover:bg-blue-600"
@@ -298,7 +299,7 @@ function Pagination({ currentPage, totalPages, onPageChange, theme }) {
         >
           Go
         </button>
-        <span className={`text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+        <span className={`text-xs sm:text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
           of {totalPages}
         </span>
       </div>
