@@ -1155,18 +1155,24 @@ export default function PlayerProfile({
           </div>
 
           {validPlayers.length > 0 && (
-            <div className={`p-4 rounded border overflow-x-auto ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-transparent border-green-500'}`}>
+            <div className={`player-profile-mobile-compare-scroll p-4 rounded border overflow-x-auto ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-transparent border-green-500'}`}>
               <h3 className="text-lg font-bold mb-2 dark:text-white">Stat Comparison</h3>
-              <table className="table-fixed w-full text-sm border-collapse border" style={{ borderColor }}>
+              <table className={`player-profile-mobile-compare-table player-profile-mobile-count-${validPlayers.length} table-fixed w-full text-sm border-collapse border`} style={{ borderColor }}>
+                <colgroup>
+                  <col className="player-profile-mobile-stat-col" />
+                  {validPlayers.map((p) => (
+                    <col key={p.id} />
+                  ))}
+                </colgroup>
                 <thead>
                   <tr>
-                    <th className={`border p-1 w-35 ${theme === 'dark' ? 'bg-slate-700 text-white' : 'bg-gray-100'}`} style={{ borderColor }}>Stat</th>
+                    <th className={`player-profile-mobile-label-cell player-profile-mobile-stat-heading border p-1 w-35 ${theme === 'dark' ? 'bg-slate-700 text-white' : 'bg-gray-100'}`} style={{ borderColor }}>Stat</th>
                     {validPlayers.map((p) => {
                       const rarityClass = rarityColors[p.rarity] || "bg-white border-gray-300";
                       return (
                         <th 
                           key={p.id} 
-                          className={`player-profile-stat-player-header border p-2 ${rarityClass} text-center`}
+                          className={`player-profile-mobile-player-header player-profile-stat-player-header border p-2 ${rarityClass} text-center`}
                           style={{ width: `${100 / validPlayers.length}%`, borderColor }}
                         >
                           <div 
@@ -1198,7 +1204,7 @@ export default function PlayerProfile({
                 <tbody>
                   {["Rarity", "OVR", "Height", "Weight (lbs.)"].map((label) => (
                     <tr key={label}>
-                      <td className={`font-bold border px-2 py-1 text-center ${theme === 'dark' ? 'bg-[#155dfc] text-white' : 'bg-blue-600 text-white'}`} style={{ borderColor }}>
+                      <td className={`player-profile-mobile-label-cell font-bold border px-2 py-1 text-center ${theme === 'dark' ? 'bg-[#155dfc] text-white' : 'bg-blue-600 text-white'}`} style={{ borderColor }}>
                         {label}
                       </td>
                       {validPlayers.map((p) => {
@@ -1232,13 +1238,16 @@ export default function PlayerProfile({
                           displayValue = p.weight;
                         }
 
+                        const highlightClass = getHighlightClass(null, value, label);
+                        const hasHighlight = highlightClass !== "";
+
                         return (
 <td
   key={p.id}
-  className={`border px-2 py-1 text-center ${getHighlightClass(null, value, label)}`}
+  className={`player-profile-mobile-value-cell player-profile-mobile-info-value-cell ${hasHighlight ? "" : "player-profile-mobile-empty-value-cell"} border px-2 py-1 text-center ${highlightClass}`}
   style={{ 
     borderColor, 
-    color: getHighlightClass(null, value, label) === '' && theme === 'dark' ? '#ffffff' : '#000000' 
+    color: hasHighlight ? '#000000' : theme === 'dark' ? '#ffffff' : '#000000' 
   }}
 >
   {displayValue}
@@ -1252,7 +1261,7 @@ export default function PlayerProfile({
                     <React.Fragment key={group.label}>
                       <tr className={theme === 'dark' ? 'bg-slate-700' : 'bg-gray-200'}>
                         <td
-                          className={`border px-2 py-2 text-left font-bold text-lg ${theme === 'dark' ? 'text-white' : ''}`}
+                          className={`player-profile-mobile-group-cell border px-2 py-2 text-left font-bold text-lg ${theme === 'dark' ? 'text-white' : ''}`}
                           style={{ borderColor }}
                         >
                           {group.label}
@@ -1262,7 +1271,7 @@ export default function PlayerProfile({
                           return (
                             <td
                               key={p.id}
-                              className={`border px-2 py-2 text-center font-bold ${
+                              className={`player-profile-mobile-value-cell player-profile-mobile-group-value-cell border px-2 py-2 text-center font-bold ${
                                 theme === 'dark' ? 'bg-slate-700 text-white' : 'bg-gray-200 text-gray-900'
                               }`}
                               style={{ borderColor }}
@@ -1274,7 +1283,7 @@ export default function PlayerProfile({
                       </tr>
                       {group.stats.map((stat) => (
                         <tr key={stat}>
-                          <td className={`font-bold border px-2 py-1 text-center ${theme === 'dark' ? 'bg-[#155dfc] text-white' : 'bg-blue-600 text-white'}`} style={{ borderColor }}>
+                          <td className={`player-profile-mobile-label-cell font-bold border px-2 py-1 text-center ${theme === 'dark' ? 'bg-[#155dfc] text-white' : 'bg-blue-600 text-white'}`} style={{ borderColor }}>
                             {stat}
                           </td>
                           {validPlayers.map((p) => {
@@ -1292,13 +1301,16 @@ export default function PlayerProfile({
                               p.stats.Kicking?.[stat] ||
                               p.stats.Returning?.[stat] ||
                               "N/A";
+                            const highlightClass = getHighlightClass(stat, val);
+                            const hasHighlight = highlightClass !== "";
+
                             return (
 <td
   key={p.id}
-  className={`border px-2 py-1 text-center ${getHighlightClass(stat, val)}`}
+  className={`player-profile-mobile-value-cell ${hasHighlight ? "" : "player-profile-mobile-empty-value-cell"} border px-2 py-1 text-center ${highlightClass}`}
   style={{ 
     borderColor, 
-    color: getHighlightClass(stat, val) === '' && theme === 'dark' ? '#ffffff' : '#000000' 
+    color: hasHighlight ? '#000000' : theme === 'dark' ? '#ffffff' : '#000000' 
   }}
 >
   {val}

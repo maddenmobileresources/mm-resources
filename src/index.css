@@ -179,6 +179,97 @@ td {
     font-size: 0.76rem;
     line-height: 1.25;
   }
+
+  .player-profile-mobile-compare-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .player-profile-mobile-compare-table {
+    table-layout: fixed;
+    min-width: 100%;
+  }
+
+  .player-profile-mobile-compare-table.player-profile-mobile-count-1,
+  .player-profile-mobile-compare-table.player-profile-mobile-count-2,
+  .player-profile-mobile-compare-table.player-profile-mobile-count-3 {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .player-profile-mobile-stat-col {
+    width: 7.6rem;
+  }
+
+  .player-profile-mobile-compare-table.player-profile-mobile-count-4 {
+    min-width: 26rem;
+  }
+
+  .player-profile-mobile-compare-table.player-profile-mobile-count-5 {
+    min-width: 30rem;
+  }
+
+  .player-profile-mobile-label-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-wrap: normal;
+    text-overflow: clip;
+    font-size: clamp(0.58rem, 2.25vw, 0.7rem);
+    line-height: 1.15;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
+  }
+
+  .player-profile-mobile-stat-heading {
+    font-size: 0.95rem;
+  }
+
+  .player-profile-mobile-group-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 0.85rem;
+    line-height: 1.15;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+
+  .player-profile-mobile-value-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 0.85rem;
+    line-height: 1.15;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .player-profile-mobile-info-value-cell {
+    font-size: 0.74rem;
+  }
+
+  html.dark .player-profile-mobile-compare-table td.player-profile-mobile-empty-value-cell {
+    background-color: rgb(39 39 42) !important;
+    color: rgb(243 244 246) !important;
+    border-color: rgb(75 85 99) !important;
+  }
+
+  .player-profile-mobile-player-header {
+    color: #111827 !important;
+  }
+
+  .player-profile-mobile-player-header .player-profile-stat-player-name {
+    color: #111827 !important;
+    font-size: 0.82rem;
+    line-height: 1.1;
+  }
+
+  .player-profile-mobile-player-header .player-profile-stat-player-meta {
+    color: #374151 !important;
+    font-size: 0.68rem;
+    line-height: 1.15;
+  }
 }
 
   html,
