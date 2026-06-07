@@ -63,6 +63,10 @@ td {
     min-width: 100%;
   }
 
+  .compare-stat-col {
+    width: 9.5rem;
+  }
+
   .compare-table.compare-count-4 {
     min-width: 26rem;
   }
@@ -80,18 +84,6 @@ td {
     line-height: 1.15;
     padding-left: 0.2rem !important;
     padding-right: 0.2rem !important;
-  }
-
-  .compare-table.compare-count-1 .compare-label-cell:first-child,
-  .compare-table.compare-count-1 tr > td.compare-label-cell:first-child,
-  .compare-table.compare-count-1 tr > td.compare-group-cell:first-child,
-  .compare-table.compare-count-2 .compare-label-cell:first-child,
-  .compare-table.compare-count-2 tr > td.compare-label-cell:first-child,
-  .compare-table.compare-count-2 tr > td.compare-group-cell:first-child,
-  .compare-table.compare-count-3 .compare-label-cell:first-child,
-  .compare-table.compare-count-3 tr > td.compare-label-cell:first-child,
-  .compare-table.compare-count-3 tr > td.compare-group-cell:first-child {
-    width: 8.75rem;
   }
 
   .compare-group-cell {

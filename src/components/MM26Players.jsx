@@ -460,6 +460,12 @@ function CompareTable({ selectedPlayers, togglePlayer, theme }) {
       ) : (
         <div className="compare-scroll overflow-x-auto">
           <table className={`compare-table compare-count-${selectedPlayers.length} table-fixed w-full text-xs border-collapse text-center sm:text-sm`}>
+            <colgroup>
+              <col className="compare-stat-col" />
+              {selectedPlayers.map((player) => (
+                <col key={player.id} />
+              ))}
+            </colgroup>
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
                 <th className={`compare-label-cell w-[22%] border px-1 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
@@ -854,6 +860,12 @@ function PlayerComparison({ selectedPlayers, setSelectedPlayers }) {
           <table className={`compare-table compare-count-${selectedPlayers.length} w-full table-fixed border-collapse text-xs sm:text-sm ${
             theme === "dark" ? "bg-zinc-800" : "bg-white"
           }`}>
+            <colgroup>
+              <col className="compare-stat-col" />
+              {selectedPlayers.map((player) => (
+                <col key={player.id} />
+              ))}
+            </colgroup>
             <thead>
               <Droppable droppableId="players" direction="horizontal">
                 {(provided) => (
