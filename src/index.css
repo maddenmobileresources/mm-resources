@@ -53,6 +53,11 @@ td {
 
   .compare-table {
     table-layout: fixed;
+    min-width: 100%;
+  }
+
+  .compare-table.compare-count-4,
+  .compare-table.compare-count-5 {
     min-width: 42rem;
   }
 
