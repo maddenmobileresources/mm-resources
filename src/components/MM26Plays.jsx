@@ -137,7 +137,7 @@ function PlayCard({ play, selectedPlays, togglePlay, theme }) {
       onClick={() => navigate(`/play/${play.id}`)}
       className={`rounded-lg overflow-hidden transition-all duration-200 cursor-pointer ${
         isSelected 
-          ? "bg-green-100 dark:bg-green-900 border-2 border-green-500 shadow-md" 
+          ? "bg-green-100 dark:bg-green-100 border-2 border-green-500 shadow-md" 
           : theme === "dark"
             ? "bg-zinc-800 border border-gray-600 hover:bg-zinc-700"
             : "bg-white border border-gray-400 hover:bg-gray-50"

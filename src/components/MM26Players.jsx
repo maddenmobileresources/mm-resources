@@ -407,7 +407,7 @@ function PlayerRow({ player, selectedPlayers, togglePlayer, navigate, theme }) {
     <div
       className={`flex min-w-0 flex-col gap-3 rounded-lg p-3 cursor-pointer transition-all duration-200 sm:flex-row sm:items-center sm:justify-between ${
         isSelected 
-          ? "bg-green-100 dark:bg-green-900 border-2 border-green-500 shadow-md" 
+          ? "bg-green-100 dark:bg-green-100 border-2 border-green-500 shadow-md" 
           : theme === "dark"
             ? "bg-zinc-800 border border-gray-600 hover:bg-zinc-700"
             : "bg-white border border-gray-400 hover:bg-gray-50"
