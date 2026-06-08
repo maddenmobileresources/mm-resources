@@ -357,28 +357,32 @@ function StatFilterRow({ filter, index, updateStatFilter, removeStatFilter, show
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-      <select
-        value={filter.stat}
-        onChange={(e) => updateStatFilter(index, "stat", e.target.value)}
-        className={selectClass}
-      >
-        <option value="">-- Select Stat --</option>
-        {STAT_GROUPS.map((group) => [
-          <option key={group.title} value={group.title} style={{ fontWeight: "bold" }}>{group.title}</option>,
-          ...group.stats.map((stat) => (
-            <option key={`${group.title}-${stat}`} value={stat}>&nbsp;&nbsp;{stat}</option>
-          ))
-        ])}
-      </select>
-      <select
-        value={filter.operator}
-        onChange={(e) => updateStatFilter(index, "operator", e.target.value)}
-        className={selectClass}
-      >
-        <option value=">=">{">="}</option>
-        <option value="<=">{"<="}</option>
-        <option value="=">{"="}</option>
-      </select>
+      <div className="player-filter-select-wrap w-full sm:w-auto">
+        <select
+          value={filter.stat}
+          onChange={(e) => updateStatFilter(index, "stat", e.target.value)}
+          className={`${selectClass} player-filter-select`}
+        >
+          <option value="">-- Select Stat --</option>
+          {STAT_GROUPS.map((group) => [
+            <option key={group.title} value={group.title} style={{ fontWeight: "bold" }}>{group.title}</option>,
+            ...group.stats.map((stat) => (
+              <option key={`${group.title}-${stat}`} value={stat}>&nbsp;&nbsp;{stat}</option>
+            ))
+          ])}
+        </select>
+      </div>
+      <div className="player-filter-select-wrap w-full sm:w-auto">
+        <select
+          value={filter.operator}
+          onChange={(e) => updateStatFilter(index, "operator", e.target.value)}
+          className={`${selectClass} player-filter-select`}
+        >
+          <option value=">=">{">="}</option>
+          <option value="<=">{"<="}</option>
+          <option value="=">{"="}</option>
+        </select>
+      </div>
       <input
         type="number"
         placeholder="Value"
