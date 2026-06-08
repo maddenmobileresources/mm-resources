@@ -140,28 +140,46 @@ td {
     min-width: 100%;
   }
 
-  .play-compare-table.play-compare-count-1,
-  .play-compare-table.play-compare-count-2,
-  .play-compare-table.play-compare-count-3 {
+  .play-compare-table.play-compare-count-1 {
     width: 100%;
     min-width: 100%;
   }
 
+  .play-compare-table.play-compare-count-2 {
+    min-width: 24.5rem;
+  }
+
+  .play-compare-table.play-compare-count-3 {
+    min-width: 33rem;
+  }
+
   .play-compare-table.play-compare-count-4 {
-    min-width: 46rem;
+    min-width: 41.5rem;
   }
 
   .play-compare-table.play-compare-count-5 {
-    min-width: 58rem;
+    min-width: 50rem;
   }
 
   .play-compare-table th,
   .play-compare-table td {
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .play-compare-stat-col {
+    width: 7.5rem;
+  }
+
+  .play-compare-play-col {
+    width: 8.5rem;
   }
 
   .play-compare-value-cell {
-    min-width: 10rem;
+    min-width: 8.5rem;
+    font-size: 0.82rem;
+    line-height: 1.15;
   }
 
   .compare-table {
