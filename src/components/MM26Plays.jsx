@@ -234,7 +234,7 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
                 {selectedPlays.map((play) => (
                   <th 
                     key={play.id} 
-                    className={`border px-2 py-1 cursor-pointer hover:opacity-80 transition-opacity`}
+                    className={`play-compare-header-cell border px-2 py-1 cursor-pointer hover:opacity-80 transition-opacity`}
                     style={{
                       backgroundColor: play.type === "Run" ? "#54a354ff" 
                         : play.type === "Short Pass" ? "#835499ff"
@@ -245,7 +245,7 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
                     }}
                     onClick={() => navigate(`/play/${play.id}`)}
                   >
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="play-compare-header-content flex flex-col items-center justify-center">
                       <img 
                         src={play.image} 
                         alt={play.name} 

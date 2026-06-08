@@ -55,6 +55,28 @@ td {
   -webkit-overflow-scrolling: touch;
 }
 
+.play-compare-header-cell {
+  position: relative;
+}
+
+.play-compare-header-content {
+  padding-right: 1.25rem;
+}
+
+.play-compare-header-cell .play-compare-header-content button {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.5rem;
+  font-size: 0;
+  line-height: 1;
+  z-index: 2;
+}
+
+.play-compare-header-cell .play-compare-header-content button::before {
+  content: "X";
+  font-size: 1.35rem;
+}
+
 @media (min-width: 641px) and (max-width: 1180px) {
   .play-compare-table {
     width: max-content;
