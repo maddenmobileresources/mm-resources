@@ -52,13 +52,15 @@ td {
 .player-profile-mobile-player-header {
   position: relative;
   height: 10.5rem;
-  padding-bottom: 1.65rem !important;
+  padding-top: 1.75rem !important;
+  padding-bottom: 0.5rem !important;
   vertical-align: top;
 }
 
 .player-profile-mobile-player-header {
   height: 8.25rem;
-  padding-bottom: 1.35rem !important;
+  padding-top: 1.65rem !important;
+  padding-bottom: 0.4rem !important;
 }
 
 .compare-remove-button {
@@ -66,7 +68,7 @@ td {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 0.05rem;
+  top: 0.05rem;
   left: 50%;
   transform: translateX(-50%);
   min-width: 1.75rem;
@@ -92,11 +94,12 @@ td {
   .compare-player-header-cell,
   .player-profile-mobile-player-header {
     height: 13rem;
-    padding-bottom: 2.5rem !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 
   .compare-remove-button {
-    bottom: 0.25rem;
+    top: 0.25rem;
   }
 
   .compare-scroll {
