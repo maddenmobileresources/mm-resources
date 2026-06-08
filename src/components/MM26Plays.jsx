@@ -109,12 +109,12 @@ function FilterInput({ label, type, placeholder, value, onChange, min, theme }) 
 
 function FilterSelect({ label, value, onChange, options, theme }) {
   return (
-    <div className="flex flex-col">
+    <div className="player-filter-select-wrap flex flex-col">
       <span className="font-bold">{label}</span>
       <select 
         value={value} 
         onChange={(e) => onChange(e.target.value)} 
-        className={`border rounded px-2 py-1 w-full ${
+        className={`player-filter-select border rounded px-2 py-1 w-full ${
           theme === "dark" 
             ? "bg-zinc-800 text-gray-100 border-gray-600" 
             : "bg-white text-gray-900 border-gray-300"

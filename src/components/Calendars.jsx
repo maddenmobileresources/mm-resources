@@ -5,7 +5,7 @@ import { useTheme } from "../context/ThemeContext";
 const calendarSeasons = [
   { label: "Madden NFL 27 Mobile", path: "/calendars/mm27", image: "https://i.imgur.com/4OzjJJY.jpeg" },
   { label: "Madden NFL 26 Mobile", path: "/calendars/mm26", image: "https://i.imgur.com/GET5Pur.jpeg" },
-  { label: "Madden NFL 25 Mobile", path: "/calendars/mm25", image: "https://i.imgur.com/1Xs3elN.jpeg" },
+  { label: "Madden NFL 25 Mobile", path: "/calendars/mm25", image: "https://i.imgur.com/8nGhpSI.png" },
   { label: "Madden NFL 24 Mobile", path: "/calendars/mm24", image: "https://i.imgur.com/PV20g7a.png" },
   { label: "Madden NFL 23 Mobile", path: "/calendars/mm23", image: "https://i.imgur.com/JVABfw6.jpeg" },
   { label: "Madden NFL 22 Mobile", path: "/calendars/mm22", image: "https://i.imgur.com/qRB69dn.jpeg" },
