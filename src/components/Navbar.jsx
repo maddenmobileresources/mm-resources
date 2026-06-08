@@ -8,6 +8,12 @@ const ALL_PAGES = [
   { title: "Player Database", path: "/players", keywords: ["players", "database", "stats", "ovr", "program", "team", "boost", "card", "starter", "uncommon", "common", "rare", "epic", "iconic", "mythic", "marvel", "dual", "height", "weight", "position", "archetype", "core", "compare"] },
   { title: "Play Database", path: "/plays", keywords: ["plays", "database", "offensive", "defensive", "scheme", "run", "short", "long", "pass", "action", "pa", "route", "budget", "yards", "compare"] },
   { title: "Event Schedule", path: "/calendars", keywords: ["calendars", "events", "schedule", "timezone", "start", "ends", "boost", "expires", "promo", "duration"] },
+  { title: "Madden NFL 27 Mobile Calendar", path: "/calendars/mm27", keywords: ["calendar", "mm27", "madden nfl 27 mobile", "schedule", "events"] },
+  { title: "Madden NFL 26 Mobile Calendar", path: "/calendars/mm26", keywords: ["calendar", "mm26", "madden nfl 26 mobile", "schedule", "events"] },
+  { title: "Madden NFL 25 Mobile Calendar", path: "/calendars/mm25", keywords: ["calendar", "mm25", "madden nfl 25 mobile", "schedule", "events"] },
+  { title: "Madden NFL 24 Mobile Calendar", path: "/calendars/mm24", keywords: ["calendar", "mm24", "madden nfl 24 mobile", "schedule", "events"] },
+  { title: "Madden NFL 23 Mobile Calendar", path: "/calendars/mm23", keywords: ["calendar", "mm23", "madden nfl 23 mobile", "schedule", "events"] },
+  { title: "Madden NFL 22 Mobile Calendar", path: "/calendars/mm22", keywords: ["calendar", "mm22", "madden nfl 22 mobile", "schedule", "events"] },
   { title: "August 2025 Calendar", path: "/calendars/aug25", keywords: ["calendar", "august", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
   { title: "September 2025 Calendar", path: "/calendars/sept25", keywords: ["calendar", "september", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
   { title: "October 2025 Calendar", path: "/calendars/oct25", keywords: ["calendar", "october", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
@@ -384,88 +390,100 @@ export default function Navbar() {
               overflow: "visible",
             }}
           >
-            <div
-              style={{ position: "relative" }}
-              onMouseEnter={() => {
-                clearTimeout(submenuTimeout.current);
-                setOpenSubmenu("mm26");
-              }}
-              onMouseLeave={() => {
-                submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
-              }}
-            >
+            {[
+              { name: "MM27", path: "/calendars/mm27" },
+              { name: "MM26", path: "/calendars/mm26", submenu: "mm26" },
+              { name: "MM25", path: "/calendars/mm25" },
+              { name: "MM24", path: "/calendars/mm24" },
+              { name: "MM23", path: "/calendars/mm23" },
+              { name: "MM22", path: "/calendars/mm22" },
+            ].map((season) => (
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "8px 12px",
-                  fontSize: "0.875rem",
-                  color: textColor,
-                  cursor: "pointer",
-                  transition: "background-color 0.2s",
+                key={season.name}
+                style={{ position: "relative" }}
+                onMouseEnter={() => {
+                  if (!season.submenu) return;
+                  clearTimeout(submenuTimeout.current);
+                  setOpenSubmenu(season.submenu);
                 }}
-                onClick={() => {
-                  navigate("/calendars");
-                  setOpenMenu(null);
-                  setOpenSubmenu(null);
+                onMouseLeave={() => {
+                  if (!season.submenu) return;
+                  submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
-                <span>MM26</span>
-                <ChevronRight size={14} />
-              </div>
-              {openSubmenu === "mm26" && (
                 <div
                   style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "100%",
-                    marginLeft: "4px",
-                    width: "11rem",
-                    backgroundColor: isDark ? "#2d3748" : "white",
-                    border: `1px solid ${borderColor}`,
-                    borderRadius: "0.375rem",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "8px 12px",
+                    fontSize: "0.875rem",
+                    color: textColor,
+                    cursor: "pointer",
+                    transition: "background-color 0.2s",
                   }}
-                  onMouseEnter={() => clearTimeout(submenuTimeout.current)}
-                  onMouseLeave={() => {
-                    submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
+                  onClick={() => {
+                    navigate(season.path);
+                    setOpenMenu(null);
+                    setOpenSubmenu(null);
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
-                  {[
-                    { name: "August 2025", path: "/calendars/aug25" },
-                    { name: "September 2025", path: "/calendars/sept25" },
-                    { name: "October 2025", path: "/calendars/oct25" },
-                    { name: "November 2025", path: "/calendars/nov25" },
-                    { name: "December 2025", path: "/calendars/dec25" },
-                  ].map((month) => (
-                    <NavLink
-                      key={month.name}
-                      to={month.path}
-                      onClick={() => {
-                        setOpenMenu(null);
-                        setOpenSubmenu(null);
-                      }}
-                      style={{
-                        display: "block",
-                        padding: "8px 12px",
-                        fontSize: "0.875rem",
-                        textDecoration: "none",
-                        color: textColor,
-                        transition: "background-color 0.2s",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-                    >
-                      {month.name}
-                    </NavLink>
-                  ))}
+                  <span>{season.name}</span>
+                  {season.submenu && <ChevronRight size={14} />}
                 </div>
-              )}
-            </div>
+                {season.submenu && openSubmenu === season.submenu && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: "100%",
+                      marginLeft: "4px",
+                      width: "11rem",
+                      backgroundColor: isDark ? "#2d3748" : "white",
+                      border: `1px solid ${borderColor}`,
+                      borderRadius: "0.375rem",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+                      overflow: "hidden",
+                    }}
+                    onMouseEnter={() => clearTimeout(submenuTimeout.current)}
+                    onMouseLeave={() => {
+                      submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
+                    }}
+                  >
+                    {[
+                      { name: "August 2025", path: "/calendars/aug25" },
+                      { name: "September 2025", path: "/calendars/sept25" },
+                      { name: "October 2025", path: "/calendars/oct25" },
+                      { name: "November 2025", path: "/calendars/nov25" },
+                      { name: "December 2025", path: "/calendars/dec25" },
+                    ].map((month) => (
+                      <NavLink
+                        key={month.name}
+                        to={month.path}
+                        onClick={() => {
+                          setOpenMenu(null);
+                          setOpenSubmenu(null);
+                        }}
+                        style={{
+                          display: "block",
+                          padding: "8px 12px",
+                          fontSize: "0.875rem",
+                          textDecoration: "none",
+                          color: textColor,
+                          transition: "background-color 0.2s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                      >
+                        {month.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         )}
       </div>

@@ -6,7 +6,13 @@ import PlayerProfile from "./PlayerProfile";
 import PlayProfile from "./PlayProfile";
 import ThemeTeamDetail from "./ThemeTeamDetail";
 import MultiThemeTeamDetail from "./MultiThemeTeamDetail";
-import MM26Calendars from "./components/MM26Calendars";
+import Calendars from "./components/Calendars";
+import MM27 from "./components/MM27";
+import MM26 from "./components/MM26";
+import MM25 from "./components/MM25";
+import MM24 from "./components/MM24";
+import MM23 from "./components/MM23";
+import MM22 from "./components/MM22";
 import Home from "./components/Home";
 import Banner from "./components/Banner";
 import Layout from "./Layout";
@@ -208,7 +214,13 @@ function App() {
           />
 
           {/* Calendars Pages */}
-          <Route path="/calendars" element={<MM26Calendars />} />
+          <Route path="/calendars" element={<Calendars />} />
+          <Route path="/calendars/mm27" element={<MM27 />} />
+          <Route path="/calendars/mm26" element={<MM26 />} />
+          <Route path="/calendars/mm25" element={<MM25 />} />
+          <Route path="/calendars/mm24" element={<MM24 />} />
+          <Route path="/calendars/mm23" element={<MM23 />} />
+          <Route path="/calendars/mm22" element={<MM22 />} />
           <Route path="/calendars/aug25" element={<Aug25 />} />
           <Route path="/calendars/sept25" element={<Sept25 />} />
           <Route path="/calendars/oct25" element={<Oct25 />} />
