@@ -50,6 +50,46 @@ td {
   text-overflow: clip;
 }
 
+.play-compare-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 641px) and (max-width: 1180px) {
+  .play-compare-table {
+    width: max-content;
+  }
+
+  .play-compare-table.play-compare-count-2 {
+    min-width: 42rem;
+  }
+
+  .play-compare-table.play-compare-count-3 {
+    min-width: 52rem;
+  }
+
+  .play-compare-table.play-compare-count-4 {
+    min-width: 62rem;
+  }
+
+  .play-compare-table.play-compare-count-5 {
+    min-width: 72rem;
+  }
+
+  .play-compare-stat-col {
+    width: 13rem;
+  }
+
+  .play-compare-play-col {
+    width: 11.8rem;
+  }
+
+  .play-compare-table th,
+  .play-compare-table td {
+    white-space: nowrap;
+  }
+}
+
 .compare-stat-heading-cell {
   font-size: 1rem;
 }
