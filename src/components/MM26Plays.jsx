@@ -218,8 +218,8 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
           Select plays to compare.
         </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table-fixed w-full text-sm border-collapse text-center">
+        <div className="play-compare-scroll overflow-x-auto">
+          <table className="play-compare-table table-fixed w-full text-sm border-collapse text-center">
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
                 <th className={`border px-2 py-1 w-[20%] ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
@@ -289,16 +289,20 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
                 }`}>
                   Playbook Budget
                 </td>
-                {selectedPlays.map((play) => (
-                  <td 
-                    key={play.id} 
-                    className={`border px-2 py-1 ${
-                      theme === "dark" ? "border-gray-600" : "border-gray-300"
-                    }`}
-                  >
-                    {play.pbb}
-                  </td>
-                ))}
+                {selectedPlays.map((play) => {
+                  const values = selectedPlays.map(p => p.pbb);
+                  const highlightClass = getHighlightClass(values, play.pbb);
+                  return (
+                    <td 
+                      key={play.id} 
+                      className={`play-compare-value-cell border px-2 py-1 ${highlightClass} ${
+                        theme === "dark" ? "border-gray-600" : "border-gray-300"
+                      }`}
+                    >
+                      {play.pbb}
+                    </td>
+                  );
+                })}
               </tr>
               
               <tr>
@@ -313,7 +317,7 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
                   return (
                     <td 
                       key={play.id} 
-                      className={`border px-2 py-1 ${highlightClass} ${
+                      className={`play-compare-value-cell border px-2 py-1 ${highlightClass} ${
                         theme === "dark" ? "border-gray-600" : "border-gray-300"
                       }`}
                     >

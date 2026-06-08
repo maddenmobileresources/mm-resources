@@ -130,6 +130,25 @@ td {
     -webkit-overflow-scrolling: touch;
   }
 
+  .play-compare-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .play-compare-table {
+    min-width: 58rem;
+  }
+
+  .play-compare-table th,
+  .play-compare-table td {
+    white-space: nowrap;
+  }
+
+  .play-compare-value-cell {
+    min-width: 10rem;
+  }
+
   .compare-table {
     table-layout: fixed;
     min-width: 100%;
