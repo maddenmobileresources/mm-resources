@@ -267,8 +267,8 @@ export default function Navbar() {
             }}
           >
             {[
-              { name: "Players", path: "/players", submenu: "database-players" },
-              { name: "Plays", path: "/plays", submenu: "database-plays" },
+              { name: "Players", categoryPath: "/databases/players", mm26Path: "/players", submenu: "database-players" },
+              { name: "Plays", categoryPath: "/databases/plays", mm26Path: "/plays", submenu: "database-plays" },
             ].map((database) => (
               <div
                 key={database.name}
@@ -293,7 +293,7 @@ export default function Navbar() {
                     transition: "background-color 0.2s",
                   }}
                   onClick={() => {
-                    navigate(database.path);
+                    navigate(database.categoryPath);
                     setOpenMenu(null);
                     setOpenSubmenu(null);
                   }}
@@ -323,7 +323,7 @@ export default function Navbar() {
                     }}
                   >
                     <NavLink
-                      to={database.path}
+                      to={database.mm26Path}
                       onClick={() => {
                         setOpenMenu(null);
                         setOpenSubmenu(null);
