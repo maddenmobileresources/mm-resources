@@ -496,7 +496,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
   const rarityClass = rarityColors[player.rarity] || "bg-white border-gray-300";
   
   return (
-    <th className={`break-words border px-1 py-1 align-top ${rarityClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+    <th className={`compare-player-header-cell break-words border px-1 py-1 align-top ${rarityClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
       <div 
         className="flex flex-col items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
         onClick={() => navigate(`/player/${player.id}`)}
@@ -515,7 +515,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
               e.stopPropagation();
               togglePlayer(player);
             }} 
-            className="hidden text-red-500 font-bold hover:text-red-600 sm:inline-flex"
+            className="hidden"
           >
             ✕
           </button>
@@ -528,7 +528,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
             e.stopPropagation();
             togglePlayer(player);
           }} 
-          className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
+          className="compare-remove-button text-red-500 font-bold hover:text-red-600"
         >
           x
         </button>

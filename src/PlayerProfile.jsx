@@ -855,9 +855,9 @@ export default function PlayerProfile({
     const isBest = value === sorted[0];
     const isWorst = value === sorted[sorted.length - 1];
 
-    if (isBest) return "bg-green-200 dark:bg-green-900";
-    if (isWorst) return "bg-red-200 dark:bg-red-900";
-    return "bg-yellow-200 dark:bg-yellow-900";
+    if (isBest) return "bg-green-200";
+    if (isWorst) return "bg-red-200";
+    return "bg-yellow-200";
   };
 
   const onDragEnd = (result) => {
@@ -1186,7 +1186,7 @@ export default function PlayerProfile({
                                   e.stopPropagation();
                                   handleTogglePlayer(p);
                                 }}
-                                className="hidden text-red-500 font-bold hover:text-red-600 sm:inline-flex"
+                                className="hidden"
                               >
                                 ✕
                               </button>
@@ -1200,7 +1200,7 @@ export default function PlayerProfile({
                                 e.stopPropagation();
                                 handleTogglePlayer(p);
                               }}
-                              className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
+                              className="compare-remove-button text-red-500 font-bold hover:text-red-600"
                             >
                               x
                             </button>
