@@ -83,6 +83,14 @@ export default function PlayProfile({
     return "bg-yellow-200 dark:bg-yellow-900";
   };
 
+  const getPlayCompareHighlightClass = (values, currentValue) => {
+    if (values.length <= 1) return "";
+    const sortedUnique = [...new Set(values)].sort((a, b) => b - a);
+    if (currentValue === sortedUnique[0]) return "bg-green-200 text-gray-900";
+    if (currentValue === sortedUnique[sortedUnique.length - 1]) return "bg-red-200 text-gray-900";
+    return "bg-yellow-200 text-gray-900";
+  };
+
   const onDragEnd = (result) => {
     if (!result.destination) return;
     if (!Array.isArray(selectedPlays)) return;
@@ -93,6 +101,142 @@ export default function PlayProfile({
   };
 
   const borderColor = theme === 'dark' ? '#64748b' : '#d1d5db';
+
+  const PlayComparisonTable = () => (
+    <div className={`p-4 rounded border ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-transparent border-green-500'}`}>
+      <h3 className="text-lg font-bold mb-2 dark:text-white">Play Comparison</h3>
+      <div className="play-compare-scroll overflow-x-auto">
+        <table className={`play-compare-table play-compare-count-${validPlays.length} table-fixed w-full text-sm border-collapse text-center`}>
+          <colgroup>
+            <col className="play-compare-stat-col" />
+            {validPlays.map((p) => (
+              <col key={p.id} className="play-compare-play-col" />
+            ))}
+          </colgroup>
+          <thead>
+            <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
+              <th className={`border px-2 py-1 w-[20%] ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Stat
+              </th>
+              {validPlays.map((p) => (
+                <th
+                  key={p.id}
+                  className="play-compare-header-cell border px-2 py-1 cursor-pointer hover:opacity-80 transition-opacity"
+                  style={{
+                    backgroundColor: playTypeColors[p.type] || (theme === "dark" ? "#3f3f46" : "#ffffff"),
+                    borderColor: theme === "dark" ? "#4b5563" : "#d1d5db"
+                  }}
+                  onClick={() => navigate(`/play/${p.id}`)}
+                >
+                  <div className="play-compare-header-content flex flex-col items-center justify-center">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-14 w-auto object-contain mb-2"
+                    />
+                    <div className="flex justify-center items-center gap-2 w-full">
+                      <span className="font-semibold text-white">{p.name}</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleTogglePlay(p);
+                        }}
+                        className="text-red-500 font-bold hover:text-red-700"
+                      >
+                        X
+                      </button>
+                    </div>
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Type
+              </td>
+              {validPlays.map((p) => (
+                <td key={p.id} className={`border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                  {p.type}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Playbook Budget
+              </td>
+              {validPlays.map((p) => {
+                const values = validPlays.map((play) => play.pbb);
+                const highlightClass = getPlayCompareHighlightClass(values, p.pbb);
+                return (
+                  <td key={p.id} className={`play-compare-value-cell border px-2 py-1 ${highlightClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                    {p.pbb}
+                  </td>
+                );
+              })}
+            </tr>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Cost
+              </td>
+              {validPlays.map((p) => {
+                const values = validPlays.map((play) => play.cost);
+                const highlightClass = getPlayCompareHighlightClass(values, p.cost);
+                return (
+                  <td key={p.id} className={`play-compare-value-cell border px-2 py-1 ${highlightClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                    {p.cost.toLocaleString()} Play Tokens
+                  </td>
+                );
+              })}
+            </tr>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                OVR Boost
+              </td>
+              {validPlays.map((p) => {
+                const values = validPlays.map((play) => play.ovrBoost);
+                const highlightClass = getPlayCompareHighlightClass(values, p.ovrBoost);
+                return (
+                  <td key={p.id} className={`border px-2 py-1 ${highlightClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                    +{p.ovrBoost}
+                  </td>
+                );
+              })}
+            </tr>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Play Count
+              </td>
+              {validPlays.map((p) => {
+                const values = validPlays.map((play) => play.playCount);
+                const highlightClass = getPlayCompareHighlightClass(values, p.playCount);
+                return (
+                  <td key={p.id} className={`border px-2 py-1 ${highlightClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                    {p.playCount}
+                  </td>
+                );
+              })}
+            </tr>
+            <tr>
+              <td className={`bg-blue-600 text-white font-bold border px-2 py-1 ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                Average Yards
+              </td>
+              {validPlays.map((p) => {
+                const values = validPlays.map((play) => play.averageYards);
+                const highlightClass = getPlayCompareHighlightClass(values, p.averageYards);
+                return (
+                  <td key={p.id} className={`border px-2 py-1 ${highlightClass} ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>
+                    {p.averageYards}
+                  </td>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -234,7 +378,9 @@ export default function PlayProfile({
             )}
           </div>
 
-          {validPlays.length > 0 && (
+          {validPlays.length > 0 && <PlayComparisonTable />}
+
+          {false && validPlays.length > 0 && (
             <div className={`p-4 rounded border overflow-x-auto ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-transparent border-green-500'}`}>
               <h3 className="text-lg font-bold mb-2 dark:text-white">Play Comparison</h3>
               <table className="table-fixed w-full text-sm border-collapse border" style={{ borderColor }}>
