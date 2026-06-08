@@ -316,7 +316,7 @@ function FilterInput({ label, type, placeholder, value, onChange, min, theme }) 
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full min-w-0 rounded border px-2 py-1 sm:min-w-[200px] ${
+        className={`player-filter-select w-full min-w-0 rounded border px-2 py-1 sm:min-w-[200px] ${
           theme === "dark" 
             ? "bg-zinc-800 text-gray-100 border-gray-600" 
             : "bg-white text-gray-900 border-gray-300"
@@ -530,7 +530,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
           }} 
           className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
         >
-          âœ•
+          x
         </button>
       </div>
     </th>

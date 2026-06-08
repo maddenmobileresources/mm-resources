@@ -49,6 +49,15 @@ td {
 }
 
 @media (max-width: 640px) {
+  html.dark .player-filter-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 15 5 5 5-5'/%3E%3Cpath d='m7 9 5-5 5 5'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.1rem 1.1rem;
+    padding-right: 2.5rem;
+  }
+
   .mobile-compare-remove-button {
     display: inline-flex;
     align-items: center;

@@ -1202,7 +1202,7 @@ export default function PlayerProfile({
                               }}
                               className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
                             >
-                              âœ•
+                              x
                             </button>
                           </div>
                         </th>
