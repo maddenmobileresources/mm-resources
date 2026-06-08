@@ -1186,7 +1186,7 @@ export default function PlayerProfile({
                                   e.stopPropagation();
                                   handleTogglePlayer(p);
                                 }}
-                                className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600"
+                                className="hidden text-red-500 font-bold hover:text-red-600 sm:inline-flex"
                               >
                                 ✕
                               </button>
@@ -1195,6 +1195,15 @@ export default function PlayerProfile({
                               <div>{p.position.split("|")[0]} - {p.team}</div>
                               <div>{p.archetype}</div>
                             </div>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleTogglePlayer(p);
+                              }}
+                              className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
+                            >
+                              âœ•
+                            </button>
                           </div>
                         </th>
                       );

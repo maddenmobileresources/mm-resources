@@ -515,7 +515,7 @@ function PlayerHeader({ player, togglePlayer, theme }) {
               e.stopPropagation();
               togglePlayer(player);
             }} 
-            className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600"
+            className="hidden text-red-500 font-bold hover:text-red-600 sm:inline-flex"
           >
             ✕
           </button>
@@ -523,6 +523,15 @@ function PlayerHeader({ player, togglePlayer, theme }) {
         <div className="break-words text-[10px] leading-tight text-gray-900 sm:text-xs">
   {player.position.split("|")[0]} - {player.team} | {player.archetype}
 </div>
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlayer(player);
+          }} 
+          className="mobile-compare-remove-button text-red-500 font-bold hover:text-red-600 sm:hidden"
+        >
+          âœ•
+        </button>
       </div>
     </th>
   );
