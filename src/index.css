@@ -56,6 +56,11 @@ td {
   vertical-align: top;
 }
 
+.player-profile-mobile-player-header {
+  height: 8.25rem;
+  padding-bottom: 1.35rem !important;
+}
+
 .compare-remove-button {
   display: inline-flex;
   align-items: center;
