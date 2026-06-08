@@ -219,7 +219,7 @@ function CompareTable({ selectedPlays, togglePlay, theme }) {
         </p>
       ) : (
         <div className="play-compare-scroll overflow-x-auto">
-          <table className="play-compare-table table-fixed w-full text-sm border-collapse text-center">
+          <table className={`play-compare-table play-compare-count-${selectedPlays.length} table-fixed w-full text-sm border-collapse text-center`}>
             <thead>
               <tr className={theme === "dark" ? "bg-gray-700" : "bg-gray-200"}>
                 <th className={`border px-2 py-1 w-[20%] ${theme === "dark" ? "border-gray-600" : "border-gray-300"}`}>

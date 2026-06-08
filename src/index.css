@@ -137,6 +137,21 @@ td {
   }
 
   .play-compare-table {
+    min-width: 100%;
+  }
+
+  .play-compare-table.play-compare-count-1,
+  .play-compare-table.play-compare-count-2,
+  .play-compare-table.play-compare-count-3 {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .play-compare-table.play-compare-count-4 {
+    min-width: 46rem;
+  }
+
+  .play-compare-table.play-compare-count-5 {
     min-width: 58rem;
   }
 
