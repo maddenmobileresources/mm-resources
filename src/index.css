@@ -44,6 +44,12 @@ td {
   text-overflow: clip;
 }
 
+.play-compare-value-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
 .compare-stat-heading-cell {
   font-size: 1rem;
 }
@@ -146,19 +152,19 @@ td {
   }
 
   .play-compare-table.play-compare-count-2 {
-    min-width: 24.5rem;
+    min-width: 25.75rem;
   }
 
   .play-compare-table.play-compare-count-3 {
-    min-width: 33rem;
+    min-width: 34.25rem;
   }
 
   .play-compare-table.play-compare-count-4 {
-    min-width: 41.5rem;
+    min-width: 42.75rem;
   }
 
   .play-compare-table.play-compare-count-5 {
-    min-width: 50rem;
+    min-width: 51.25rem;
   }
 
   .play-compare-table th,
@@ -169,7 +175,7 @@ td {
   }
 
   .play-compare-stat-col {
-    width: 7.5rem;
+    width: 8.75rem;
   }
 
   .play-compare-play-col {
@@ -180,6 +186,13 @@ td {
     min-width: 8.5rem;
     font-size: 0.82rem;
     line-height: 1.15;
+  }
+
+  .play-compare-table td:first-child {
+    font-size: 0.78rem;
+    line-height: 1.1;
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
   }
 
   .compare-table {
