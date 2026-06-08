@@ -112,6 +112,14 @@ td {
     padding-bottom: 0.5rem !important;
   }
 
+  .player-profile-mobile-player-header {
+    height: 11rem;
+  }
+
+  html:not(.dark) .player-profile-section-heading {
+    color: #111827 !important;
+  }
+
   .compare-remove-button {
     top: 0.25rem;
   }

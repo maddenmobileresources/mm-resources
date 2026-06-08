@@ -1093,7 +1093,7 @@ export default function PlayerProfile({
           <div 
             className={`p-4 rounded border ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-white border-blue-500'}`}
           >
-            <h2 className="text-xl font-bold mb-2 dark:text-white">Comparison Panel</h2>
+            <h2 className="player-profile-section-heading text-xl font-bold mb-2 dark:text-white">Comparison Panel</h2>
             {validPlayers.length === 0 ? (
               <p className="dark:text-gray-400">No players selected yet.</p>
             ) : (
@@ -1156,7 +1156,7 @@ export default function PlayerProfile({
 
           {validPlayers.length > 0 && (
             <div className={`player-profile-mobile-compare-scroll p-4 rounded border overflow-x-auto ${theme === 'dark' ? 'bg-zinc-800 border-slate-700' : 'bg-transparent border-green-500'}`}>
-              <h3 className="text-lg font-bold mb-2 dark:text-white">Stat Comparison</h3>
+              <h3 className="player-profile-section-heading text-lg font-bold mb-2 dark:text-white">Stat Comparison</h3>
               <table className={`player-profile-mobile-compare-table player-profile-mobile-count-${validPlayers.length} table-fixed w-full text-sm border-collapse border`} style={{ borderColor }}>
                 <colgroup>
                   <col className="player-profile-mobile-stat-col" />
