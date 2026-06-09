@@ -4,6 +4,7 @@ import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
 import RedditVerificationModal from "./RedditVerificationModal";
 import players from "../data/MM26PlayerDatabase";
+import { isSupabaseConfigured } from "../lib/supabaseClient";
 import {
   clearLocalPackLeaderboard,
   fetchPackLeaderboard,
