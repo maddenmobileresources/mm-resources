@@ -7,7 +7,7 @@ const categoryConfig = {
     subtitle: "Choose a player database to browse.",
     to: "/players",
     buttonLabel: "Madden NFL 26 Mobile",
-    description: "View MM26 player cards, stats, programs, teams, boosts, OVRs, and more.",
+    description: "Search and compare every player card released in MM26",
     icon: <img src="https://i.imgur.com/ZjkXbgB.png" alt="Madden NFL 26 Mobile Player Database" width={40} height={40} />,
   },
   plays: {
@@ -15,7 +15,7 @@ const categoryConfig = {
     subtitle: "Choose a play database to browse.",
     to: "/plays",
     buttonLabel: "Madden NFL 26 Mobile",
-    description: "Browse MM26 offensive and defensive plays for your playbook.",
+    description: "Search and compare every play released in MM26",
     icon: <img src="https://i.imgur.com/ZjkXbgB.png" alt="Madden NFL 26 Mobile Play Database" width={40} height={40} />,
   },
 };
