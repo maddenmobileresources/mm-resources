@@ -320,27 +320,6 @@ export default function PackOpener() {
     setLeaderboard(clearLocalPackLeaderboard());
   };
 
-  const handleSubmitScoreClick = async () => {
-    if (!openedCards.length || hasSubmitted || isSubmitting) return;
-
-    if (isSupabaseConfigured) {
-      setHasSubmitted(true);
-      return;
-    }
-
-    if (!isAuthConfigured) {
-      setLeaderboardError("Configure Supabase and Discord login before verified scores can be submitted.");
-      return;
-    }
-
-    if (!isSignedIn) {
-      await signInWithDiscord();
-      return;
-    }
-
-    await submitScore();
-  };
-
   return (
     <div className={`min-h-screen px-3 py-5 sm:px-4 sm:py-6 ${isDark ? "bg-[#18181B] text-gray-100" : "bg-gray-50 text-gray-900"}`}>
       <div className="w-full max-w-[1900px]">
@@ -405,15 +384,6 @@ export default function PackOpener() {
                 >
                   <Shuffle size={18} />
                   {isOpening ? "Opening" : "Open Pack"}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleSubmitScoreClick}
-                  disabled={!openedCards.length || hasSubmitted || isSubmitting || isSupabaseConfigured}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-orange-600 px-5 py-3 font-semibold text-white shadow hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <Send size={18} />
-                  {isSupabaseConfigured && hasSubmitted ? "Score Saved" : isSubmitting ? "Submitting" : "Submit Your Score"}
                 </button>
               </div>
             </div>
