@@ -3,6 +3,7 @@ import { ChevronDown, Info } from "lucide-react";
 import { useTheme } from "./context/ThemeContext";
 import { useAuth } from "./context/AuthContext";
 import { fetchComments, postComment, voteOnComment } from "./services/comments";
+import { IdentityTags } from "./components/IdentityTags";
 
 const SORT_OPTIONS = ["Best", "Newest", "Oldest"];
 
@@ -41,14 +42,6 @@ function splitTarget(targetId) {
   return { targetType: "player", targetId: value };
 }
 
-function TrustedBadge() {
-  return (
-    <span className="rounded-full border border-yellow-500 bg-yellow-300 px-2 py-0.5 text-[11px] font-bold leading-none text-gray-950">
-      Trusted User
-    </span>
-  );
-}
-
 function LoginInfoNote({ isDark }) {
   return (
     <span className="group relative inline-flex">
@@ -77,7 +70,7 @@ function LoginInfoNote({ isDark }) {
 export default function PlayerComments({ playerId }) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  const { isAuthConfigured, isSignedIn, displayUsername, signInWithDiscord, signInWithReddit } = useAuth();
+  const { isAuthConfigured, isSignedIn, discordUsername, signInWithDiscord } = useAuth();
   const { targetType, targetId } = splitTarget(playerId);
 
   const [comments, setComments] = useState([]);
@@ -126,7 +119,6 @@ export default function PlayerComments({ playerId }) {
         targetType,
         targetId,
         body: censorText(body.trim()),
-        redditUsername: displayUsername,
       });
       setBody("");
       await loadComments();
@@ -148,7 +140,6 @@ export default function PlayerComments({ playerId }) {
         targetId,
         parentId: commentId,
         body: censorText(replyBody.trim()),
-        redditUsername: displayUsername,
       });
       setReplyingTo(null);
       setReplyBody("");
@@ -240,7 +231,7 @@ export default function PlayerComments({ playerId }) {
         ) : !isSignedIn ? (
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className={`min-w-0 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-              Sign in with either your Discord or Reddit account to comment.
+              Sign in with Discord to comment. Reddit tags are added after manual verification.
             </p>
             <div className="flex shrink-0 items-center gap-2">
               <div className="flex w-full flex-col gap-2 sm:w-56">
@@ -250,12 +241,6 @@ export default function PlayerComments({ playerId }) {
                 >
                   Sign in with Discord
                 </button>
-                <button
-                  onClick={signInWithReddit}
-                  className="w-full rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
-                >
-                  Sign in with Reddit
-                </button>
               </div>
               <LoginInfoNote isDark={isDark} />
             </div>
@@ -263,7 +248,7 @@ export default function PlayerComments({ playerId }) {
         ) : (
           <>
             <p className={`mb-2 text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-              Posting as <strong>{displayUsername}</strong>
+              Posting as <strong>{discordUsername}</strong>
             </p>
             <textarea
               className={`${inputClass} mb-3`}
@@ -297,8 +282,7 @@ export default function PlayerComments({ playerId }) {
                 <div className="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">
                   {comment.username[0].toUpperCase()}
                 </div>
-                <span className="font-semibold text-sm">{comment.username}</span>
-                {comment.isTrusted && <TrustedBadge />}
+                <IdentityTags profile={comment.profile} fallbackDiscordName={comment.username} />
                 <span className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                   {timeAgo(comment.timestamp)}
                 </span>
@@ -344,7 +328,7 @@ export default function PlayerComments({ playerId }) {
               {replyingTo === comment.id && (
                 <div className="ml-10 mt-3 space-y-2">
                   <p className={`text-xs ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-                    Replying as <strong>{displayUsername}</strong>
+                    Replying as <strong>{discordUsername}</strong>
                   </p>
                   <textarea
                     className={inputClass}
@@ -379,8 +363,7 @@ export default function PlayerComments({ playerId }) {
                         <div className="w-6 h-6 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">
                           {reply.username[0].toUpperCase()}
                         </div>
-                        <span className="font-semibold text-xs">{reply.username}</span>
-                        {reply.isTrusted && <TrustedBadge />}
+                        <IdentityTags profile={reply.profile} fallbackDiscordName={reply.username} compact />
                         <span className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                           {timeAgo(reply.timestamp)}
                         </span>

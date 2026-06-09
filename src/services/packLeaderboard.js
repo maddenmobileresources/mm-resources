@@ -1,4 +1,5 @@
 import { isSupabaseConfigured, supabase } from "../lib/supabaseClient";
+import { fetchProfilesByUserIds } from "./communityProfiles";
 
 const LOCAL_LEADERBOARD_KEY = "mmr-pack-opener-leaderboard";
 
@@ -13,10 +14,12 @@ export function getLeaderboardMode() {
 function normalizeEntry(entry) {
   return {
     id: entry.id,
+    userId: entry.user_id,
     name: entry.display_name ?? entry.name,
     score: entry.score,
     packName: entry.pack_name ?? entry.packName,
     redditUsername: entry.reddit_username ?? entry.name,
+    profile: entry.profile ?? null,
     bestCard: {
       name: entry.best_card_name ?? entry.bestCard?.name,
       rarity: entry.best_card_rarity ?? entry.bestCard?.rarity,
@@ -51,16 +54,21 @@ export async function fetchPackLeaderboard(month = getMonthKey()) {
 
   const { data, error } = await supabase
     .from("pack_scores")
-    .select("id, display_name, reddit_username, score, pack_name, best_card_name, best_card_rarity, best_card_ovr, created_at")
+    .select("id, user_id, display_name, reddit_username, score, pack_name, best_card_name, best_card_rarity, best_card_ovr, created_at")
     .eq("month_key", month)
     .order("score", { ascending: false })
     .limit(10);
 
   if (error) throw error;
 
+  const profileMap = await fetchProfilesByUserIds((data ?? []).map((entry) => entry.user_id));
+
   return {
     month,
-    entries: (data ?? []).map(normalizeEntry),
+    entries: (data ?? []).map((entry) => normalizeEntry({
+      ...entry,
+      profile: profileMap.get(entry.user_id) ?? null,
+    })),
   };
 }
 
@@ -81,7 +89,7 @@ export async function submitPackScore(entry, month = getMonthKey()) {
 
   const { error } = await supabase.from("pack_scores").insert({
     display_name: entry.name,
-    reddit_username: entry.name,
+    reddit_username: entry.redditUsername ?? null,
     score: entry.score,
     pack_name: entry.packName,
     best_card_name: entry.bestCard?.name,

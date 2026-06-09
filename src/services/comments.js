@@ -1,18 +1,21 @@
 import { isSupabaseConfigured, supabase } from "../lib/supabaseClient";
+import { fetchProfilesByUserIds } from "./communityProfiles";
 
 function normalizeComment(comment) {
   return {
     id: comment.id,
+    userId: comment.user_id,
     parentId: comment.parent_id,
     targetType: comment.target_type,
     targetId: comment.target_id,
-    username: comment.reddit_username,
+    username: comment.discord_username || comment.reddit_username || "Community User",
+    profile: comment.profile ?? null,
     body: comment.body,
     likes: comment.likes ?? 0,
     dislikes: comment.dislikes ?? 0,
     timestamp: new Date(comment.created_at).getTime(),
     createdAt: comment.created_at,
-    isTrusted: Boolean(comment.isTrusted),
+    isTrusted: Boolean(comment.profile?.trusted || comment.isTrusted),
   };
 }
 
@@ -25,13 +28,14 @@ export async function fetchComments(targetType, targetId) {
 
   const { data, error } = await supabase
     .from("profile_comments")
-    .select("id, parent_id, target_type, target_id, reddit_username, body, likes, dislikes, created_at")
+    .select("id, user_id, parent_id, target_type, target_id, reddit_username, body, likes, dislikes, created_at")
     .eq("target_type", targetType)
     .eq("target_id", String(targetId))
     .order("created_at", { ascending: true });
 
   if (error) throw error;
 
+  const profileMap = await fetchProfilesByUserIds((data ?? []).map((comment) => comment.user_id));
   let trustedUsernames = new Set();
 
   if ((data ?? []).length > 0) {
@@ -39,13 +43,16 @@ export async function fetchComments(targetType, targetId) {
       .from("trusted_users")
       .select("reddit_username");
 
-    if (trustedError) throw trustedError;
+    if (!trustedError) {
+      trustedUsernames = new Set((trustedData ?? []).map((user) => normalizeUsername(user.reddit_username)));
+    }
 
-    trustedUsernames = new Set((trustedData ?? []).map((user) => normalizeUsername(user.reddit_username)));
   }
 
   const comments = (data ?? []).map((comment) => normalizeComment({
     ...comment,
+    profile: profileMap.get(comment.user_id) ?? null,
+    discord_username: profileMap.get(comment.user_id)?.discordUsername,
     isTrusted: trustedUsernames.has(normalizeUsername(comment.reddit_username)),
   }));
   const repliesByParent = comments.reduce((groups, comment) => {
@@ -62,7 +69,7 @@ export async function fetchComments(targetType, targetId) {
     }));
 }
 
-export async function postComment({ targetType, targetId, body, parentId, redditUsername }) {
+export async function postComment({ targetType, targetId, body, parentId }) {
   if (!isSupabaseConfigured) {
     throw new Error("Supabase must be configured before verified comments can be posted.");
   }
@@ -72,7 +79,6 @@ export async function postComment({ targetType, targetId, body, parentId, reddit
     target_id: String(targetId),
     parent_id: parentId ?? null,
     body,
-    reddit_username: redditUsername,
   });
 
   if (error) throw error;

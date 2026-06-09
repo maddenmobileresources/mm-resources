@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { isSupabaseConfigured, supabase } from "../lib/supabaseClient";
+import { getDiscordIdentity, upsertOwnCommunityProfile } from "../services/communityProfiles";
 
 const AuthContext = createContext(null);
 
@@ -24,6 +25,7 @@ function pickUsernameFromUser(user) {
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(isSupabaseConfigured);
 
   useEffect(() => {
@@ -51,10 +53,32 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    async function syncProfile() {
+      if (!session?.user) {
+        setProfile(null);
+        return;
+      }
+
+      const nextProfile = await upsertOwnCommunityProfile(session.user);
+      if (!cancelled) setProfile(nextProfile);
+    }
+
+    syncProfile();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [session]);
+
   const value = useMemo(() => {
     const user = session?.user ?? null;
     const displayUsername = pickUsernameFromUser(user);
-    const redditUsername = displayUsername;
+    const discordIdentity = getDiscordIdentity(user);
+    const discordUsername = profile?.discordUsername || discordIdentity.discordUsername || displayUsername;
+    const redditUsername = profile?.redditVerified && profile?.redditUsername ? profile.redditUsername : "";
     const authProvider = user?.app_metadata?.provider || user?.identities?.[0]?.provider || "";
 
     return {
@@ -63,8 +87,10 @@ export function AuthProvider({ children }) {
       isSignedIn: Boolean(user),
       session,
       user,
+      profile,
       authProvider,
       displayUsername,
+      discordUsername,
       redditUsername,
       async signInWithReddit() {
         if (!isSupabaseConfigured) return;
@@ -92,7 +118,7 @@ export function AuthProvider({ children }) {
         await supabase.auth.signOut();
       },
     };
-  }, [loading, session]);
+  }, [loading, profile, session]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -177,9 +177,22 @@ function LoginInfoNote({ isDark }) {
   );
 }
 
+function getLeaderboardDisplayName(profile, fallbackDiscordName, fallbackRedditName) {
+  if (profile?.redditVerified && profile?.redditUsername) {
+    return `u/${profile.redditUsername}`;
+  }
+
+  return (
+    profile?.discordUsername ||
+    profile?.discordDisplayName ||
+    fallbackDiscordName ||
+    (fallbackRedditName ? `u/${fallbackRedditName}` : "Community User")
+  );
+}
+
 export default function PackOpener() {
   const { theme } = useTheme();
-  const { isAuthConfigured, isSignedIn, redditUsername, signInWithReddit } = useAuth();
+  const { isAuthConfigured, isSignedIn, profile, discordUsername, redditUsername, signInWithDiscord } = useAuth();
   const isDark = theme === "dark";
   const [selectedPackId, setSelectedPackId] = useState("pro");
   const [openedCards, setOpenedCards] = useState([]);
@@ -239,7 +252,8 @@ export default function PackOpener() {
     setLeaderboardError("");
 
     const entry = {
-      name: redditUsername.slice(0, 24),
+      name: discordUsername.slice(0, 24),
+      redditUsername: redditUsername ? redditUsername.slice(0, 24) : null,
       score: currentScore,
       packName: selectedPack.name,
       bestCard: openedCards.reduce((best, player) => (scoreCard(player) > scoreCard(best) ? player : best), openedCards[0]),
@@ -263,12 +277,12 @@ export default function PackOpener() {
     if (!openedCards.length || hasSubmitted || isSubmitting) return;
 
     if (!isAuthConfigured) {
-      setLeaderboardError("Configure Supabase and Reddit login before verified scores can be submitted.");
+      setLeaderboardError("Configure Supabase and Discord login before verified scores can be submitted.");
       return;
     }
 
     if (!isSignedIn) {
-      await signInWithReddit();
+      await signInWithDiscord();
       return;
     }
 
@@ -473,20 +487,20 @@ export default function PackOpener() {
               <div className="mb-4">
                 {!isAuthConfigured ? (
                   <p className={`rounded border px-3 py-2 text-sm ${isDark ? "border-amber-700 bg-amber-950 text-amber-100" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
-                    Configure Supabase and Reddit login before verified scores can be submitted.
+                    Configure Supabase and Discord login before verified scores can be submitted.
                   </p>
                 ) : !isSignedIn ? (
                   <div className={`rounded border p-3 ${isDark ? "border-slate-700 bg-zinc-900" : "border-gray-200 bg-gray-50"}`}>
                     <p className={`mb-3 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                      Sign in using your Reddit account to submit your score.
+                      Sign in with Discord to submit your score. Reddit verification is optional, but required for Reddit MM Points rewards.
                     </p>
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        onClick={signInWithReddit}
-                        className="rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                        onClick={signInWithDiscord}
+                        className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
                       >
-                        Sign in with Reddit
+                        Sign in with Discord
                       </button>
                       <LoginInfoNote isDark={isDark} />
                     </div>
@@ -494,7 +508,12 @@ export default function PackOpener() {
                 ) : (
                   <div className="flex flex-col gap-2">
                     <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-                      Submitting as <strong>u/{redditUsername}</strong>
+                      Submitting as <strong>{getLeaderboardDisplayName(profile, discordUsername, redditUsername)}</strong>
+                      {!redditUsername && (
+                        <span className="block text-xs">
+                          Reddit verification is required to qualify for Reddit MM Points rewards.
+                        </span>
+                      )}
                     </p>
                     <button
                       type="button"
@@ -526,7 +545,10 @@ export default function PackOpener() {
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div>
-                          <p className="font-bold">#{index + 1} {entry.name}</p>
+                          <p className="flex flex-wrap items-center gap-2 font-bold">
+                            <span>#{index + 1}</span>
+                            <span>{getLeaderboardDisplayName(entry.profile, entry.name, entry.redditUsername)}</span>
+                          </p>
                           <p className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                             {entry.packName} / Best: {entry.bestCard?.name}
                           </p>
