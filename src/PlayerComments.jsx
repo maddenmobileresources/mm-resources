@@ -62,7 +62,7 @@ function LoginInfoNote({ isDark }) {
             : "border-gray-200 bg-white text-gray-700"
         }`}
       >
-        Login is required to reduce spam and keep comments tied to a real community account. Your password is entered only on the provider's login page, never on this website. We only receive basic profile info, such as your display name and account ID, to show who posted a comment.
+        Login is required to reduce spam and keep comments tied to a real community account. Your password is entered only on the provider's login page, never on this website. We only receive basic profile info, such as your username and account ID, to show who posted a comment.
       </span>
     </span>
   );
@@ -238,7 +238,7 @@ export default function PlayerComments({ playerId }) {
         ) : !isSignedIn ? (
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className={`min-w-0 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-              Sign in with Discord to comment. Reddit verification is optional and handled manually.
+              Sign in with Discord to comment. Reddit verification is optional (click the "Sign in with Reddit" button to learn more).
             </p>
             <div className="flex shrink-0 items-center gap-2">
               <div className="flex w-full flex-col gap-2 sm:w-56">
