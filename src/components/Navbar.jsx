@@ -165,6 +165,72 @@ export default function Navbar() {
     setShowResults(false);
   };
 
+  const shouldUseHoverMenus = !isMobileMenuOpen;
+
+  const handleSubmenuMouseEnter = (submenu) => {
+    if (!submenu || !shouldUseHoverMenus) return;
+    clearTimeout(submenuTimeout.current);
+    setOpenSubmenu(submenu);
+  };
+
+  const handleSubmenuMouseLeave = (submenu) => {
+    if (!submenu || !shouldUseHoverMenus) return;
+    submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
+  };
+
+  const handleGuidesSubmenuMouseEnter = (submenu) => {
+    if (!shouldUseHoverMenus) return;
+    clearTimeout(guidesSubmenuTimeout.current);
+    setOpenGuidesSubmenu(submenu);
+  };
+
+  const handleGuidesSubmenuMouseLeave = () => {
+    if (!shouldUseHoverMenus) return;
+    guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
+  };
+
+  const toggleNestedSubmenu = (submenu) => {
+    clearTimeout(submenuTimeout.current);
+    setOpenSubmenu((current) => (current === submenu ? null : submenu));
+  };
+
+  const toggleGuidesSubmenu = (submenu) => {
+    clearTimeout(guidesSubmenuTimeout.current);
+    setOpenGuidesSubmenu((current) => (current === submenu ? null : submenu));
+  };
+
+  const nestedArrowButtonStyle = {
+    alignItems: "center",
+    background: "none",
+    border: "none",
+    color: textColor,
+    cursor: "pointer",
+    display: "inline-flex",
+    justifyContent: "center",
+    padding: "3px",
+  };
+
+  const renderNestedArrow = (label, isOpen, onToggle) => (
+    <button
+      type="button"
+      onClick={(event) => {
+        event.stopPropagation();
+        onToggle();
+      }}
+      aria-label={`Toggle ${label} submenu`}
+      aria-expanded={isOpen}
+      style={nestedArrowButtonStyle}
+    >
+      <ChevronRight
+        size={14}
+        style={{
+          transition: "transform 0.2s",
+          transform: isOpen ? "rotate(90deg)" : "rotate(0)",
+        }}
+      />
+    </button>
+  );
+
   return (
     <nav
       ref={menuRef}
@@ -273,13 +339,8 @@ export default function Navbar() {
               <div
                 key={database.name}
                 style={{ position: "relative" }}
-                onMouseEnter={() => {
-                  clearTimeout(submenuTimeout.current);
-                  setOpenSubmenu(database.submenu);
-                }}
-                onMouseLeave={() => {
-                  submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
-                }}
+                onMouseEnter={() => handleSubmenuMouseEnter(database.submenu)}
+                onMouseLeave={() => handleSubmenuMouseLeave(database.submenu)}
               >
                 <div
                   style={{
@@ -301,7 +362,9 @@ export default function Navbar() {
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   <span>{database.name}</span>
-                  <ChevronRight size={14} />
+                  {renderNestedArrow(database.name, openSubmenu === database.submenu, () =>
+                    toggleNestedSubmenu(database.submenu)
+                  )}
                 </div>
                 {openSubmenu === database.submenu && (
                   <div
@@ -317,10 +380,8 @@ export default function Navbar() {
                       boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                       overflow: "hidden",
                     }}
-                    onMouseEnter={() => clearTimeout(submenuTimeout.current)}
-                    onMouseLeave={() => {
-                      submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
-                    }}
+                    onMouseEnter={() => handleSubmenuMouseEnter(database.submenu)}
+                    onMouseLeave={() => handleSubmenuMouseLeave(database.submenu)}
                   >
                     <NavLink
                       to={database.mm26Path}
@@ -401,15 +462,8 @@ export default function Navbar() {
               <div
                 key={season.name}
                 style={{ position: "relative" }}
-                onMouseEnter={() => {
-                  if (!season.submenu) return;
-                  clearTimeout(submenuTimeout.current);
-                  setOpenSubmenu(season.submenu);
-                }}
-                onMouseLeave={() => {
-                  if (!season.submenu) return;
-                  submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
-                }}
+                onMouseEnter={() => handleSubmenuMouseEnter(season.submenu)}
+                onMouseLeave={() => handleSubmenuMouseLeave(season.submenu)}
               >
                 <div
                   style={{
@@ -431,7 +485,10 @@ export default function Navbar() {
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   <span>{season.name}</span>
-                  {season.submenu && <ChevronRight size={14} />}
+                  {season.submenu &&
+                    renderNestedArrow(season.name, openSubmenu === season.submenu, () =>
+                      toggleNestedSubmenu(season.submenu)
+                    )}
                 </div>
                 {season.submenu && openSubmenu === season.submenu && (
                   <div
@@ -447,10 +504,8 @@ export default function Navbar() {
                       boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                       overflow: "hidden",
                     }}
-                    onMouseEnter={() => clearTimeout(submenuTimeout.current)}
-                    onMouseLeave={() => {
-                      submenuTimeout.current = setTimeout(() => setOpenSubmenu(null), 150);
-                    }}
+                    onMouseEnter={() => handleSubmenuMouseEnter(season.submenu)}
+                    onMouseLeave={() => handleSubmenuMouseLeave(season.submenu)}
                   >
                     {[
                       { name: "August 2025", path: "/calendars/aug25" },
@@ -602,13 +657,8 @@ export default function Navbar() {
             {/* Events */}
             <div
               style={{ position: "relative" }}
-              onMouseEnter={() => {
-                clearTimeout(guidesSubmenuTimeout.current);
-                setOpenGuidesSubmenu("events");
-              }}
-              onMouseLeave={() => {
-                guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-              }}
+              onMouseEnter={() => handleGuidesSubmenuMouseEnter("events")}
+              onMouseLeave={handleGuidesSubmenuMouseLeave}
             >
               <div
                 style={{
@@ -630,7 +680,7 @@ export default function Navbar() {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 <span>Events</span>
-                <ChevronRight size={14} />
+                {renderNestedArrow("Events", openGuidesSubmenu === "events", () => toggleGuidesSubmenu("events"))}
               </div>
               {openGuidesSubmenu === "events" && (
                 <div
@@ -646,10 +696,8 @@ export default function Navbar() {
                     boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                     overflow: "hidden",
                   }}
-                  onMouseEnter={() => clearTimeout(guidesSubmenuTimeout.current)}
-                  onMouseLeave={() => {
-                    guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-                  }}
+                  onMouseEnter={() => handleGuidesSubmenuMouseEnter("events")}
+                  onMouseLeave={handleGuidesSubmenuMouseLeave}
                 >
                   {[
                     { name: "Field Pass", path: "/guides/events/field-pass" },
@@ -686,13 +734,8 @@ export default function Navbar() {
             {/* Competitive */}
             <div
               style={{ position: "relative" }}
-              onMouseEnter={() => {
-                clearTimeout(guidesSubmenuTimeout.current);
-                setOpenGuidesSubmenu("competitive");
-              }}
-              onMouseLeave={() => {
-                guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-              }}
+              onMouseEnter={() => handleGuidesSubmenuMouseEnter("competitive")}
+              onMouseLeave={handleGuidesSubmenuMouseLeave}
             >
               <div
                 style={{
@@ -714,7 +757,9 @@ export default function Navbar() {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 <span>Competitive</span>
-                <ChevronRight size={14} />
+                {renderNestedArrow("Competitive", openGuidesSubmenu === "competitive", () =>
+                  toggleGuidesSubmenu("competitive")
+                )}
               </div>
               {openGuidesSubmenu === "competitive" && (
                 <div
@@ -730,10 +775,8 @@ export default function Navbar() {
                     boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                     overflow: "hidden",
                   }}
-                  onMouseEnter={() => clearTimeout(guidesSubmenuTimeout.current)}
-                  onMouseLeave={() => {
-                    guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-                  }}
+                  onMouseEnter={() => handleGuidesSubmenuMouseEnter("competitive")}
+                  onMouseLeave={handleGuidesSubmenuMouseLeave}
                 >
                   {[
                     { name: "Daily Arena", path: "/guides/competitive/daily-arena" },
@@ -768,13 +811,8 @@ export default function Navbar() {
             {/* Leagues */}
             <div
               style={{ position: "relative" }}
-              onMouseEnter={() => {
-                clearTimeout(guidesSubmenuTimeout.current);
-                setOpenGuidesSubmenu("leagues");
-              }}
-              onMouseLeave={() => {
-                guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-              }}
+              onMouseEnter={() => handleGuidesSubmenuMouseEnter("leagues")}
+              onMouseLeave={handleGuidesSubmenuMouseLeave}
             >
               <div
                 style={{
@@ -796,7 +834,7 @@ export default function Navbar() {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 <span>Leagues</span>
-                <ChevronRight size={14} />
+                {renderNestedArrow("Leagues", openGuidesSubmenu === "leagues", () => toggleGuidesSubmenu("leagues"))}
               </div>
               {openGuidesSubmenu === "leagues" && (
                 <div
@@ -812,10 +850,8 @@ export default function Navbar() {
                     boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                     overflow: "hidden",
                   }}
-                  onMouseEnter={() => clearTimeout(guidesSubmenuTimeout.current)}
-                  onMouseLeave={() => {
-                    guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-                  }}
+                  onMouseEnter={() => handleGuidesSubmenuMouseEnter("leagues")}
+                  onMouseLeave={handleGuidesSubmenuMouseLeave}
                 >
                   {[
                     { name: "League vs. League", path: "/guides/leagues/league-vs-league" },
@@ -849,13 +885,8 @@ export default function Navbar() {
             {/* Team Building */}
             <div
               style={{ position: "relative" }}
-              onMouseEnter={() => {
-                clearTimeout(guidesSubmenuTimeout.current);
-                setOpenGuidesSubmenu("teambuilding");
-              }}
-              onMouseLeave={() => {
-                guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-              }}
+              onMouseEnter={() => handleGuidesSubmenuMouseEnter("teambuilding")}
+              onMouseLeave={handleGuidesSubmenuMouseLeave}
             >
               <div
                 style={{
@@ -877,7 +908,9 @@ export default function Navbar() {
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 <span>Team Building</span>
-                <ChevronRight size={14} />
+                {renderNestedArrow("Team Building", openGuidesSubmenu === "teambuilding", () =>
+                  toggleGuidesSubmenu("teambuilding")
+                )}
               </div>
               {openGuidesSubmenu === "teambuilding" && (
                 <div
@@ -893,10 +926,8 @@ export default function Navbar() {
                     boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
                     overflow: "hidden",
                   }}
-                  onMouseEnter={() => clearTimeout(guidesSubmenuTimeout.current)}
-                  onMouseLeave={() => {
-                    guidesSubmenuTimeout.current = setTimeout(() => setOpenGuidesSubmenu(null), 150);
-                  }}
+                  onMouseEnter={() => handleGuidesSubmenuMouseEnter("teambuilding")}
+                  onMouseLeave={handleGuidesSubmenuMouseLeave}
                 >
                   {[
                     { name: "Dual Players", path: "/guides/team-building/dual-players" },
