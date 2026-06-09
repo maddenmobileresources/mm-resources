@@ -9,6 +9,7 @@ import {
   fetchPackLeaderboard,
   getLeaderboardMode,
   getMonthKey,
+  openSecurePack,
   submitPackScore,
 } from "../services/packLeaderboard";
 
@@ -115,11 +116,21 @@ function scoreCard(player) {
   return ovrScore + rarityBonus + programBonus + boostedBonus;
 }
 
+function getCardScore(player) {
+  return Number(player.points ?? player.score ?? scoreCard(player));
+}
+
+function getRarityBonus(player) {
+  return Number(player.rarityBonus ?? rarityPoints[player.rarity] ?? 0);
+}
+
 function getProgramBonus(player) {
+  if (player.programBonus !== undefined) return Number(player.programBonus);
   return player.program && player.program !== "Core" ? 50 : 0;
 }
 
 function getBoostBonus(player) {
+  if (player.boostBonus !== undefined) return Number(player.boostBonus);
   return countBoosts(player.boost) * 100;
 }
 
@@ -197,8 +208,10 @@ export default function PackOpener() {
   const isDark = theme === "dark";
   const [selectedPackId, setSelectedPackId] = useState("pro");
   const [openedCards, setOpenedCards] = useState([]);
+  const [serverPackResult, setServerPackResult] = useState(null);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(true);
+  const [isOpening, setIsOpening] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [leaderboard, setLeaderboard] = useState({ month: getMonthKey(), entries: [] });
   const [leaderboardError, setLeaderboardError] = useState("");
@@ -210,8 +223,8 @@ export default function PackOpener() {
     []
   );
   const selectedPack = packs.find((pack) => pack.id === selectedPackId) ?? packs[0];
-  const currentSubtotal = openedCards.reduce((sum, player) => sum + scoreCard(player), 0);
-  const currentScore = currentSubtotal * selectedPack.multiplier;
+  const currentSubtotal = serverPackResult?.subtotal ?? openedCards.reduce((sum, player) => sum + getCardScore(player), 0);
+  const currentScore = serverPackResult?.score ?? currentSubtotal * selectedPack.multiplier;
 
   const rarityCounts = useMemo(() => {
     return rarityOrder.reduce((counts, rarity) => {
@@ -237,18 +250,49 @@ export default function PackOpener() {
     loadLeaderboard();
   }, []);
 
-  const openPack = () => {
+  const openPack = async () => {
+    setLeaderboardError("");
+
+    if (isSupabaseConfigured) {
+      if (!isAuthConfigured) {
+        setLeaderboardError("Configure Supabase and Discord login before verified packs can be opened.");
+        return;
+      }
+
+      if (!isSignedIn) {
+        await signInWithDiscord();
+        return;
+      }
+
+      setIsOpening(true);
+
+      try {
+        const result = await openSecurePack(selectedPack.id);
+        setOpenedCards(result.cards);
+        setServerPackResult(result);
+        setLeaderboard(result.leaderboard);
+        setHasSubmitted(true);
+      } catch (error) {
+        setLeaderboardError(error.message || "Unable to open pack.");
+      } finally {
+        setIsOpening(false);
+      }
+
+      return;
+    }
+
     const pulledCards = selectedPack.slots
       .map((slot) => drawFromSlot(slot, availablePlayers))
       .filter(Boolean)
       .map((player) => ({ ...player, packCardId: `${player.id}-${crypto.randomUUID()}` }));
 
     setOpenedCards(pulledCards);
+    setServerPackResult(null);
     setHasSubmitted(false);
   };
 
   const submitScore = async () => {
-    if (!isSignedIn || !openedCards.length) return;
+    if (!isSignedIn || !openedCards.length || isSupabaseConfigured) return;
 
     setIsSubmitting(true);
     setLeaderboardError("");
@@ -256,9 +300,9 @@ export default function PackOpener() {
     const entry = {
       name: discordUsername.slice(0, 24),
       redditUsername: redditUsername ? redditUsername.slice(0, 24) : null,
-      score: currentScore,
+      score: Math.round(currentScore),
       packName: selectedPack.name,
-      bestCard: openedCards.reduce((best, player) => (scoreCard(player) > scoreCard(best) ? player : best), openedCards[0]),
+      bestCard: openedCards.reduce((best, player) => (getCardScore(player) > getCardScore(best) ? player : best), openedCards[0]),
     };
 
     try {
@@ -277,6 +321,11 @@ export default function PackOpener() {
 
   const handleSubmitScoreClick = async () => {
     if (!openedCards.length || hasSubmitted || isSubmitting) return;
+
+    if (isSupabaseConfigured) {
+      setHasSubmitted(true);
+      return;
+    }
 
     if (!isAuthConfigured) {
       setLeaderboardError("Configure Supabase and Discord login before verified scores can be submitted.");
@@ -315,6 +364,7 @@ export default function PackOpener() {
                     onClick={() => {
                       setSelectedPackId(pack.id);
                       setOpenedCards([]);
+                      setServerPackResult(null);
                       setHasSubmitted(false);
                     }}
                     className={`rounded-lg border p-3 text-left transition ${
@@ -349,19 +399,20 @@ export default function PackOpener() {
                 <button
                   type="button"
                   onClick={openPack}
+                  disabled={isOpening}
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 font-semibold text-white shadow hover:bg-blue-700"
                 >
                   <Shuffle size={18} />
-                  Open Pack
+                  {isOpening ? "Opening" : "Open Pack"}
                 </button>
                 <button
                   type="button"
                   onClick={handleSubmitScoreClick}
-                  disabled={!openedCards.length || hasSubmitted || isSubmitting}
+                  disabled={!openedCards.length || hasSubmitted || isSubmitting || isSupabaseConfigured}
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-orange-600 px-5 py-3 font-semibold text-white shadow hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Send size={18} />
-                  {isSubmitting ? "Submitting" : "Submit Your Score"}
+                  {isSupabaseConfigured && hasSubmitted ? "Score Saved" : isSubmitting ? "Submitting" : "Submit Your Score"}
                 </button>
               </div>
             </div>
@@ -395,7 +446,7 @@ export default function PackOpener() {
                         <li className="pack-card-bonus-row">
                           <span className="pack-card-bullet" aria-hidden="true" />
                           <span className="pack-card-text">
-                            Rarity bonus = <strong>+{(rarityPoints[player.rarity] ?? 0).toLocaleString()}</strong>
+                            Rarity bonus = <strong>+{getRarityBonus(player).toLocaleString()}</strong>
                           </span>
                         </li>
                         <li className="pack-card-bonus-row">
@@ -412,7 +463,7 @@ export default function PackOpener() {
                         </li>
                       </ul>
                       <p className="pack-card-score-line mt-3 whitespace-nowrap text-left text-base sm:text-lg">
-                        Score = <strong>{scoreCard(player).toLocaleString()} pts</strong>
+                        Score = <strong>{getCardScore(player).toLocaleString()} pts</strong>
                       </p>
                     </article>
                   ))}
@@ -525,15 +576,20 @@ export default function PackOpener() {
                           Reddit verification is required to qualify for Reddit MM Points rewards.
                         </span>
                       )}
+                      {isSupabaseConfigured && openedCards.length > 0 && (
+                        <span className="block text-xs">
+                          This score was generated and saved by the server when the pack opened.
+                        </span>
+                      )}
                     </p>
                     <button
                       type="button"
                       onClick={submitScore}
-                      disabled={!openedCards.length || hasSubmitted || isSubmitting}
+                      disabled={!openedCards.length || hasSubmitted || isSubmitting || isSupabaseConfigured}
                       className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-3 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <Send size={16} />
-                      {isSubmitting ? "Saving" : "Submit Score"}
+                      {isSupabaseConfigured && hasSubmitted ? "Score Saved" : isSubmitting ? "Saving" : "Submit Score"}
                     </button>
                   </div>
                 )}

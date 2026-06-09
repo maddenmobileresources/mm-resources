@@ -103,6 +103,34 @@ export async function submitPackScore(entry, month = getMonthKey()) {
   return fetchPackLeaderboard(month);
 }
 
+export async function openSecurePack(packId) {
+  if (!isSupabaseConfigured) {
+    throw new Error("Supabase is not configured.");
+  }
+
+  const { data, error } = await supabase.functions.invoke("open-pack", {
+    body: { packId },
+  });
+
+  if (error) throw error;
+  if (data?.error) throw new Error(data.error);
+
+  return {
+    cards: (data.cards ?? []).map((card) => ({
+      ...card,
+      packCardId: `${card.id}-${crypto.randomUUID()}`,
+    })),
+    leaderboard: {
+      month: data.month ?? getMonthKey(),
+      entries: (data.leaderboard ?? []).map(normalizeEntry),
+    },
+    month: data.month ?? getMonthKey(),
+    score: data.score ?? 0,
+    subtotal: data.subtotal ?? 0,
+    multiplier: data.multiplier ?? 1,
+  };
+}
+
 export function clearLocalPackLeaderboard(month = getMonthKey()) {
   saveLocalLeaderboard([], month);
   return { month, entries: [] };

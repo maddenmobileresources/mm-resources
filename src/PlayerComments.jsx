@@ -155,6 +155,11 @@ export default function PlayerComments({ playerId }) {
   }
 
   async function handleVote(commentId, voteType) {
+    if (!isSignedIn) {
+      setError("Please sign in with Discord before voting on comments.");
+      return;
+    }
+
     try {
       await voteOnComment(commentId, voteType);
       await loadComments();
@@ -304,13 +309,17 @@ export default function PlayerComments({ playerId }) {
               <div className="flex items-center gap-4 ml-10">
                 <button
                   onClick={() => handleVote(comment.id, "like")}
-                  className={`flex items-center gap-1 text-xs ${isDark ? "text-gray-400 hover:text-green-400" : "text-gray-500 hover:text-green-600"}`}
+                  disabled={!isSignedIn}
+                  title={isSignedIn ? "Like this comment" : "Sign in with Discord to vote"}
+                  className={`flex items-center gap-1 text-xs disabled:cursor-not-allowed disabled:opacity-50 ${isDark ? "text-gray-400 hover:text-green-400" : "text-gray-500 hover:text-green-600"}`}
                 >
                   ^ {comment.likes}
                 </button>
                 <button
                   onClick={() => handleVote(comment.id, "dislike")}
-                  className={`flex items-center gap-1 text-xs ${isDark ? "text-gray-400 hover:text-red-400" : "text-gray-500 hover:text-red-500"}`}
+                  disabled={!isSignedIn}
+                  title={isSignedIn ? "Dislike this comment" : "Sign in with Discord to vote"}
+                  className={`flex items-center gap-1 text-xs disabled:cursor-not-allowed disabled:opacity-50 ${isDark ? "text-gray-400 hover:text-red-400" : "text-gray-500 hover:text-red-500"}`}
                 >
                   v {comment.dislikes}
                 </button>
@@ -382,7 +391,9 @@ export default function PlayerComments({ playerId }) {
                       </p>
                       <button
                         onClick={() => handleVote(reply.id, "like")}
-                        className={`text-xs ml-8 ${isDark ? "text-gray-400 hover:text-green-400" : "text-gray-500 hover:text-green-600"}`}
+                        disabled={!isSignedIn}
+                        title={isSignedIn ? "Like this reply" : "Sign in with Discord to vote"}
+                        className={`text-xs ml-8 disabled:cursor-not-allowed disabled:opacity-50 ${isDark ? "text-gray-400 hover:text-green-400" : "text-gray-500 hover:text-green-600"}`}
                       >
                         ^ {reply.likes}
                       </button>

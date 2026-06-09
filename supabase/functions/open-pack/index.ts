@@ -63,13 +63,26 @@ type Card = {
   boost: string | null;
 };
 
+type Profile = {
+  discord_username: string | null;
+  discord_display_name: string | null;
+  reddit_username: string | null;
+  reddit_verified: boolean | null;
+};
+
 function getMonthKey(date = new Date()) {
   return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
+function secureRandom() {
+  const values = new Uint32Array(1);
+  crypto.getRandomValues(values);
+  return values[0] / 2 ** 32;
+}
+
 function chooseWeightedRarity(weights: Record<string, number>) {
   const total = Object.values(weights).reduce((sum, weight) => sum + weight, 0);
-  let roll = Math.random() * total;
+  let roll = secureRandom() * total;
 
   for (const [rarity, weight] of Object.entries(weights)) {
     roll -= weight;
@@ -88,6 +101,19 @@ function scoreCard(card: Card) {
   return ovrScore + rarityBonus + programBonus + boostedBonus;
 }
 
+function scoreBreakdown(card: Card) {
+  const rarityBonus = rarityPoints[card.rarity] ?? 0;
+  const programBonus = card.program && card.program !== "Core" ? 50 : 0;
+  const boostBonus = countBoosts(card.boost) * 100;
+
+  return {
+    points: scoreCard(card),
+    rarityBonus,
+    programBonus,
+    boostBonus,
+  };
+}
+
 function countBoosts(boost: string | null) {
   if (!boost) return 0;
   return boost
@@ -96,25 +122,44 @@ function countBoosts(boost: string | null) {
     .filter(Boolean).length;
 }
 
+function cleanText(value: unknown, fallback: string) {
+  const cleaned = String(value ?? fallback).trim();
+  return (cleaned || fallback).slice(0, 24);
+}
+
+async function loadPackCards(supabase: ReturnType<typeof createClient>) {
+  const packCardsUrl = Deno.env.get("PACK_CARDS_URL");
+
+  if (packCardsUrl) {
+    const response = await fetch(packCardsUrl);
+
+    if (!response.ok) {
+      throw new Error("Unable to load pack card pool.");
+    }
+
+    return (await response.json()) as Card[];
+  }
+
+  const { data, error } = await supabase
+    .from("pack_cards")
+    .select("id, name, position, team, program, rarity, ovr, image, boost");
+
+  if (error) throw error;
+  return (data ?? []) as Card[];
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
-    const { packId, displayName } = await request.json();
+    const { packId } = await request.json();
     const authHeader = request.headers.get("Authorization") ?? "";
     const pack = packs.find((item) => item.id === packId);
 
     if (!pack) {
       return new Response(JSON.stringify({ error: "Unknown pack." }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    if (!cleanName) {
-      return new Response(JSON.stringify({ error: "Display name is required." }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -129,40 +174,55 @@ Deno.serve(async (request) => {
     const { data: userData, error: userError } = await supabase.auth.getUser(token);
 
     if (userError || !userData.user) {
-      return new Response(JSON.stringify({ error: "Sign in with Reddit before submitting scores." }), {
+      return new Response(JSON.stringify({ error: "Sign in with Discord before opening leaderboard packs." }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    const { data: profileData } = await supabase
+      .from("profiles")
+      .select("discord_username, discord_display_name, reddit_username, reddit_verified")
+      .eq("id", userData.user.id)
+      .maybeSingle();
+    const profile = profileData as Profile | null;
+
     const userMetadata = userData.user.user_metadata ?? {};
     const identityData = userData.user.identities?.[0]?.identity_data ?? {};
-    const cleanName = String(
-      displayName ||
-      userMetadata.preferred_username ||
-      userMetadata.user_name ||
-      userMetadata.username ||
-      identityData.preferred_username ||
-      identityData.user_name ||
-      identityData.username ||
-      "Reddit User"
-    ).trim().slice(0, 24);
+    const verifiedReddit = profile?.reddit_verified && profile?.reddit_username
+      ? cleanText(profile.reddit_username, "")
+      : null;
+    const cleanName = verifiedReddit
+      ? `u/${verifiedReddit}`.slice(0, 24)
+      : cleanText(
+          profile?.discord_username ||
+            profile?.discord_display_name ||
+            userMetadata.preferred_username ||
+            userMetadata.user_name ||
+            userMetadata.username ||
+            identityData.preferred_username ||
+            identityData.user_name ||
+            identityData.username,
+          "Community User"
+        );
 
+    const cardPool = (await loadPackCards(supabase)).filter((card) => (
+      card?.id &&
+      card?.name &&
+      card?.rarity &&
+      Number(card?.ovr) > 0 &&
+      card?.image
+    ));
     const openedCards: Card[] = [];
 
     for (const slot of pack.slots) {
       const rarity = chooseWeightedRarity(slot.weights);
-      let query = supabase.from("pack_cards").select("*").eq("rarity", rarity);
+      const candidates = cardPool.filter((card) => card.rarity === rarity);
+      const fallback = cardPool.filter((card) => slot.allowed.includes(card.rarity));
+      const data = candidates.length ? candidates : fallback;
+      if (!data.length) continue;
 
-      if ("program" in slot && slot.program) {
-        query = query.eq("program", slot.program);
-      }
-
-      const { data, error } = await query;
-      if (error) throw error;
-      if (!data?.length) continue;
-
-      openedCards.push(data[Math.floor(Math.random() * data.length)] as Card);
+      openedCards.push(data[Math.floor(secureRandom() * data.length)] as Card);
     }
 
     if (!openedCards.length) {
@@ -179,9 +239,9 @@ Deno.serve(async (request) => {
 
     const { error: insertError } = await supabase.from("pack_scores").insert({
       display_name: cleanName,
-      reddit_username: cleanName,
+      reddit_username: verifiedReddit,
       user_id: userData.user.id,
-      score,
+      score: Math.round(score),
       pack_id: pack.id,
       pack_name: pack.name,
       best_card_id: bestCard.id,
@@ -197,7 +257,7 @@ Deno.serve(async (request) => {
         rarity: card.rarity,
         ovr: card.ovr,
         image: card.image,
-        points: scoreCard(card),
+        ...scoreBreakdown(card),
       })),
       month_key: monthKey,
     });
@@ -214,11 +274,11 @@ Deno.serve(async (request) => {
     if (leaderboardError) throw leaderboardError;
 
     return new Response(JSON.stringify({
-      cards: openedCards.map((card) => ({ ...card, points: scoreCard(card) })),
+      cards: openedCards.map((card) => ({ ...card, ...scoreBreakdown(card) })),
       leaderboard,
       month: monthKey,
       multiplier: pack.multiplier,
-      score,
+      score: Math.round(score),
       subtotal,
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

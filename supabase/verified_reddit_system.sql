@@ -129,16 +129,9 @@ where reddit_username is null;
 
 drop policy if exists "Anyone can submit pack leaderboard scores" on public.pack_scores;
 drop policy if exists "Logged in users can submit pack leaderboard scores" on public.pack_scores;
-create policy "Logged in users can submit pack leaderboard scores"
-  on public.pack_scores
-  for insert
-  with check (
-    auth.uid() = user_id
-    and char_length(display_name) between 1 and 24
-    and char_length(coalesce(reddit_username, display_name)) between 1 and 24
-    and score >= 0
-    and char_length(month_key) = 7
-  );
+
+-- Do not create a browser insert policy for pack scores.
+-- Scores should be generated and inserted by the Supabase open-pack Edge Function.
 
 create or replace function public.set_verified_pack_score_identity()
 returns trigger

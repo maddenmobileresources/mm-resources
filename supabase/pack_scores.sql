@@ -1,11 +1,16 @@
 create table if not exists public.pack_scores (
   id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete set null,
   display_name text not null check (char_length(display_name) between 1 and 24),
+  reddit_username text,
   score integer not null check (score >= 0),
+  pack_id text,
   pack_name text not null,
+  best_card_id integer,
   best_card_name text,
   best_card_rarity text,
   best_card_ovr integer,
+  opened_cards jsonb not null default '[]'::jsonb,
   month_key text not null,
   created_at timestamptz not null default now()
 );
@@ -22,11 +27,7 @@ create policy "Anyone can read pack leaderboard scores"
   using (true);
 
 drop policy if exists "Anyone can submit pack leaderboard scores" on public.pack_scores;
-create policy "Anyone can submit pack leaderboard scores"
-  on public.pack_scores
-  for insert
-  with check (
-    char_length(display_name) between 1 and 24
-    and score >= 0
-    and char_length(month_key) = 7
-  );
+drop policy if exists "Logged in users can submit pack leaderboard scores" on public.pack_scores;
+
+-- Do not create a browser insert policy for pack scores.
+-- Scores should be generated and inserted by the Supabase open-pack Edge Function.
