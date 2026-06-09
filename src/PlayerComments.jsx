@@ -4,6 +4,7 @@ import { useTheme } from "./context/ThemeContext";
 import { useAuth } from "./context/AuthContext";
 import { fetchComments, postComment, voteOnComment } from "./services/comments";
 import { IdentityTags } from "./components/IdentityTags";
+import RedditVerificationModal from "./components/RedditVerificationModal";
 
 const SORT_OPTIONS = ["Best", "Newest", "Oldest"];
 
@@ -83,6 +84,7 @@ export default function PlayerComments({ playerId }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [showRedditInfo, setShowRedditInfo] = useState(false);
 
   async function loadComments() {
     setLoading(true);
@@ -231,7 +233,7 @@ export default function PlayerComments({ playerId }) {
         ) : !isSignedIn ? (
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className={`min-w-0 text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-              Sign in with Discord to comment. Reddit tags are added after manual verification.
+              Sign in with Discord to comment. Reddit verification is optional and handled manually.
             </p>
             <div className="flex shrink-0 items-center gap-2">
               <div className="flex w-full flex-col gap-2 sm:w-56">
@@ -240,6 +242,13 @@ export default function PlayerComments({ playerId }) {
                   className="w-full rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
                 >
                   Sign in with Discord
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowRedditInfo(true)}
+                  className="w-full rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                >
+                  Sign in with Reddit
                 </button>
               </div>
               <LoginInfoNote isDark={isDark} />
@@ -385,6 +394,11 @@ export default function PlayerComments({ playerId }) {
           ))}
         </div>
       )}
+      <RedditVerificationModal
+        isOpen={showRedditInfo}
+        onClose={() => setShowRedditInfo(false)}
+        isDark={isDark}
+      />
     </div>
   );
 }

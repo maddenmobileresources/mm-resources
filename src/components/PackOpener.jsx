@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Trophy, Shuffle, Send, RotateCcw, Info } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
+import RedditVerificationModal from "./RedditVerificationModal";
 import players from "../data/MM26PlayerDatabase";
 import {
   clearLocalPackLeaderboard,
@@ -201,6 +202,7 @@ export default function PackOpener() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [leaderboard, setLeaderboard] = useState({ month: getMonthKey(), entries: [] });
   const [leaderboardError, setLeaderboardError] = useState("");
+  const [showRedditInfo, setShowRedditInfo] = useState(false);
   const leaderboardMode = getLeaderboardMode();
 
   const availablePlayers = useMemo(
@@ -495,13 +497,22 @@ export default function PackOpener() {
                       Sign in with Discord to submit your score. Reddit verification is optional, but required for Reddit MM Points rewards.
                     </p>
                     <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={signInWithDiscord}
-                        className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
-                      >
-                        Sign in with Discord
-                      </button>
+                      <div className="flex flex-col gap-2 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={signInWithDiscord}
+                          className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+                        >
+                          Sign in with Discord
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setShowRedditInfo(true)}
+                          className="rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                        >
+                          Sign in with Reddit
+                        </button>
+                      </div>
                       <LoginInfoNote isDark={isDark} />
                     </div>
                   </div>
@@ -575,6 +586,11 @@ export default function PackOpener() {
           </aside>
         </div>
       </div>
+      <RedditVerificationModal
+        isOpen={showRedditInfo}
+        onClose={() => setShowRedditInfo(false)}
+        isDark={isDark}
+      />
     </div>
   );
 }
