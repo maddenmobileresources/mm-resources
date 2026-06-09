@@ -21,7 +21,7 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
               Reddit Verification
             </h2>
             <p className={`mt-1 text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-              Reddit sign-in is handled manually for now.
+              Verify your Reddit account for leaderboard rewards and comment tags.
             </p>
           </div>
           <button
@@ -37,31 +37,60 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
         </div>
 
         <div className={`space-y-4 text-sm leading-relaxed ${isDark ? "text-gray-200" : "text-gray-700"}`}>
-          <p>
-            First, sign in with Discord on this website. Then DM the site admin on Reddit with your exact Discord username.
-          </p>
-
-          <div>
-            <p className="font-bold">Important:</p>
-            <p>
-              Send your actual Discord username, not your display name and not a server nickname. That is what allows your Reddit account to be matched to the correct Discord login on this site.
-            </p>
-          </div>
-
           <div>
             <p className="font-bold">A verified Reddit account qualifies you for:</p>
             <ul className="mt-2 list-disc space-y-2 pl-5">
               <li>
-                Pack Opener Leaderboard rewards, which are Reddit MM Points awarded to verified Reddit users who finish in the monthly Top 10.
+                Pack Opener Leaderboard rewards, which includes Reddit MM Points awarded to verified Reddit users who finish in the monthly Top 10.
               </li>
               <li>
-                A special Trusted comment tag if you have the Diamond user flair for reaching 32+ Reddit MM Points on r/MaddenMobileForums.
+                A special gold "Trusted" tag attached to your comments if you've earned the Diamond user flair for achieving 32+ Reddit MM Points on the{" "}
+                <a
+                  href="https://www.reddit.com/r/MaddenMobileForums/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-orange-500 underline"
+                >
+                  r/MaddenMobileForums
+                </a>{" "}
+                subreddit.
               </li>
             </ul>
           </div>
 
+          <div>
+            <p className="font-bold">How to Verify:</p>
+            <p>
+              Due to strict restrictions with accessing Reddit's API, sign-in via Reddit is handled manually for now.
+            </p>
+            <ol className="mt-2 list-decimal space-y-2 pl-5">
+              <li>
+                Sign in with Discord on https://mmgridiron.com, which you can do via the comment section of one of the individual player or play profile pages.
+              </li>
+              <li>
+                DM{" "}
+                <a
+                  href="https://www.reddit.com/user/retired_doctor/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-orange-500 underline"
+                >
+                  u/retired_doctor
+                </a>{" "}
+                on Reddit with your exact Discord username.
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <p className="font-bold">Important:</p>
+            <p>
+              Send your actual Discord account's username, not your display name or server nickname. That is what allows your Reddit account to be matched to the correct Discord login on this site.
+            </p>
+          </div>
+
           <p>
-            Once verified, your Reddit username can override your Discord username on the Pack Opener Leaderboard. The Trusted tag only appears in comment sections.
+            Once verified, your Reddit username will override your Discord username on the Pack Opener Leaderboard, and the "Trusted" tag will only appear in comment sections of those who qualify for it (i.e. has earned 32+ Reddit MM Points on their Reddit account).
           </p>
         </div>
 
