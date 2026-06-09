@@ -21,19 +21,19 @@ export default function Home() {
       to: "/calendars",
       icon: <img src="https://i.imgur.com/egn68zm.png" alt="Event Schedule" width={40} height={40} />,
       title: "Event Schedule",
-      desc: "View the event schedule in any timezone and set reminders for future events",
+      desc: "View calendars of all the important events and dates as they happen in-game",
     },
     {
       to: "/packs",
       icon: <img src="https://i.imgur.com/I3XeEAc.png" alt="Pack Contents" width={40} height={40} />,
       title: "Pack Contents",
-      desc: "View current and upcoming marketplace packs, costs, probabilities, and limits",
+      desc: "View the contents of various packs available in-game",
     },
     {
       to: "/guides",
       icon: <img src="https://i.imgur.com/Lucm7XZ.png" alt="Guides" width={40} height={40} />,
       title: "Guides",
-      desc: "Read in-depth strategy and gameplay guides to improve your Madden Mobile team",
+      desc: "Read in-depth walkthroughs and guides to various events and features available in-game",
     },
     {
       to: "/theme-teams",
@@ -51,7 +51,7 @@ export default function Home() {
       to: "/news",
       icon: <img src="https://i.imgur.com/wHMo6hX.png" alt="News" width={40} height={40} />,
       title: "News",
-      desc: "Stay updated with the latest Madden Mobile news, updates, and patch notes",
+      desc: "Stay informed on the latest Madden Mobile news and updates as they are officially announced by EA",
     },
     {
       to: "/faq",
@@ -63,7 +63,7 @@ export default function Home() {
       to: "/community",
       icon: <img src="https://i.imgur.com/LavpUWC.png" alt="Community" width={40} height={40} />,
       title: "Community",
-      desc: "Connect with the Madden Mobile community to chat, trade, and share tips",
+      desc: "Connect with the Madden Mobile community on various different platforms",
     },
     {
       to: "/packs/open",
@@ -90,11 +90,11 @@ export default function Home() {
       <header style={{ textAlign: "center", marginBottom: "2.5rem" }}>
         <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
           <h1 style={{ fontSize: "2.25rem", fontWeight: "bold" }}>
-            Madden Mobile Resources
+            Madden Mobile Gridiron
           </h1>
         </div>
         <p style={{ fontSize: "1.125rem", color: subText }}>
-          All your players, calendars, and packs in one place
+          Home for all things Madden NFL Mobile
         </p>
       </header>
 

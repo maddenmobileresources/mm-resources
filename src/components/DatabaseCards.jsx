@@ -5,13 +5,13 @@ export const databaseCards = [
     to: "/databases/players",
     icon: <img src="https://i.imgur.com/X110E3t.png" alt="Player Database" width={40} height={40} />,
     title: "Player Database",
-    desc: "View stats and search for players by program, team, boost, OVR, and more",
+    desc: "Search and compare every player released in-game",
   },
   {
     to: "/databases/plays",
     icon: <img src="https://i.imgur.com/knTaSn4.png" alt="Play Database" width={40} height={40} />,
     title: "Play Database",
-    desc: "Browse offensive and defensive plays to build your perfect scheme",
+    desc: "Search and compare every play released in-game",
   },
 ];
 
