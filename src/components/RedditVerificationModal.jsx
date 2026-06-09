@@ -62,14 +62,21 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
             </p>
             <ol className="mt-2 list-decimal space-y-2 pl-5">
               <li>
-                First, sign in with Discord on https://mmgridiron.com, which you can do via the{" "}
-                <a
-                  href="/packs/open"
-                  className="font-semibold text-orange-500 underline"
-                >
-                  Pack Opener
-                </a>{" "}
-                page or via the comment section of a player/play's individual profile page.
+                <div>
+                  <p>
+                    <span className="font-semibold">1a.</span> First sign in with Discord on https://mmgridiron.com, which you can do via the{" "}
+                    <a
+                      href="/packs/open"
+                      className="font-semibold text-orange-500 underline"
+                    >
+                      Pack Opener
+                    </a>{" "}
+                    page or via the comment section of a player/play's individual profile page.
+                  </p>
+                  <p className="mt-2 pl-4">
+                    <span className="font-semibold">1b.</span> Signing in via Discord is handled strictly by Discord themselves. Our site will never have access to any sensitive or confidential information such as one's Discord account password.
+                  </p>
+                </div>
               </li>
               <li>
                 Then, DM{" "}
@@ -93,9 +100,12 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
             </p>
           </div>
 
-          <p>
-            Once verified, your Reddit username will override your Discord username on the Pack Opener Leaderboard, and the "Trusted" tag will only appear in comment sections of those who qualify for it (i.e. has earned 32+ Reddit MM Points on their Reddit account).
-          </p>
+          <div>
+            <p className="font-bold">Once Verified:</p>
+            <p>
+              You'll see your Reddit username start to show up alongside your Discord username in mmgridiron.com comment sections, and your Reddit username will override your Discord username on the Pack Opener Leaderboard. The gold "Trusted" tag will only appear alongside comments in comment sections of those who qualify for it (i.e. has earned 32+ Reddit MM Points on their Reddit account).
+            </p>
+          </div>
         </div>
 
         <div className="mt-5 flex justify-end">

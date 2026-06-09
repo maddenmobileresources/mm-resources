@@ -226,6 +226,7 @@ export default function PackOpener() {
   const selectedPack = packs.find((pack) => pack.id === selectedPackId) ?? packs[0];
   const currentSubtotal = serverPackResult?.subtotal ?? openedCards.reduce((sum, player) => sum + getCardScore(player), 0);
   const currentScore = serverPackResult?.score ?? currentSubtotal * selectedPack.multiplier;
+  const isPracticeMode = !isSignedIn;
 
   const rarityCounts = useMemo(() => {
     return rarityOrder.reduce((counts, rarity) => {
@@ -361,16 +362,37 @@ export default function PackOpener() {
               })}
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-wide text-blue-500">Selected Pack</p>
                 <h2 className="text-2xl font-bold">{selectedPack.name}</h2>
                 <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
                   Score multiplier: x{selectedPack.multiplier}
                 </p>
-                {isSupabaseConfigured && !isSignedIn && (
+              </div>
+              <div className="max-w-xl lg:flex-1">
+                <p className="text-sm font-bold text-green-500">
+                  Practice Mode: {isPracticeMode ? "Enabled" : "Disabled"}
+                </p>
+                {isPracticeMode && (
                   <p className={`mt-1 text-xs ${isDark ? "text-amber-200" : "text-amber-700"}`}>
-                    Practice mode: this pull will not be saved to the leaderboard.
+                    This pull is not eligible for the Leaderboard. Please sign in with{" "}
+                    <button
+                      type="button"
+                      onClick={signInWithDiscord}
+                      className="font-semibold underline hover:text-blue-400"
+                    >
+                      Discord
+                    </button>
+                    /
+                    <button
+                      type="button"
+                      onClick={() => setShowRedditInfo(true)}
+                      className="font-semibold underline hover:text-orange-400"
+                    >
+                      Reddit
+                    </button>{" "}
+                    to qualify for the Leaderboard and its accompanying rewards.
                   </p>
                 )}
               </div>
