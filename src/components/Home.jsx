@@ -33,7 +33,7 @@ export default function Home() {
       to: "/guides",
       icon: <img src="https://i.imgur.com/Lucm7XZ.png" alt="Guides" width={40} height={40} />,
       title: "Guides",
-      desc: "Read in-depth walkthroughs and guides to various events and features available in-game",
+      desc: "Read in-depth walkthroughs to various events and features",
     },
     {
       to: "/theme-teams",
@@ -51,7 +51,7 @@ export default function Home() {
       to: "/news",
       icon: <img src="https://i.imgur.com/wHMo6hX.png" alt="News" width={40} height={40} />,
       title: "News",
-      desc: "Stay informed on the latest Madden Mobile news and updates as they are officially announced by EA",
+      desc: "Stay informed on the latest Madden Mobile updates as they are officially announced",
     },
     {
       to: "/faq",

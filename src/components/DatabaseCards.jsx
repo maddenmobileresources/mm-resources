@@ -5,7 +5,7 @@ export const databaseCards = [
     to: "/databases/players",
     icon: <img src="https://i.imgur.com/X110E3t.png" alt="Player Database" width={40} height={40} />,
     title: "Player Database",
-    desc: "Search and compare every player released in-game",
+    desc: "Search and compare every player card released in-game",
   },
   {
     to: "/databases/plays",
