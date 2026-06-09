@@ -20,9 +20,6 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
             <h2 id="reddit-verification-title" className="text-xl font-bold">
               Reddit Verification
             </h2>
-            <p className={`mt-1 text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-              Verify your Reddit account for leaderboard rewards and comment tags.
-            </p>
           </div>
           <button
             type="button"
@@ -65,10 +62,17 @@ export default function RedditVerificationModal({ isOpen, onClose, isDark }) {
             </p>
             <ol className="mt-2 list-decimal space-y-2 pl-5">
               <li>
-                Sign in with Discord on https://mmgridiron.com, which you can do via the comment section of one of the individual player or play profile pages.
+                First, sign in with Discord on https://mmgridiron.com, which you can do via the{" "}
+                <a
+                  href="/packs/open"
+                  className="font-semibold text-orange-500 underline"
+                >
+                  Pack Opener
+                </a>{" "}
+                page or via the comment section of a player/play's individual profile page.
               </li>
               <li>
-                DM{" "}
+                Then, DM{" "}
                 <a
                   href="https://www.reddit.com/user/retired_doctor/"
                   target="_blank"
