@@ -254,17 +254,7 @@ export default function PackOpener() {
   const openPack = async () => {
     setLeaderboardError("");
 
-    if (isSupabaseConfigured) {
-      if (!isAuthConfigured) {
-        setLeaderboardError("Configure Supabase and Discord login before verified packs can be opened.");
-        return;
-      }
-
-      if (!isSignedIn) {
-        await signInWithDiscord();
-        return;
-      }
-
+    if (isSupabaseConfigured && isSignedIn) {
       setIsOpening(true);
 
       try {
@@ -280,6 +270,10 @@ export default function PackOpener() {
       }
 
       return;
+    }
+
+    if (isSupabaseConfigured && isAuthConfigured && !isSignedIn) {
+      setLeaderboardError("Practice pack opened. Sign in with Discord before opening a pack to qualify for the leaderboard.");
     }
 
     const pulledCards = selectedPack.slots
@@ -327,7 +321,7 @@ export default function PackOpener() {
           <div>
             <h1 className="text-2xl font-bold sm:text-3xl">Pack Opener</h1>
             <p className={`mt-2 max-w-3xl ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-              Open simulated packs and qualify for this month's Top 10 Leaderboard.
+              Open simulated packs for fun, or sign in with Discord before opening to qualify for this month's Top 10 Leaderboard.
             </p>
           </div>
         </div>
@@ -374,6 +368,11 @@ export default function PackOpener() {
                 <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
                   Score multiplier: x{selectedPack.multiplier}
                 </p>
+                {isSupabaseConfigured && !isSignedIn && (
+                  <p className={`mt-1 text-xs ${isDark ? "text-amber-200" : "text-amber-700"}`}>
+                    Practice mode: this pull will not be saved to the leaderboard.
+                  </p>
+                )}
               </div>
               <div className="flex flex-col gap-2 sm:flex-row">
                 <button
