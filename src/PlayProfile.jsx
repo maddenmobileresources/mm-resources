@@ -259,25 +259,25 @@ export default function PlayProfile({
         </div>
       )}
       
-      <div className="flex flex-col lg:flex-row gap-4 p-4">
-        <div className="w-full lg:w-5/12 mb-6 lg:mb-0">
+      <div className="play-profile-page flex flex-col lg:flex-row gap-4 p-4">
+        <div className="play-profile-primary w-full lg:w-5/12 mb-6 lg:mb-0">
           <Link
             to="/plays"
-            className="inline-block mt-[-8px] mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition-colors duration-200"
+            className="play-profile-back-link inline-block mt-[-8px] mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition-colors duration-200"
           >
             ← Back to Play Database
           </Link>
 
-          <div className="flex gap-4 items-start">
-            <div className="flex flex-col">
+          <div className="play-profile-hero flex gap-4 items-start">
+            <div className="play-profile-media flex flex-col">
               <img
                 src={play.image}
                 alt={play.name}
-                className={`w-64 h-64 object-contain rounded mb-4 ${theme === 'dark' ? 'bg-zinc-900' : 'bg-white'}`}
+                className={`play-profile-image w-64 h-64 object-contain rounded mb-4 ${theme === 'dark' ? 'bg-zinc-900' : 'bg-white'}`}
               />
               <button
                 onClick={() => handleTogglePlay(play)}
-                className={`px-4 py-2 rounded ${
+                className={`play-profile-compare-button px-4 py-2 rounded ${
                   validPlays.some((p) => p.id === play.id)
                     ? "bg-red-500 text-white hover:bg-red-600"
                     : "bg-green-500 text-white hover:bg-green-600"
@@ -288,9 +288,9 @@ export default function PlayProfile({
                   : "Add to Comparison"}
               </button>
             </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold mb-4">{play.name}</h2>
-              <div className="space-y-2">
+            <div className="play-profile-details flex-1">
+              <h2 className="play-profile-title text-2xl font-bold mb-4">{play.name}</h2>
+              <div className="play-profile-meta space-y-2">
                 <p><strong>Type:</strong> {play.type}</p>
                 <p><strong>Playbook Budget:</strong> {play.pbb}</p>
                 <p><strong>Cost:</strong> {play.cost.toLocaleString()} Play Tokens</p>
@@ -300,7 +300,7 @@ export default function PlayProfile({
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="play-profile-stats mt-6">
   <h3 className="text-xl font-bold mb-2">Stats</h3>
             <ul className="list-disc list-inside space-y-1">
               <li><strong>Play Count:</strong> {play.playCount}</li>
