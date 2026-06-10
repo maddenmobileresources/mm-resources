@@ -2,23 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Moon, Sun, ChevronDown, ChevronRight, Search, Menu, X, House } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { calendarSearchPages, calendarSeasons } from "../data/calendarData";
 
 const ALL_PAGES = [
   { title: "Databases", path: "/databases", keywords: ["databases", "database", "players", "plays", "stats", "playbook"] },
   { title: "Player Database", path: "/players", keywords: ["players", "database", "stats", "ovr", "program", "team", "boost", "card", "starter", "uncommon", "common", "rare", "epic", "iconic", "mythic", "marvel", "dual", "height", "weight", "position", "archetype", "core", "compare"] },
   { title: "Play Database", path: "/plays", keywords: ["plays", "database", "offensive", "defensive", "scheme", "run", "short", "long", "pass", "action", "pa", "route", "budget", "yards", "compare"] },
   { title: "Event Schedule", path: "/calendars", keywords: ["calendars", "events", "schedule", "timezone", "start", "ends", "boost", "expires", "promo", "duration"] },
-  { title: "Madden NFL 27 Mobile Calendar", path: "/calendars/mm27", keywords: ["calendar", "mm27", "madden nfl 27 mobile", "schedule", "events"] },
-  { title: "Madden NFL 26 Mobile Calendar", path: "/calendars/mm26", keywords: ["calendar", "mm26", "madden nfl 26 mobile", "schedule", "events"] },
-  { title: "Madden NFL 25 Mobile Calendar", path: "/calendars/mm25", keywords: ["calendar", "mm25", "madden nfl 25 mobile", "schedule", "events"] },
-  { title: "Madden NFL 24 Mobile Calendar", path: "/calendars/mm24", keywords: ["calendar", "mm24", "madden nfl 24 mobile", "schedule", "events"] },
-  { title: "Madden NFL 23 Mobile Calendar", path: "/calendars/mm23", keywords: ["calendar", "mm23", "madden nfl 23 mobile", "schedule", "events"] },
-  { title: "Madden NFL 22 Mobile Calendar", path: "/calendars/mm22", keywords: ["calendar", "mm22", "madden nfl 22 mobile", "schedule", "events"] },
-  { title: "August 2025 Calendar", path: "/calendars/aug25", keywords: ["calendar", "august", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
-  { title: "September 2025 Calendar", path: "/calendars/sept25", keywords: ["calendar", "september", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
-  { title: "October 2025 Calendar", path: "/calendars/oct25", keywords: ["calendar", "october", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
-  { title: "November 2025 Calendar", path: "/calendars/nov25", keywords: ["calendar", "november", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
-  { title: "December 2025 Calendar", path: "/calendars/dec25", keywords: ["calendar", "december", "2025", "schedule", "events", "start", "ends", "boost", "expires", "promo", "duration"] },
+  ...calendarSearchPages,
   { title: "Pack Contents", path: "/packs", keywords: ["packs", "probabilities", "costs", "limits", "players", "odds", "purchase"] },
   { title: "Pack Opener", path: "/packs/open", keywords: ["packs", "opener", "open", "score", "leaderboard", "monthly", "simulator"] },
   { title: "Core Rare Player Pack", path: "/packs/core-rare-player-pack", keywords: ["packs", "rare", "player", "core"] },
@@ -451,19 +442,12 @@ export default function Navbar() {
               overflow: "visible",
             }}
           >
-            {[
-              { name: "MM27", path: "/calendars/mm27" },
-              { name: "MM26", path: "/calendars/mm26", submenu: "mm26" },
-              { name: "MM25", path: "/calendars/mm25" },
-              { name: "MM24", path: "/calendars/mm24" },
-              { name: "MM23", path: "/calendars/mm23" },
-              { name: "MM22", path: "/calendars/mm22" },
-            ].map((season) => (
+            {calendarSeasons.map((season) => (
               <div
                 key={season.name}
                 style={{ position: "relative" }}
-                onMouseEnter={() => handleSubmenuMouseEnter(season.submenu)}
-                onMouseLeave={() => handleSubmenuMouseLeave(season.submenu)}
+                onMouseEnter={() => handleSubmenuMouseEnter(season.months.length ? season.name : null)}
+                onMouseLeave={() => handleSubmenuMouseLeave(season.name)}
               >
                 <div
                   style={{
@@ -485,37 +469,33 @@ export default function Navbar() {
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   <span>{season.name}</span>
-                  {season.submenu &&
-                    renderNestedArrow(season.name, openSubmenu === season.submenu, () =>
-                      toggleNestedSubmenu(season.submenu)
+                  {season.months.length > 0 &&
+                    renderNestedArrow(season.name, openSubmenu === season.name, () =>
+                      toggleNestedSubmenu(season.name)
                     )}
                 </div>
-                {season.submenu && openSubmenu === season.submenu && (
+                {season.months.length > 0 && openSubmenu === season.name && (
                   <div
                     style={{
                       position: "absolute",
                       top: 0,
                       left: "100%",
                       marginLeft: "4px",
-                      width: "11rem",
+                      width: "12rem",
                       backgroundColor: isDark ? "#2d3748" : "white",
                       border: `1px solid ${borderColor}`,
                       borderRadius: "0.375rem",
                       boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-                      overflow: "hidden",
+                      maxHeight: "70vh",
+                      overflowY: "auto",
+                      overflowX: "hidden",
                     }}
-                    onMouseEnter={() => handleSubmenuMouseEnter(season.submenu)}
-                    onMouseLeave={() => handleSubmenuMouseLeave(season.submenu)}
+                    onMouseEnter={() => handleSubmenuMouseEnter(season.name)}
+                    onMouseLeave={() => handleSubmenuMouseLeave(season.name)}
                   >
-                    {[
-                      { name: "August 2025", path: "/calendars/aug25" },
-                      { name: "September 2025", path: "/calendars/sept25" },
-                      { name: "October 2025", path: "/calendars/oct25" },
-                      { name: "November 2025", path: "/calendars/nov25" },
-                      { name: "December 2025", path: "/calendars/dec25" },
-                    ].map((month) => (
+                    {season.months.map((month) => (
                       <NavLink
-                        key={month.name}
+                        key={month.path}
                         to={month.path}
                         onClick={() => {
                           setOpenMenu(null);
@@ -532,7 +512,7 @@ export default function Navbar() {
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                       >
-                        {month.name}
+                        {month.title}
                       </NavLink>
                     ))}
                   </div>

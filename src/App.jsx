@@ -24,6 +24,8 @@ import Sept25 from "./components/Sept25";
 import Oct25 from "./components/Oct25";
 import Nov25 from "./components/Nov25";
 import Dec25 from "./components/Dec25";
+import GenericCalendarMonth from "./components/GenericCalendarMonth";
+import { calendarMonthRoutes } from "./data/calendarData";
 import Packs from "./components/Packs";
 import PackOpener from "./components/PackOpener";
 import News from "./components/News";
@@ -226,6 +228,13 @@ function App() {
           <Route path="/calendars/oct25" element={<Oct25 />} />
           <Route path="/calendars/nov25" element={<Nov25 />} />
           <Route path="/calendars/dec25" element={<Dec25 />} />
+          {calendarMonthRoutes.map((month) => (
+            <Route
+              key={month.path}
+              path={month.path}
+              element={<GenericCalendarMonth title={month.title} year={month.year} monthIndex={month.monthIndex} />}
+            />
+          ))}
 
           {/* Packs Pages */}
           <Route path="/packs" element={<Packs />} />

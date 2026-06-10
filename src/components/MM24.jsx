@@ -1,3 +1,5 @@
-import MM26Calendars from "./MM26Calendars";
+import CalendarSeason from "./CalendarSeason";
 
-export default MM26Calendars;
+export default function MM24() {
+  return <CalendarSeason seasonName="MM24" />;
+}

@@ -537,6 +537,102 @@ td {
   .play-profile-stats {
     margin-top: 1.25rem !important;
   }
+
+  .calendar-page {
+    padding: 0.85rem !important;
+  }
+
+  .calendar-back-button {
+    margin-top: 0 !important;
+    margin-bottom: 0.75rem !important;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .calendar-title {
+    margin-top: 0 !important;
+    margin-bottom: 1.25rem !important;
+    font-size: clamp(1.55rem, 7vw, 2rem) !important;
+    line-height: 1.08;
+    overflow-wrap: normal;
+  }
+
+  .calendar-filter-panel {
+    padding: 1rem !important;
+  }
+
+  .calendar-category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+
+  .calendar-category-button {
+    min-height: 4rem;
+    padding: 0.45rem 0.35rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.15;
+    font-size: clamp(0.68rem, 3.1vw, 0.82rem) !important;
+  }
+
+  .calendar-scroll-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.65rem;
+  }
+
+  .calendar-month-grid {
+    width: max-content;
+    min-width: 56rem;
+  }
+
+  .calendar-month-heading {
+    font-size: 1.35rem !important;
+    line-height: 1.15;
+    padding: 0.7rem 0.5rem !important;
+  }
+
+  .calendar-day-heading {
+    min-width: 8rem;
+    padding: 0.45rem 0.35rem !important;
+    font-size: 0.9rem;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .calendar-day-cell {
+    min-width: 8rem;
+    min-height: 9rem !important;
+    padding: 0.45rem !important;
+    overflow: visible;
+  }
+
+  .calendar-day-cell > div:first-child {
+    font-size: 0.9rem !important;
+    line-height: 1.1;
+  }
+
+  .calendar-event-list {
+    font-size: 0.72rem !important;
+    line-height: 1.18;
+  }
+
+  .calendar-event-pill {
+    display: block;
+    width: 100%;
+    padding: 0.35rem 0.4rem !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.18;
+  }
 }
 
   html,

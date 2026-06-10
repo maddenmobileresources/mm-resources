@@ -67,7 +67,7 @@ function DayCell({ date, eventsForDay, theme, selectedCategory }) {
     : eventsForDay?.filter(ev => ev.category === selectedCategory);
 
   return (
-    <div className={`border min-h-[120px] p-1 flex flex-col ${
+    <div className={`calendar-day-cell border min-h-[120px] p-1 flex flex-col ${
       theme === "dark" 
         ? "border-gray-600 bg-zinc-800" 
         : "border-black bg-gray-300"
@@ -77,11 +77,11 @@ function DayCell({ date, eventsForDay, theme, selectedCategory }) {
       }`}>
         {date ? date.getDate() : ""}
       </div>
-      <div className="mt-1 text-xs space-y-1">
+      <div className="calendar-event-list mt-1 text-xs space-y-1">
         {filteredEvents?.map((ev, i) => (
           <div 
             key={i} 
-            className="px-1 py-0.5 rounded text-black font-medium"
+            className="calendar-event-pill px-1 py-0.5 rounded text-black font-medium"
             style={{ backgroundColor: categoryColors[ev.category] || "#d3d3d3" }}
           >
             • {ev.title}
@@ -97,13 +97,13 @@ function MonthCalendar({ year, month, theme, selectedCategory }) {
   const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
 
   return (
-    <div className="mb-10">
-      <div className={`grid grid-cols-7 border ${
+    <div className="calendar-scroll-wrap mb-10">
+      <div className={`calendar-month-grid grid grid-cols-7 border ${
         theme === "dark" ? "border-gray-600" : "border-black"
       }`}>
         {/* Month/Year Header Row */}
         <div
-  className="col-span-7 text-center font-bold p-2 text-2xl"
+  className="calendar-month-heading col-span-7 text-center font-bold p-2 text-2xl"
   style={{ backgroundColor: "#1f2937", color: "#ffffff" }}
         >
           {monthName} {year}
@@ -111,7 +111,7 @@ function MonthCalendar({ year, month, theme, selectedCategory }) {
         
         {/* Day Headers */}
         {["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].map((day, i) => (
-          <div key={i} className={`border text-center font-bold p-1 ${
+          <div key={i} className={`calendar-day-heading border text-center font-bold p-1 ${
             theme === "dark" 
               ? "border-gray-600 bg-gray-700 text-gray-100" 
               : "border-black bg-gray-200 text-gray-900"
@@ -164,34 +164,34 @@ export default function Oct25() {
   ];
 
   return (
-    <div className={`p-4 min-h-screen ${
+    <div className={`calendar-page p-4 min-h-screen ${
       theme === "dark" ? "bg-[#18181B] text-gray-100" : "bg-gray-50 text-gray-900"
     }`}>
       {/* Back Button */}
       <button
         onClick={() => window.history.back()}
-        className="inline-block mt-[-8px] mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition-colors duration-200"
+        className="calendar-back-button inline-block mt-[-8px] mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 transition-colors duration-200"
       >
         ← Back to Calendars Homepage
       </button>
 
-      <h1 className="text-3xl font-bold text-center mb-6 mt-[-52px]">
+      <h1 className="calendar-title text-3xl font-bold text-center mb-6 mt-[-52px]">
         Madden Mobile Content Calendar
       </h1>
 
       {/* Filter and Disclaimer Section */}
       <div className="flex flex-col lg:flex-row gap-6 mb-6 justify-between">
         {/* Left: Categories Filter */}
-        <div className={`p-4 rounded-lg ${
+        <div className={`calendar-filter-panel p-4 rounded-lg ${
           theme === "dark" ? "bg-zinc-800" : "bg-white"
         } shadow-md`}>
           <h2 className="text-xl font-bold mb-3">Categories</h2>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="calendar-category-grid grid grid-cols-4 gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-2 rounded-lg font-semibold text-sm transition-colors ${
+                className={`calendar-category-button px-3 py-2 rounded-lg font-semibold text-sm transition-colors ${
                   selectedCategory === cat
                     ? "bg-[#fbbf24] text-black"
                     : theme === "dark"
