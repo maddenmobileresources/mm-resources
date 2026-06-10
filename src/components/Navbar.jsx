@@ -57,8 +57,8 @@ const ALL_PAGES = [
   { title: "News", path: "/news", keywords: ["news", "updates", "patch notes", "events", "sneak peek", "camera", "motd", "reveal"] },
   { title: "FAQ", path: "/faq", keywords: ["faq", "questions", "answers", "help", "frequently", "currencies", "coins", "player", "traits", "evolution", "evo", "stats", "stt", "training", "dual", "playbooks", "events", "competitive", "leagues", "trades", "packs", "web store"] },
   { title: "Community", path: "/community", keywords: ["community", "discord", "chat", "reddit", "youtube", "videos", "content creator", "cc", "twitch", "stream", "sponsored"] },
-  { title: "About Us", path: "/about", keywords: ["about", "us", "team", "bio"] },
-  { title: "Contact Us", path: "/contact", keywords: ["contact", "us", "support", "inquiry", "discord", "reddit", "email", "feedback", "suggestions", "complaints"] },
+  { title: "About Us", path: "/about-us", keywords: ["about", "us", "team", "bio"] },
+  { title: "Contact Us", path: "/contact-us", keywords: ["contact", "us", "support", "inquiry", "discord", "reddit", "email", "feedback", "suggestions", "complaints"] },
   { title: "Privacy Policy", path: "/privacy-policy", keywords: ["privacy", "policy"] },
 ];
 

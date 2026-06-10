@@ -68,7 +68,7 @@ function makeRange(startYear, startMonthIndex, endYear, endMonthIndex, pathPrefi
     }
   }
 
-  return months;
+  return months.reverse();
 }
 
 export const calendarSeasons = [
