@@ -42,8 +42,9 @@ export default function HeaderBanner() {
             <path d="M41 44h46M41 54h46M41 64h46M41 74h46M41 84h46" stroke="#f8fafc" strokeWidth="1.8" opacity="0.78" />
             <path d="M53 39h5M70 39h5M53 49h5M70 49h5M53 59h5M70 59h5M53 69h5M70 69h5M53 79h5M70 79h5M53 89h5M70 89h5" stroke="#f8fafc" strokeWidth="1.8" strokeLinecap="round" />
             <path d="M55 14v-7h18v7M55 114v7h18v-7" stroke="#facc15" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            <rect x="48" y="53" width="32" height="22" rx="5" fill="#0f172a" stroke="#facc15" strokeWidth="2.5" />
-            <text x="64" y="69" fill="#f8fafc" fontSize="15" fontWeight="900" textAnchor="middle" fontFamily="Arial, sans-serif">MMG</text>
+            <path d="M45 64c8-13 30-13 38 0-8 13-30 13-38 0Z" fill="#f97316" stroke="#facc15" strokeWidth="2.5" />
+            <path d="M56 58h16M54 64h20M56 70h16" stroke="#7c2d12" strokeWidth="1.8" strokeLinecap="round" opacity="0.65" />
+            <text x="64" y="69" fill="#020617" fontSize="15" fontWeight="900" textAnchor="middle" fontFamily="Arial, sans-serif">MMG</text>
             <circle cx="64" cy="116.5" r="2.4" fill="#334155" />
           </svg>
         </div>
