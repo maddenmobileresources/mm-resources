@@ -261,9 +261,21 @@ export default function PlayerComments({ playerId }) {
           </div>
         ) : (
           <>
-            <p className={`mb-2 text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-              Posting as <strong>{discordUsername}</strong>
-            </p>
+            <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                Posting as <strong>{discordUsername}</strong>
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowRedditInfo(true)}
+                  className="rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                >
+                  Sign in with Reddit
+                </button>
+                <LoginInfoNote isDark={isDark} />
+              </div>
+            </div>
             <textarea
               className={`${inputClass} mb-3`}
               placeholder="Share your thoughts..."

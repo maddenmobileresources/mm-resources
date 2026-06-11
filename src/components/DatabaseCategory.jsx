@@ -11,12 +11,12 @@ const categoryConfig = {
     icon: <img src="https://i.imgur.com/ZjkXbgB.png" alt="Madden NFL 26 Mobile Player Database" width={40} height={40} />,
   },
   plays: {
-    title: "Play Database",
-    subtitle: "Choose a play database to browse.",
+    title: "Playbook Database",
+    subtitle: "Choose a playbook database to browse.",
     to: "/plays",
     buttonLabel: "Madden NFL 26 Mobile",
-    description: "Search and compare every play released in MM26",
-    icon: <img src="https://i.imgur.com/ZjkXbgB.png" alt="Madden NFL 26 Mobile Play Database" width={40} height={40} />,
+    description: "Search and compare every offensive play released in MM26",
+    icon: <img src="https://i.imgur.com/ZjkXbgB.png" alt="Madden NFL 26 Mobile Playbook Database" width={40} height={40} />,
   },
 };
 

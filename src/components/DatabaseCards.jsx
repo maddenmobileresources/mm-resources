@@ -9,9 +9,15 @@ export const databaseCards = [
   },
   {
     to: "/databases/plays",
-    icon: <img src="https://i.imgur.com/knTaSn4.png" alt="Play Database" width={40} height={40} />,
-    title: "Play Database",
-    desc: "Search and compare every play released in-game",
+    icon: <img src="https://i.imgur.com/knTaSn4.png" alt="Playbook Database" width={40} height={40} />,
+    title: "Playbook Database",
+    desc: "Search and compare every offensive play released in-game",
+  },
+  {
+    to: "/packs",
+    icon: <img src="https://i.imgur.com/p8rcT3Y.png" alt="Pack Database" width={40} height={40} />,
+    title: "Pack Database",
+    desc: "View the contents of various packs available in-game",
   },
 ];
 

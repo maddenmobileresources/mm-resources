@@ -29,6 +29,7 @@ import { calendarMonthRoutes } from "./data/calendarData";
 import Packs from "./components/Packs";
 import PackOpener from "./components/PackOpener";
 import News from "./components/News";
+import NewsPost from "./components/NewsPost";
 import Guides from "./components/Guides";
 import Events from "./components/Events";
 import Competitive from "./components/Competitive";
@@ -92,6 +93,7 @@ import Community from "./components/Community";
 import TeamAnalyzer from "./components/TeamAnalyzer";
 import Databases from "./components/Databases";
 import DatabaseCategory from "./components/DatabaseCategory";
+import DefensiveStrategy from "./components/DefensiveStrategy";
 
 function App() {
   const { theme } = useTheme();
@@ -295,12 +297,14 @@ function App() {
           <Route path="/guides/acronyms" element={<Acronyms />} />
 
           <Route path="/news" element={<News />} />
+          <Route path="/news/:postId" element={<NewsPost />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/home" element={<Home />} />
           <Route path="/theme-teams" element={<ThemeTeams />} />
           <Route path="/team-analyzer" element={<TeamAnalyzer />} />
+          <Route path="/defensive-strategy" element={<DefensiveStrategy />} />
           <Route path="/theme-teams/:type/:name" element={<ThemeTeamDetail />} />
           <Route path="/theme-teams/multi/:themes" element={<MultiThemeTeamDetail />} />
           <Route path="/faq" element={<FAQ />} />

@@ -7,7 +7,8 @@ import { calendarSearchPages, calendarSeasons } from "../data/calendarData";
 const ALL_PAGES = [
   { title: "Databases", path: "/databases", keywords: ["databases", "database", "players", "plays", "stats", "playbook"] },
   { title: "Player Database", path: "/players", keywords: ["players", "database", "stats", "ovr", "program", "team", "boost", "card", "starter", "uncommon", "common", "rare", "epic", "iconic", "mythic", "marvel", "dual", "height", "weight", "position", "archetype", "core", "compare"] },
-  { title: "Play Database", path: "/plays", keywords: ["plays", "database", "offensive", "defensive", "scheme", "run", "short", "long", "pass", "action", "pa", "route", "budget", "yards", "compare"] },
+  { title: "Playbook Database", path: "/plays", keywords: ["plays", "playbook", "database", "offensive", "scheme", "run", "short", "long", "pass", "action", "pa", "route", "budget", "yards", "compare"] },
+  { title: "Pack Database", path: "/packs", keywords: ["packs", "database", "probabilities", "costs", "limits", "players", "odds", "purchase"] },
   { title: "Event Schedule", path: "/calendars", keywords: ["calendars", "events", "schedule", "timezone", "start", "ends", "boost", "expires", "promo", "duration"] },
   ...calendarSearchPages,
   { title: "Pack Contents", path: "/packs", keywords: ["packs", "probabilities", "costs", "limits", "players", "odds", "purchase"] },
@@ -21,6 +22,7 @@ const ALL_PAGES = [
   { title: "Basic Trait Pack", path: "/packs/basic-trait-pack", keywords: ["packs", "player", "trait", "basic"] },
   { title: "Premium Trait Pack", path: "/packs/premium-trait-pack", keywords: ["packs", "player", "trait", "premium"] },
   { title: "Guides", path: "/guides", keywords: ["guides", "strategy", "tips", "gameplay", "walkthrough", "promo", "players", "rewards", "unlocks"] },
+  { title: "Defensive Strategy", path: "/defensive-strategy", keywords: ["defensive", "strategy", "interceptions", "turnovers", "coverage", "plays", "leaderboard", "rankings"] },
   { title: "Events Guide", path: "/guides/events", keywords: ["guides", "events", "rewards", "gameplay", "walkthrough", "promo", "players"] },
   { title: "Field Pass Guide", path: "/guides/events/field-pass", keywords: ["guides", "field pass", "vip", "free", "iconic select", "rewards", "progression", "milestone", "journey", "gates"] },
   { title: "Promos Guide", path: "/guides/events/promos", keywords: ["guides", "promos", "rewards", "unlocks", "events", "trades", "cosmetics", "logos", "uniforms", "banners", "nameplates", "players"] },
@@ -97,10 +99,10 @@ export default function Navbar() {
   });
 
   const isCalendarsActive = location.pathname.startsWith("/calendars");
-  const isPacksActive = location.pathname.startsWith("/packs") && location.pathname !== "/packs/open";
   const isPlayersActive = location.pathname.startsWith("/players");
   const isPlaysActive = location.pathname.startsWith("/plays");
-  const isDatabasesActive = location.pathname.startsWith("/databases") || isPlayersActive || isPlaysActive;
+  const isPackDatabaseActive = location.pathname.startsWith("/packs") && location.pathname !== "/packs/open";
+  const isDatabasesActive = location.pathname.startsWith("/databases") || isPlayersActive || isPlaysActive || isPackDatabaseActive;
   const isGuidesActive = location.pathname.startsWith("/guides");
 
   useEffect(() => {
@@ -324,8 +326,33 @@ export default function Navbar() {
             }}
           >
             {[
-              { name: "Players", categoryPath: "/databases/players", mm26Path: "/players", submenu: "database-players" },
-              { name: "Plays", categoryPath: "/databases/plays", mm26Path: "/plays", submenu: "database-plays" },
+              {
+                name: "Players",
+                categoryPath: "/databases/players",
+                submenu: "database-players",
+                children: [{ name: "MM26", path: "/players" }],
+              },
+              {
+                name: "Playbook",
+                categoryPath: "/databases/plays",
+                submenu: "database-plays",
+                children: [{ name: "MM26", path: "/plays" }],
+              },
+              {
+                name: "Packs",
+                categoryPath: "/packs",
+                submenu: "database-packs",
+                children: [
+                  { name: "Core Rare Player Pack", path: "/packs/core-rare-player-pack" },
+                  { name: "Core Epic Player Pack", path: "/packs/core-epic-player-pack" },
+                  { name: "Core Iconic Player Pack", path: "/packs/core-iconic-player-pack" },
+                  { name: "Pro Pack", path: "/packs/pro-pack" },
+                  { name: "All-Pro Pack", path: "/packs/all-pro-pack" },
+                  { name: "Madden Pack", path: "/packs/madden-pack" },
+                  { name: "Basic Trait Pack", path: "/packs/basic-trait-pack" },
+                  { name: "Premium Trait Pack", path: "/packs/premium-trait-pack" },
+                ],
+              },
             ].map((database) => (
               <div
                 key={database.name}
@@ -364,7 +391,7 @@ export default function Navbar() {
                       top: 0,
                       left: "100%",
                       marginLeft: "4px",
-                      width: "11rem",
+                      width: database.name === "Packs" ? "13rem" : "11rem",
                       backgroundColor: isDark ? "#2d3748" : "white",
                       border: `1px solid ${borderColor}`,
                       borderRadius: "0.375rem",
@@ -374,25 +401,28 @@ export default function Navbar() {
                     onMouseEnter={() => handleSubmenuMouseEnter(database.submenu)}
                     onMouseLeave={() => handleSubmenuMouseLeave(database.submenu)}
                   >
-                    <NavLink
-                      to={database.mm26Path}
-                      onClick={() => {
-                        setOpenMenu(null);
-                        setOpenSubmenu(null);
-                      }}
-                      style={{
-                        display: "block",
-                        padding: "8px 12px",
-                        fontSize: "0.875rem",
-                        textDecoration: "none",
-                        color: textColor,
-                        transition: "background-color 0.2s",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-                    >
-                      MM26
-                    </NavLink>
+                    {database.children.map((child) => (
+                      <NavLink
+                        key={child.path}
+                        to={child.path}
+                        onClick={() => {
+                          setOpenMenu(null);
+                          setOpenSubmenu(null);
+                        }}
+                        style={{
+                          display: "block",
+                          padding: "8px 12px",
+                          fontSize: "0.875rem",
+                          textDecoration: "none",
+                          color: textColor,
+                          transition: "background-color 0.2s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                      >
+                        {child.name}
+                      </NavLink>
+                    ))}
                   </div>
                 )}
               </div>
@@ -518,76 +548,6 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Packs Dropdown */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-        <button
-          onClick={() => navigate("/packs")}
-          style={{
-            ...linkClasses({ isActive: isPacksActive }),
-            backgroundColor: isPacksActive ? "#facc15" : "transparent",
-          }}
-        >
-          Packs
-        </button>
-        <button
-          onClick={() => setOpenMenu(openMenu === "packs" ? null : "packs")}
-          style={{ background: "none", border: "none", cursor: "pointer", color: textColor }}
-        >
-          <ChevronDown
-            size={16}
-            style={{
-              transition: "transform 0.2s",
-              transform: openMenu === "packs" ? "rotate(180deg)" : "rotate(0)",
-            }}
-          />
-        </button>
-        {openMenu === "packs" && (
-          <div
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              marginTop: "4px",
-              width: "13rem",
-              backgroundColor: isDark ? "#2d3748" : "white",
-              border: `1px solid ${borderColor}`,
-              borderRadius: "0.375rem",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-              overflow: "hidden",
-            }}
-          >
-            {[
-              { name: "Core Rare Player Pack", path: "/packs/core-rare-player-pack" },
-              { name: "Core Epic Player Pack", path: "/packs/core-epic-player-pack" },
-              { name: "Core Iconic Player Pack", path: "/packs/core-iconic-player-pack" },
-              { name: "Pro Pack", path: "/packs/pro-pack" },
-              { name: "All-Pro Pack", path: "/packs/all-pro-pack" },
-              { name: "Madden Pack", path: "/packs/madden-pack" },
-              { name: "Basic Trait Pack", path: "/packs/basic-trait-pack" },
-              { name: "Premium Trait Pack", path: "/packs/premium-trait-pack" },
-            ].map((pack) => (
-              <NavLink
-                key={pack.name}
-                to={pack.path}
-                onClick={() => setOpenMenu(null)}
-                style={{
-                  display: "block",
-                  padding: "8px 12px",
-                  fontSize: "0.875rem",
-                  textDecoration: "none",
-                  color: textColor,
-                  transition: "background-color 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-              >
-                {pack.name}
-              </NavLink>
             ))}
           </div>
         )}
@@ -966,6 +926,11 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
+      {/* Defensive Strategy */}
+      <NavLink to="/defensive-strategy" style={linkClasses}>
+        Defensive Strategy
+      </NavLink>
 
       {/* Theme Teams */}
       <NavLink to="/theme-teams" style={linkClasses}>

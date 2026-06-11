@@ -574,15 +574,26 @@ export default function PackOpener() {
                         </span>
                       )}
                     </p>
-                    <button
-                      type="button"
-                      onClick={submitScore}
-                      disabled={!openedCards.length || hasSubmitted || isSubmitting || isSupabaseConfigured}
-                      className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-3 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <Send size={16} />
-                      {isSupabaseConfigured && hasSubmitted ? "Score Saved" : isSubmitting ? "Saving" : "Submit Score"}
-                    </button>
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                      <button
+                        type="button"
+                        onClick={submitScore}
+                        disabled={!openedCards.length || hasSubmitted || isSubmitting || isSupabaseConfigured}
+                        className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-3 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <Send size={16} />
+                        {isSupabaseConfigured && hasSubmitted ? "Score Saved" : isSubmitting ? "Saving" : "Submit Score"}
+                      </button>
+                      {!redditUsername && (
+                        <button
+                          type="button"
+                          onClick={() => setShowRedditInfo(true)}
+                          className="inline-flex items-center justify-center rounded bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-700"
+                        >
+                          Sign in with Reddit
+                        </button>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
