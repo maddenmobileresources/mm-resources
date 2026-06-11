@@ -139,4 +139,22 @@ export const newsPosts = [
       },
     ],
   },
+  {
+    id: "week-18-team-diamond-players",
+    title: "Week 18 Team Diamond Players (Releasing June 11th)",
+    date: "June 10, 2025",
+    category: "Team Diamonds",
+    author: defaultNewsAuthor,
+    excerpt: "Here's the new Team Diamond players releasing tomorrow, June 11th @ 10:30am ET.",
+    imageUrl: "/news/week-18-team-diamond-players/team-diamonds.png",
+    showHeroImage: false,
+    content: [
+      "Here's the new Team Diamond players releasing tomorrow, June 11th @ 10:30am ET:",
+      {
+        type: "image",
+        src: "/news/week-18-team-diamond-players/team-diamonds.png",
+        alt: "Week 18 Team Diamond players",
+      },
+    ],
+  },
 ];
