@@ -26,36 +26,24 @@ export default function HeaderBanner() {
           }}
           aria-hidden="true"
         >
-          <svg viewBox="0 0 128 128" width="88" height="88" role="img" aria-label="Madden Mobile Gridiron logo">
+          <svg viewBox="0 0 128 128" width="92" height="92" role="img" aria-label="American football field logo">
             <defs>
-              <linearGradient id="mmgShieldGold" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stopColor="#fde68a" />
-                <stop offset="48%" stopColor="#facc15" />
-                <stop offset="100%" stopColor="#b45309" />
-              </linearGradient>
               <linearGradient id="mmgField" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stopColor="#22c55e" />
-                <stop offset="55%" stopColor="#166534" />
+                <stop offset="50%" stopColor="#15803d" />
                 <stop offset="100%" stopColor="#052e16" />
               </linearGradient>
             </defs>
-            <path
-              d="M64 8 111 25v38c0 29-18 48-47 57-29-9-47-28-47-57V25L64 8Z"
-              fill="#0f172a"
-              stroke="url(#mmgShieldGold)"
-              strokeWidth="6"
-            />
-            <path d="M64 20 98 32v29c0 21-12 35-34 43-22-8-34-22-34-43V32L64 20Z" fill="url(#mmgField)" />
-            <path d="M64 23v78" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="8 8" opacity="0.86" />
-            <path d="M38 42h52M38 58h52M38 74h52" stroke="#e2e8f0" strokeWidth="2.5" opacity="0.72" />
-            <path d="M45 35v-8h38v8M45 93v8h38v-8" stroke="#facc15" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            <path
-              d="M40 63c10-18 38-18 48 0-10 18-38 18-48 0Z"
-              fill="#92400e"
-              stroke="#fff7ed"
-              strokeWidth="4"
-            />
-            <path d="M55 57h18M53 63h22M55 69h18" stroke="#fff7ed" strokeWidth="3" strokeLinecap="round" />
+            <rect x="14" y="18" width="100" height="92" rx="10" fill="#0f172a" stroke="#facc15" strokeWidth="5" />
+            <rect x="22" y="26" width="84" height="76" rx="5" fill="url(#mmgField)" />
+            <rect x="22" y="26" width="15" height="76" fill="#1e3a8a" opacity="0.92" />
+            <rect x="91" y="26" width="15" height="76" fill="#1e3a8a" opacity="0.92" />
+            <path d="M37 26v76M47 26v76M57 26v76M64 26v76M71 26v76M81 26v76M91 26v76" stroke="#f8fafc" strokeWidth="2.4" opacity="0.88" />
+            <path d="M41 41h4M41 51h4M41 61h4M41 71h4M41 81h4M83 41h4M83 51h4M83 61h4M83 71h4M83 81h4" stroke="#f8fafc" strokeWidth="2.2" strokeLinecap="round" />
+            <path d="M25 31h8M25 97h8M95 31h8M95 97h8" stroke="#facc15" strokeWidth="3" strokeLinecap="round" />
+            <path d="M14 46h-7v36h7M114 46h7v36h-7" stroke="#facc15" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M52 64c6-11 18-11 24 0-6 11-18 11-24 0Z" fill="#92400e" stroke="#fff7ed" strokeWidth="3" />
+            <path d="M59 60h10M58 64h12M59 68h10" stroke="#fff7ed" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </div>
 
