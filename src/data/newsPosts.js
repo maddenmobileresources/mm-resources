@@ -6,13 +6,14 @@ export const defaultNewsAuthor = {
 
 export const newsPosts = [
   {
-    id: "s11-field-pass-reveal-coming-june-9th",
-    title: "S11 Field Pass Reveal (Coming June 9th)",
-    date: "June 8, 2026",
+    id: "blockbusters-field-pass-reveal",
+    title: "Blockbusters Field Pass Reveal",
+    date: "June 8, 2025",
     category: "Field Pass",
     author: defaultNewsAuthor,
-    excerpt: "A full look at the S11 Field Pass reveal, including players, rewards, gates, and event details.",
-    imageUrl: "https://i.imgur.com/7y83Fwo.png",
+    excerpt:
+      "Blockbusters is the new Field Pass, featuring WR/MLB Snoop Dogg, QB Dan Marino, STT players, OVR gates, and the HB Base play.",
+    imageUrl: "https://i.imgur.com/Jenz3kE.png",
     showHeroImage: false,
     content: [
       {
@@ -21,12 +22,12 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: ["S11 Field Pass: Game Changers"],
+        items: ["New Field Pass is **Blockbusters**."],
       },
       {
         type: "image",
-        src: "https://i.imgur.com/7y83Fwo.png",
-        alt: "S11 Field Pass Game Changers",
+        src: "https://i.imgur.com/Jenz3kE.png",
+        alt: "Blockbusters Field Pass",
       },
       {
         type: "heading",
@@ -34,7 +35,7 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: ["June 9th - July 10th"],
+        items: ["**Starts**: June 9th @ 10:30am ET.", "**Ends**: July 7th @ 10:30am ET."],
       },
       {
         type: "heading",
@@ -42,47 +43,48 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: ["Iconic S Geno Stone"],
-      },
-      {
-        type: "image",
-        src: "https://i.imgur.com/lwN0axZ.png",
-        alt: "Iconic S Geno Stone milestone player",
-      },
-      {
-        type: "heading",
-        text: "Journey",
-      },
-      {
-        type: "list",
-        items: ["Journey gate player is KR/PR Devin Hester"],
-      },
-      {
-        type: "image",
-        src: "https://i.imgur.com/pBGAL05.png",
-        alt: "KR/PR Devin Hester Journey gate player",
-      },
-      {
-        type: "heading",
-        text: "Season Team Training",
-      },
-      {
-        type: "list",
         items: [
-          "OT Joe Thomas (L25 Offense)",
-          "DT Quinnen Williams (L25 Defense)",
-          "KR/PR Devin Hester (L20 Special Teams)",
+          "WR/MLB Snoop Dogg is the Milestone player on the VIP track of the Field Pass @ 27,000 Field Pass Points.",
+          "He'll be a Select 1 of 2 positions (WR/MLB).",
+          "He's listed at 6' 4\" sub-200 lbs.",
+          "According to the_215, you should have the ability to acquire a Mythic MLB AND Mythic WR Snoop Dogg via trades.",
         ],
       },
       {
         type: "image",
-        src: "https://i.imgur.com/yUr19QH.png",
-        alt: "Season Team Training players",
+        src: "https://i.imgur.com/Ke2KjDg.png",
+        alt: "Snoop Dogg Milestone player",
+      },
+      {
+        type: "heading",
+        text: "Journey Player",
+      },
+      {
+        type: "list",
+        items: ["QB Dan Marino is the Journey player."],
       },
       {
         type: "image",
-        src: "https://i.imgur.com/WTR9Em9.png",
-        alt: "Season Team Training rewards",
+        src: "https://i.imgur.com/ydxNJyK.png",
+        alt: "QB Dan Marino Journey player",
+      },
+      {
+        type: "heading",
+        text: "STT Players",
+      },
+      {
+        type: "list",
+        items: ["TE Zach Ertz is the first (8/6/6) STT player.", "DE Michael Strahan is the second (10/10/10) STT player."],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/ojywY48.png",
+        alt: "TE Zach Ertz STT player",
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/1Mv3ZpM.png",
+        alt: "DE Michael Strahan STT player",
       },
       {
         type: "heading",
@@ -90,34 +92,17 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: [
-          "Marvel HB Ricky Williams",
-          "Marvel CB Marshon Lattimore",
-          "Mythic FB Larry Csonka",
-          "Mythic MLB Nick Bolton",
-          "Mythic S Geno Stone",
-          "Mythic OT Jordan Mailata",
-          "Iconic OT Jordan Mailata",
-          "Iconic WR Deebo Samuel Sr.",
-          "Iconic QB Bo Nix",
-          "Iconic S Talanoa Hufanga",
-          "Iconic MLB Nick Bolton",
-          "Iconic OG Quinn Meinerz",
-          "Iconic CB Jaycee Horn",
-          "Iconic FB Larry Csonka",
-          "Iconic DE Montez Sweat",
-          "Iconic S Geno Stone",
-        ],
+        items: ["HB Emmitt Smith", "DT Anthony Adams"],
       },
       {
         type: "image",
-        src: "https://i.imgur.com/Mci4Cy6.png",
-        alt: "S11 Field Pass players",
+        src: "https://i.imgur.com/5Jlx41L.png",
+        alt: "HB Emmitt Smith",
       },
       {
         type: "image",
-        src: "https://i.imgur.com/Kx9Gf4H.png",
-        alt: "S11 Field Pass player cards",
+        src: "https://i.imgur.com/ZRjTDOr.png",
+        alt: "DT Anthony Adams",
       },
       {
         type: "heading",
@@ -125,14 +110,7 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: [
-          "Uncommon: 98 OVR",
-          "Rare: 111-112 OVR",
-          "Epic: 137-138 OVR",
-          "Iconic: 166-167 OVR",
-          "Mythic: 181-182 OVR",
-          "Marvel: 230-232 OVR",
-        ],
+        items: ["**Iconic Player OVR:** 182 OVR", "**Mythic Player OVR**: 195 OVR"],
       },
       {
         type: "heading",
@@ -141,13 +119,9 @@ export const newsPosts = [
       {
         type: "list",
         items: [
-          "Gate 1: 6,300 OVR",
-          "Gate 2: 6,500 OVR",
-          "Gate 3: 6,700 OVR",
-          "Gate 4: 6,900 OVR",
-          "Gate 5: 7,100 OVR",
-          "Gate 6: 7,300 OVR",
-          "Gate 7: 7,500 OVR",
+          "**Journey Challenge 15** (rewards 182 OVR Iconic Dan Marino): 5,972 OVR",
+          "**Journey Challenge 18** (rewards 182 OVR Iconic Dan Marino): 6,583 OVR",
+          "**Journey Challenge 20** (rewards 10,000 Madden Cash): 7,350 OVR",
         ],
       },
       {
@@ -156,21 +130,12 @@ export const newsPosts = [
       },
       {
         type: "list",
-        items: ["Run Play: HB Mtn Sweep"],
+        items: ["**Play**: HB Base", "**Cost**: 35 Playbook Budget (PBB)"],
       },
       {
         type: "image",
-        src: "https://i.imgur.com/8brilOc.png",
-        alt: "HB Mtn Sweep Field Pass play",
-      },
-      {
-        type: "heading",
-        text: "Reveal Stream",
-      },
-      "Field Pass was revealed on EA's Twitch stream tonight. If interested, you can check out the VOD here:",
-      {
-        type: "list",
-        items: ["https://www.twitch.tv/eamaddennfl/v/2487209237?sr=a&t=2997s"],
+        src: "https://i.imgur.com/Js7zv2C.png",
+        alt: "HB Base Field Pass Play",
       },
     ],
   },

@@ -31,6 +31,18 @@ export default function NewsPost() {
     );
   }
 
+  const renderInlineText = (text) => {
+    if (typeof text !== "string") return text;
+
+    return text.split(/(\*\*[^*]+\*\*)/g).map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+
+      return part;
+    });
+  };
+
   return (
     <main style={{ minHeight: "100vh", backgroundColor: pageBg, color: textColor, padding: "2rem 1rem" }}>
       <article style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -84,7 +96,7 @@ export default function NewsPost() {
             if (typeof block === "string") {
               return (
                 <p key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.1rem" }}>
-                  {block}
+                  {renderInlineText(block)}
                 </p>
               );
             }
@@ -101,7 +113,7 @@ export default function NewsPost() {
               return (
                 <ul key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.25rem", paddingLeft: "1.4rem" }}>
                   {block.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{renderInlineText(item)}</li>
                   ))}
                 </ul>
               );
