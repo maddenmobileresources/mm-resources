@@ -140,6 +140,28 @@ export const newsPosts = [
     ],
   },
   {
+    id: "new-genki-force-players",
+    title: "New Genki Force Players (Coming Tomorrow)",
+    date: "June 9, 2025",
+    category: "Genki Force",
+    author: defaultNewsAuthor,
+    excerpt: "Here's the next batch of Genki Force promo players dropping tomorrow, June 10th.",
+    imageUrl: "/news/new-genki-force-players/genki-force-players.png",
+    showHeroImage: false,
+    content: [
+      {
+        type: "image",
+        src: "/news/new-genki-force-players/genki-force-players.png",
+        alt: "New Genki Force players",
+      },
+      "Here's the next batch of Genki Force promo players dropping tomorrow, June 10th:",
+      {
+        type: "list",
+        items: ["CB Riq Woolen", "OT Dion Dawkins", "MLB C.J. Mosley"],
+      },
+    ],
+  },
+  {
     id: "week-18-team-diamond-players",
     title: "Week 18 Team Diamond Players (Releasing June 11th)",
     date: "June 10, 2025",
