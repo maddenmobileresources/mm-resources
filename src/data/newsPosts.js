@@ -13,7 +13,7 @@ export const newsPosts = [
     author: defaultNewsAuthor,
     excerpt:
       "Blockbusters is the new Field Pass, featuring WR/MLB Snoop Dogg, QB Dan Marino, STT players, OVR gates, and the HB Base play.",
-    imageUrl: "https://i.imgur.com/Jenz3kE.png",
+    imageUrl: "/news/blockbusters-field-pass-reveal/01-name.png",
     showHeroImage: false,
     content: [
       {
@@ -26,7 +26,7 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/Jenz3kE.png",
+        src: "/news/blockbusters-field-pass-reveal/01-name.png",
         alt: "Blockbusters Field Pass",
       },
       {
@@ -52,7 +52,7 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/Ke2KjDg.png",
+        src: "/news/blockbusters-field-pass-reveal/02-milestone-player.png",
         alt: "Snoop Dogg Milestone player",
       },
       {
@@ -65,7 +65,7 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/ydxNJyK.png",
+        src: "/news/blockbusters-field-pass-reveal/03-journey-player.png",
         alt: "QB Dan Marino Journey player",
       },
       {
@@ -78,12 +78,12 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/ojywY48.png",
+        src: "/news/blockbusters-field-pass-reveal/04-stt-zach-ertz.png",
         alt: "TE Zach Ertz STT player",
       },
       {
         type: "image",
-        src: "https://i.imgur.com/1Mv3ZpM.png",
+        src: "/news/blockbusters-field-pass-reveal/05-stt-michael-strahan.png",
         alt: "DE Michael Strahan STT player",
       },
       {
@@ -96,12 +96,12 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/5Jlx41L.png",
+        src: "/news/blockbusters-field-pass-reveal/06-emmitt-smith.png",
         alt: "HB Emmitt Smith",
       },
       {
         type: "image",
-        src: "https://i.imgur.com/ZRjTDOr.png",
+        src: "/news/blockbusters-field-pass-reveal/07-anthony-adams.png",
         alt: "DT Anthony Adams",
       },
       {
@@ -134,7 +134,7 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://i.imgur.com/Js7zv2C.png",
+        src: "/news/blockbusters-field-pass-reveal/08-field-pass-play.png",
         alt: "HB Base Field Pass Play",
       },
     ],

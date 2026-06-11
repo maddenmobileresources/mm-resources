@@ -21,11 +21,13 @@ export default function News() {
   const [category, setCategory] = useState("All");
 
   const categories = ["All", ...Array.from(new Set(newsPosts.map((post) => post.category)))];
-  const filteredPosts = newsPosts.filter(
-    (post) =>
-      (category === "All" || post.category === category) &&
-      post.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredPosts = newsPosts
+    .filter(
+      (post) =>
+        (category === "All" || post.category === category) &&
+        post.title.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <div
@@ -202,4 +204,3 @@ export default function News() {
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { newsPosts } from "../data/newsPosts";
@@ -8,6 +8,7 @@ export default function NewsPost() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const post = newsPosts.find((item) => item.id === postId);
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   const pageBg = isDark ? "#18181B" : "#f9fafb";
   const textColor = isDark ? "#f5f5f5" : "#111827";
@@ -46,7 +47,21 @@ export default function NewsPost() {
   return (
     <main style={{ minHeight: "100vh", backgroundColor: pageBg, color: textColor, padding: "2rem 1rem" }}>
       <article style={{ maxWidth: "900px", margin: "0 auto" }}>
-        <Link to="/news" style={{ color: "#facc15", fontWeight: 700, textDecoration: "none" }}>
+        <Link
+          to="/news"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#2563eb",
+            color: "#ffffff",
+            fontWeight: 700,
+            textDecoration: "none",
+            borderRadius: "0.375rem",
+            padding: "0.75rem 1.25rem",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
+          }}
+        >
           Back to News
         </Link>
 
@@ -122,16 +137,30 @@ export default function NewsPost() {
             if (block.type === "image") {
               return (
                 <figure key={index} style={{ margin: "1.5rem 0" }}>
-                  <img
-                    src={block.src}
-                    alt={block.alt || ""}
+                  <button
+                    type="button"
+                    onClick={() => setZoomedImage(block)}
                     style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
                       width: "100%",
-                      borderRadius: "0.75rem",
-                      border: `1px solid ${cardBorder}`,
+                      cursor: "zoom-in",
                       display: "block",
                     }}
-                  />
+                    aria-label={`Open larger view of ${block.alt || "article image"}`}
+                  >
+                    <img
+                      src={block.src}
+                      alt={block.alt || ""}
+                      style={{
+                        width: "100%",
+                        borderRadius: "0.75rem",
+                        border: `1px solid ${cardBorder}`,
+                        display: "block",
+                      }}
+                    />
+                  </button>
                   {block.caption && (
                     <figcaption style={{ color: mutedText, fontSize: "0.9rem", marginTop: "0.5rem", textAlign: "center" }}>
                       {block.caption}
@@ -155,6 +184,59 @@ export default function NewsPost() {
           )}
         </div>
       </article>
+
+      {zoomedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={zoomedImage.alt || "Expanded article image"}
+          onClick={() => setZoomedImage(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 10000,
+            backgroundColor: "rgba(0,0,0,0.86)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1rem",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setZoomedImage(null)}
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              width: "2.75rem",
+              height: "2.75rem",
+              borderRadius: "999px",
+              border: "1px solid rgba(255,255,255,0.35)",
+              backgroundColor: "rgba(15,23,42,0.85)",
+              color: "#ffffff",
+              fontSize: "1.75rem",
+              lineHeight: 1,
+              cursor: "pointer",
+            }}
+            aria-label="Close expanded image"
+          >
+            x
+          </button>
+          <img
+            src={zoomedImage.src}
+            alt={zoomedImage.alt || ""}
+            onClick={(event) => event.stopPropagation()}
+            style={{
+              maxWidth: "96vw",
+              maxHeight: "90vh",
+              objectFit: "contain",
+              borderRadius: "0.75rem",
+              boxShadow: "0 24px 80px rgba(0,0,0,0.5)",
+            }}
+          />
+        </div>
+      )}
     </main>
   );
 }
