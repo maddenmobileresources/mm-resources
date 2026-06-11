@@ -15,8 +15,16 @@ export default function Home() {
   const hoverBg = "#333";
   const cardText = "#f5f5f5";
   const cardSubText = "#aaa";
+  const homeDatabaseCards = databaseCards.map((card) =>
+    card.title === "Pack Database"
+      ? {
+          ...card,
+          icon: <img src="https://i.imgur.com/I3XeEAc.png" alt="Pack Database" width={40} height={40} />,
+        }
+      : card
+  );
   const homeCards = [
-    ...databaseCards,
+    ...homeDatabaseCards,
     {
       to: "/calendars",
       icon: <img src="https://i.imgur.com/egn68zm.png" alt="Event Schedule" width={40} height={40} />,
@@ -24,10 +32,10 @@ export default function Home() {
       desc: "View calendars of all the important events and dates as they happen in-game",
     },
     {
-      to: "/packs",
-      icon: <img src="https://i.imgur.com/I3XeEAc.png" alt="Pack Contents" width={40} height={40} />,
-      title: "Pack Contents",
-      desc: "View the contents of various packs available in-game",
+      to: "/defensive-strategy",
+      icon: <img src="https://i.imgur.com/yimZrY1.png" alt="Defensive Strategy" width={40} height={40} />,
+      title: "Defensive Strategy",
+      desc: "Review defensive plays ranked by collected interception data",
     },
     {
       to: "/guides",

@@ -35,13 +35,14 @@ export default function Databases() {
       </header>
 
       <div
+        className="database-card-grid"
         style={{
           display: "grid",
           gap: "2rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(3, 14rem)",
           justifyItems: "center",
           textAlign: "center",
-          maxWidth: "680px",
+          maxWidth: "46rem",
           width: "100%",
         }}
       >
