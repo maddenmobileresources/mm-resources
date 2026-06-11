@@ -62,7 +62,7 @@ export default function NewsPost() {
             boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
           }}
         >
-          Back to News
+          ← Back to News
         </Link>
 
         <header style={{ marginTop: "2rem", marginBottom: "1.5rem" }}>
@@ -215,9 +215,13 @@ export default function NewsPost() {
               border: "1px solid rgba(255,255,255,0.35)",
               backgroundColor: "rgba(15,23,42,0.85)",
               color: "#ffffff",
-              fontSize: "1.75rem",
-              lineHeight: 1,
+              fontSize: "1.65rem",
+              lineHeight: "2.55rem",
               cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 0,
             }}
             aria-label="Close expanded image"
           >
