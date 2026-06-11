@@ -7,7 +7,7 @@ export const defaultNewsAuthor = {
 export const newsPosts = [
   {
     id: "blockbusters-field-pass-reveal",
-    title: "Blockbusters Field Pass Reveal",
+    title: "Blockbusters Field Pass Reveal (Coming June 9th)",
     date: "June 8, 2025",
     category: "Field Pass",
     author: defaultNewsAuthor,

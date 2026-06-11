@@ -111,7 +111,7 @@ export default function NewsPost() {
 
             if (block.type === "list") {
               return (
-                <ul key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.25rem", paddingLeft: "1.4rem" }}>
+                <ul key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.25rem", paddingLeft: "1.6rem", listStyleType: "disc", listStylePosition: "outside" }}>
                   {block.items.map((item) => (
                     <li key={item}>{renderInlineText(item)}</li>
                   ))}
