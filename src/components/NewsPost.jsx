@@ -80,11 +80,57 @@ export default function NewsPost() {
         )}
 
         <div style={{ backgroundColor: cardBg, border: `1px solid ${cardBorder}`, borderRadius: "0.75rem", padding: "clamp(1.25rem, 4vw, 2rem)" }}>
-          {(post.content || []).map((paragraph, index) => (
-            <p key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.1rem" }}>
-              {paragraph}
-            </p>
-          ))}
+          {(post.content || []).map((block, index) => {
+            if (typeof block === "string") {
+              return (
+                <p key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.1rem" }}>
+                  {block}
+                </p>
+              );
+            }
+
+            if (block.type === "heading") {
+              return (
+                <h2 key={index} style={{ color: textColor, fontSize: "1.65rem", margin: "2rem 0 0.85rem" }}>
+                  {block.text}
+                </h2>
+              );
+            }
+
+            if (block.type === "list") {
+              return (
+                <ul key={index} style={{ color: mutedText, fontSize: "1.05rem", lineHeight: 1.8, marginBottom: "1.25rem", paddingLeft: "1.4rem" }}>
+                  {block.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+
+            if (block.type === "image") {
+              return (
+                <figure key={index} style={{ margin: "1.5rem 0" }}>
+                  <img
+                    src={block.src}
+                    alt={block.alt || ""}
+                    style={{
+                      width: "100%",
+                      borderRadius: "0.75rem",
+                      border: `1px solid ${cardBorder}`,
+                      display: "block",
+                    }}
+                  />
+                  {block.caption && (
+                    <figcaption style={{ color: mutedText, fontSize: "0.9rem", marginTop: "0.5rem", textAlign: "center" }}>
+                      {block.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            }
+
+            return null;
+          })}
 
           {post.originalUrl && (
             <p style={{ borderTop: `1px solid ${cardBorder}`, color: mutedText, marginTop: "2rem", paddingTop: "1rem" }}>
@@ -100,4 +146,3 @@ export default function NewsPost() {
     </main>
   );
 }
-
