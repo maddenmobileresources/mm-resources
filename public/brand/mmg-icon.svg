@@ -1,8 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="28" fill="#0f172a"/>
-  <rect x="20" y="16" width="88" height="96" rx="16" fill="#14532d" stroke="#facc15" stroke-width="6"/>
-  <path d="M64 20v88" stroke="#f8fafc" stroke-width="5" stroke-linecap="round" stroke-dasharray="9 9"/>
-  <path d="M34 36h60M34 92h60" stroke="#f8fafc" stroke-width="4" stroke-linecap="round" opacity=".9"/>
-  <path d="M41 64c10-20 36-20 46 0-10 20-36 20-46 0Z" fill="#92400e" stroke="#f8fafc" stroke-width="4"/>
-  <path d="M54 58h20M54 64h20M54 70h20" stroke="#f8fafc" stroke-width="3" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="shieldGold" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="48%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="55%" stop-color="#166534"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="#0f172a"/>
+  <path d="M64 8 111 25v38c0 29-18 48-47 57-29-9-47-28-47-57V25L64 8Z" fill="#0f172a" stroke="url(#shieldGold)" stroke-width="6"/>
+  <path d="M64 20 98 32v29c0 21-12 35-34 43-22-8-34-22-34-43V32L64 20Z" fill="url(#field)"/>
+  <path d="M64 23v78" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="8 8" opacity=".86"/>
+  <path d="M38 42h52M38 58h52M38 74h52" stroke="#e2e8f0" stroke-width="2.5" opacity=".72"/>
+  <path d="M45 35v-8h38v8M45 93v8h38v-8" stroke="#facc15" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 63c10-18 38-18 48 0-10 18-38 18-48 0Z" fill="#92400e" stroke="#fff7ed" stroke-width="4"/>
+  <path d="M55 57h18M53 63h22M55 69h18" stroke="#fff7ed" stroke-width="3" stroke-linecap="round"/>
 </svg>
