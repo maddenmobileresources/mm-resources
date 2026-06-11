@@ -33,7 +33,7 @@ export default function Home() {
     },
     {
       to: "/defensive-strategy",
-      icon: <img src="https://i.imgur.com/yimZrY1.png" alt="Defensive Strategy" width={40} height={40} />,
+      icon: <img src="https://i.imgur.com/Ybg4ePs.png" alt="Defensive Strategy" width={40} height={40} />,
       title: "Defensive Strategy",
       desc: "Review defensive plays ranked by collected interception data",
     },
