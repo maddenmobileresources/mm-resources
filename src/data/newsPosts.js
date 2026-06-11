@@ -7,18 +7,86 @@ export const defaultNewsAuthor = {
 export const newsPosts = [
   {
     id: "s11-field-pass-reveal-coming-june-9th",
-    title: "S11 Field Pass Reveal Coming June 9th",
+    title: "S11 Field Pass Reveal (Coming June 9th)",
     date: "June 8, 2026",
     category: "Field Pass",
     author: defaultNewsAuthor,
-    excerpt:
-      "EA revealed the S11 Field Pass on stream, including player reveals, rewards, and early details for the upcoming season.",
-    imageUrl: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200611_twitch.jpg",
+    excerpt: "A full look at the S11 Field Pass reveal, including players, rewards, gates, and event details.",
+    imageUrl: "https://i.imgur.com/7y83Fwo.png",
+    showHeroImage: false,
     content: [
-      "The S11 Field Pass was revealed on EA's Twitch stream, giving players an early look at the next season's player lineup, rewards, and progression details.",
       {
         type: "heading",
-        text: "S11 Field Pass Players",
+        text: "Name",
+      },
+      {
+        type: "list",
+        items: ["S11 Field Pass: Game Changers"],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/7y83Fwo.png",
+        alt: "S11 Field Pass Game Changers",
+      },
+      {
+        type: "heading",
+        text: "Duration",
+      },
+      {
+        type: "list",
+        items: ["June 9th - July 10th"],
+      },
+      {
+        type: "heading",
+        text: "Milestone Player",
+      },
+      {
+        type: "list",
+        items: ["Iconic S Geno Stone"],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/lwN0axZ.png",
+        alt: "Iconic S Geno Stone milestone player",
+      },
+      {
+        type: "heading",
+        text: "Journey",
+      },
+      {
+        type: "list",
+        items: ["Journey gate player is KR/PR Devin Hester"],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/pBGAL05.png",
+        alt: "KR/PR Devin Hester Journey gate player",
+      },
+      {
+        type: "heading",
+        text: "Season Team Training",
+      },
+      {
+        type: "list",
+        items: [
+          "OT Joe Thomas (L25 Offense)",
+          "DT Quinnen Williams (L25 Defense)",
+          "KR/PR Devin Hester (L20 Special Teams)",
+        ],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/yUr19QH.png",
+        alt: "Season Team Training players",
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/WTR9Em9.png",
+        alt: "Season Team Training rewards",
+      },
+      {
+        type: "heading",
+        text: "Other Field Pass Players",
       },
       {
         type: "list",
@@ -43,45 +111,66 @@ export const newsPosts = [
       },
       {
         type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200611_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
+        src: "https://i.imgur.com/Mci4Cy6.png",
+        alt: "S11 Field Pass players",
       },
       {
         type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200623_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
-      },
-      {
-        type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200655_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
-      },
-      {
-        type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200755_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
-      },
-      {
-        type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200835_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
-      },
-      {
-        type: "image",
-        src: "https://media.mut.gg/forums/images/06_08_2026-174943-screenshot_20250608_200852_twitch.jpg",
-        alt: "S11 Field Pass player reveal",
+        src: "https://i.imgur.com/Kx9Gf4H.png",
+        alt: "S11 Field Pass player cards",
       },
       {
         type: "heading",
-        text: "Field Pass Reveal Stream",
+        text: "Player OVRs",
       },
-      "The reveal was shown on EA's Twitch channel on June 8 at 8:00 PM ET. The full video-on-demand link from the reveal stream was also shared for anyone who missed it live.",
       {
         type: "list",
         items: [
-          "EA Twitch channel: https://www.twitch.tv/eamaddennfl",
-          "Reveal VOD: https://www.twitch.tv/videos/2487209237",
+          "Uncommon: 98 OVR",
+          "Rare: 111-112 OVR",
+          "Epic: 137-138 OVR",
+          "Iconic: 166-167 OVR",
+          "Mythic: 181-182 OVR",
+          "Marvel: 230-232 OVR",
         ],
+      },
+      {
+        type: "heading",
+        text: "Journey OVR Gates",
+      },
+      {
+        type: "list",
+        items: [
+          "Gate 1: 6,300 OVR",
+          "Gate 2: 6,500 OVR",
+          "Gate 3: 6,700 OVR",
+          "Gate 4: 6,900 OVR",
+          "Gate 5: 7,100 OVR",
+          "Gate 6: 7,300 OVR",
+          "Gate 7: 7,500 OVR",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Field Pass Play",
+      },
+      {
+        type: "list",
+        items: ["Run Play: HB Mtn Sweep"],
+      },
+      {
+        type: "image",
+        src: "https://i.imgur.com/8brilOc.png",
+        alt: "HB Mtn Sweep Field Pass play",
+      },
+      {
+        type: "heading",
+        text: "Reveal Stream",
+      },
+      "Field Pass was revealed on EA's Twitch stream tonight. If interested, you can check out the VOD here:",
+      {
+        type: "list",
+        items: ["https://www.twitch.tv/eamaddennfl/v/2487209237?sr=a&t=2997s"],
       },
     ],
   },

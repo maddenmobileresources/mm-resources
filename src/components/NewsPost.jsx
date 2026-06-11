@@ -64,7 +64,7 @@ export default function NewsPost() {
           </div>
         </header>
 
-        {post.imageUrl && (
+        {post.imageUrl && post.showHeroImage !== false && (
           <img
             src={post.imageUrl}
             alt={post.title}
