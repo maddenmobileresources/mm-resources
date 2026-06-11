@@ -179,4 +179,42 @@ export const newsPosts = [
       },
     ],
   },
+  {
+    id: "final-genki-force-players",
+    title: "New Genki Force Players (Coming Tomorrow)",
+    date: "June 12, 2025",
+    category: "Genki Force",
+    author: defaultNewsAuthor,
+    excerpt: "Here's the final batch of Genki Force promo players dropping tomorrow, June 13th.",
+    imageUrl: "/news/final-genki-force-players/01-final-genki-force.png",
+    showHeroImage: false,
+    content: [
+      "Here's the final batch of Genki Force promo players dropping tomorrow, June 13th:",
+      {
+        type: "list",
+        items: ["TE Martellus Bennett", "C Dwight Stephenson", "S Harrison Smith"],
+      },
+      "_Reminder: The Genki Force Promo ends Tuesday, June 17th @ 10:30am ET._",
+      {
+        type: "image",
+        src: "/news/final-genki-force-players/01-final-genki-force.png",
+        alt: "Final Genki Force promo players",
+      },
+      {
+        type: "image",
+        src: "/news/final-genki-force-players/02-martellus-bennett.png",
+        alt: "Martellus Bennett Genki Force stats",
+      },
+      {
+        type: "image",
+        src: "/news/final-genki-force-players/03-dwight-stephenson.png",
+        alt: "Dwight Stephenson Genki Force stats",
+      },
+      {
+        type: "image",
+        src: "/news/final-genki-force-players/04-harrison-smith.png",
+        alt: "Harrison Smith Genki Force stats",
+      },
+    ],
+  },
 ];
