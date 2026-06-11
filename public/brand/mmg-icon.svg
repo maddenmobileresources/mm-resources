@@ -7,14 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="26" fill="#0f172a"/>
-  <rect x="14" y="18" width="100" height="92" rx="10" fill="#0f172a" stroke="#facc15" stroke-width="5"/>
-  <rect x="22" y="26" width="84" height="76" rx="5" fill="url(#field)"/>
-  <rect x="22" y="26" width="15" height="76" fill="#1e3a8a" opacity=".92"/>
-  <rect x="91" y="26" width="15" height="76" fill="#1e3a8a" opacity=".92"/>
-  <path d="M37 26v76M47 26v76M57 26v76M64 26v76M71 26v76M81 26v76M91 26v76" stroke="#f8fafc" stroke-width="2.4" opacity=".88"/>
-  <path d="M41 41h4M41 51h4M41 61h4M41 71h4M41 81h4M83 41h4M83 51h4M83 61h4M83 71h4M83 81h4" stroke="#f8fafc" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M25 31h8M25 97h8M95 31h8M95 97h8" stroke="#facc15" stroke-width="3" stroke-linecap="round"/>
-  <path d="M14 46H7v36h7M114 46h7v36h-7" stroke="#facc15" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M52 64c6-11 18-11 24 0-6 11-18 11-24 0Z" fill="#92400e" stroke="#fff7ed" stroke-width="3"/>
-  <path d="M59 60h10M58 64h12M59 68h10" stroke="#fff7ed" stroke-width="2" stroke-linecap="round"/>
+  <rect x="34" y="6" width="60" height="116" rx="14" fill="#020617" stroke="#facc15" stroke-width="5"/>
+  <rect x="41" y="16" width="46" height="96" rx="6" fill="url(#field)"/>
+  <rect x="41" y="16" width="46" height="14" fill="#1e3a8a" opacity=".95"/>
+  <rect x="41" y="98" width="46" height="14" fill="#1e3a8a" opacity=".95"/>
+  <path d="M41 30h46M41 98h46" stroke="#f8fafc" stroke-width="3"/>
+  <path d="M41 44h46M41 54h46M41 64h46M41 74h46M41 84h46" stroke="#f8fafc" stroke-width="1.8" opacity=".78"/>
+  <path d="M53 39h5M70 39h5M53 49h5M70 49h5M53 59h5M70 59h5M53 69h5M70 69h5M53 79h5M70 79h5M53 89h5M70 89h5" stroke="#f8fafc" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M55 14V7h18v7M55 114v7h18v-7" stroke="#facc15" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="48" y="53" width="32" height="22" rx="5" fill="#0f172a" stroke="#facc15" stroke-width="2.5"/>
+  <text x="64" y="69" fill="#f8fafc" font-size="15" font-weight="900" text-anchor="middle" font-family="Arial, sans-serif">MMG</text>
+  <circle cx="64" cy="116.5" r="2.4" fill="#334155"/>
 </svg>
