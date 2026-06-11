@@ -89,7 +89,7 @@ export default function NewsPost() {
               }}
             />
             <div>
-              <div style={{ fontWeight: 800 }}>{post.author.name}</div>
+              <div style={{ color: "#04ecfd", fontWeight: 800 }}>{post.author.name}</div>
               <div style={{ color: mutedText, fontSize: "0.9rem" }}>{post.author.role}</div>
             </div>
           </div>
