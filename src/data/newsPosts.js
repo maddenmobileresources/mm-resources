@@ -217,4 +217,32 @@ export const newsPosts = [
       },
     ],
   },
+  {
+    id: "unlimited-arena-ovr-gates",
+    title: "New Unlimited Arena OVR Gates (Starting Monday)",
+    date: "June 13, 2025",
+    category: "Competitive",
+    author: defaultNewsAuthor,
+    excerpt:
+      "New OVR gates will go live with the Unlimited Arena tournament round that starts Monday, June 16th.",
+    imageUrl: "/news/unlimited-arena-ovr-gates/01-ovr-gates.png",
+    showHeroImage: false,
+    content: [
+      "New OVR gates will go live with the Unlimited Arena tournament round that starts Monday, June 16th.",
+      {
+        type: "list",
+        items: [
+          "**A1**: 3800 or less OVR (current gate) -> **4400 or less OVR (new gate)**",
+          "**A2**: 3700 - 4800 OVR (current gate) -> **4300 - 5200 OVR (new gate)**",
+          "**A3**: 4700+ OVR (current gate) -> **5100+ OVR (new gate)**",
+          "**A4**: 4600+ OVR (current gate) -> **5000+ OVR (new gate)**",
+        ],
+      },
+      {
+        type: "image",
+        src: "/news/unlimited-arena-ovr-gates/01-ovr-gates.png",
+        alt: "New Unlimited Arena OVR gates",
+      },
+    ],
+  },
 ];
