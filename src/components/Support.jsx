@@ -28,6 +28,38 @@ export default function Support() {
         </section>
 
         <section className={`mb-8 rounded-lg border p-6 shadow-lg sm:p-8 ${panel}`}>
+          <h2 className="mb-4 text-2xl font-bold">How to best support us</h2>
+          <p className={`mb-6 leading-7 ${muted}`}>
+            The best way to support Madden Mobile Gridiron is simply to keep using the site as a continued Madden NFL
+            Mobile resource. Every visit, correction, suggestion, and shared link helps make the site more useful for
+            the community.
+          </p>
+          <div className="grid gap-5 md:grid-cols-3">
+            <div className={`rounded-lg border p-5 ${softPanel}`}>
+              <h3 className="mb-2 text-xl font-bold">Use the resource</h3>
+              <p className={`leading-7 ${muted}`}>
+                Using the databases, calendars, guides, pack tools, and other site features helps show what is valuable
+                and worth continuing to improve.
+              </p>
+            </div>
+            <div className={`rounded-lg border p-5 ${softPanel}`}>
+              <h3 className="mb-2 text-xl font-bold">Share feedback</h3>
+              <p className={`leading-7 ${muted}`}>
+                Corrections, missing data, bug reports, and feature ideas help keep this community resource accurate and
+                easier for everyone to use.
+              </p>
+            </div>
+            <div className={`rounded-lg border p-5 ${softPanel}`}>
+              <h3 className="mb-2 text-xl font-bold">Optional support</h3>
+              <p className={`leading-7 ${muted}`}>
+                If ads are enabled, normal site traffic may help support the site through ad monetization. Optional
+                PayPal donations are also appreciated, but never required.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={`mb-8 rounded-lg border p-6 shadow-lg sm:p-8 ${panel}`}>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <div className="mb-4 flex items-center gap-3">

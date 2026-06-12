@@ -27,17 +27,20 @@ export default function Layout() {
         <p style={{ maxWidth: "760px", margin: 0, lineHeight: 1.5 }}>
           This website is not endorsed by or affiliated with EA, EA SPORTS, the NFL, or their licensors.
         </p>
-        <div style={{ display: "flex", gap: "1rem" }}>
-  <Link to="/about-us" style={{ color: "#ccaa00", textDecoration: "underline" }}>
-    About Us
-  </Link>
-  <Link to="/contact-us" style={{ color: "#ccaa00", textDecoration: "underline" }}>
-    Contact Us
-  </Link>
-  <Link to="/privacy-policy" style={{ color: "#ccaa00", textDecoration: "underline" }}>
-    Privacy Policy
-  </Link>
-</div>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
+          <Link to="/about-us" style={{ color: "#ccaa00", textDecoration: "underline" }}>
+            About Us
+          </Link>
+          <Link to="/contact-us" style={{ color: "#ccaa00", textDecoration: "underline" }}>
+            Contact Us
+          </Link>
+          <Link to="/privacy-policy" style={{ color: "#ccaa00", textDecoration: "underline" }}>
+            Privacy Policy
+          </Link>
+          <Link to="/support" style={{ color: "#ccaa00", textDecoration: "underline" }}>
+            Support Us
+          </Link>
+        </div>
       </footer>
     </>
   );
