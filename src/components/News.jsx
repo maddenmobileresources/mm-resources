@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { newsPosts } from "../data/newsPosts";
+import AuthorContactPopover from "./AuthorContactPopover";
 
 export default function News() {
   const { theme } = useTheme();
@@ -85,10 +86,7 @@ export default function News() {
                         border: `2px solid ${cardBorder}`,
                       }}
                     />
-                    <div>
-                      <div style={{ fontWeight: "600", color: "#04ecfd" }}>{post.author.name}</div>
-                      <div style={{ fontSize: "0.875rem", color: subText }}>{post.author.role}</div>
-                    </div>
+                    <AuthorContactPopover author={post.author} isDark={isDark} roleColor={subText} />
                   </div>
 
                   <div
