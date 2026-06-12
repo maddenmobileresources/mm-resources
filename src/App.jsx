@@ -86,6 +86,7 @@ import MM26Plays from "./components/MM26Plays";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import Support from "./components/Support";
 import ThemeTeams from "./components/ThemeTeams";
 import FAQ from "./components/FAQ";
 import Acronyms from "./components/Acronyms";
@@ -301,6 +302,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/home" element={<Home />} />
           <Route path="/theme-teams" element={<ThemeTeams />} />
           <Route path="/team-analyzer" element={<TeamAnalyzer />} />

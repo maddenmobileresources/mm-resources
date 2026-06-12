@@ -62,6 +62,7 @@ const ALL_PAGES = [
   { title: "About Us", path: "/about-us", keywords: ["about", "us", "team", "bio"] },
   { title: "Contact Us", path: "/contact-us", keywords: ["contact", "us", "support", "inquiry", "discord", "reddit", "email", "feedback", "suggestions", "complaints"] },
   { title: "Privacy Policy", path: "/privacy-policy", keywords: ["privacy", "policy"] },
+  { title: "Support MMGridiron", path: "/support", keywords: ["support", "donate", "donation", "paypal", "funding", "development", "community"] },
 ];
 
 export default function Navbar() {

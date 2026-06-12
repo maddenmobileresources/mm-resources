@@ -89,6 +89,9 @@ export default function AboutUs() {
                 <Link className="rounded bg-blue-600 px-4 py-3 text-center font-bold text-white hover:bg-blue-700" to="/community">
                   Community
                 </Link>
+                <Link className="rounded bg-blue-600 px-4 py-3 text-center font-bold text-white hover:bg-blue-700" to="/support">
+                  Support the Site
+                </Link>
               </div>
             </div>
           </div>

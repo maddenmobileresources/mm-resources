@@ -1,4 +1,5 @@
-import { AlertTriangle, ExternalLink, Mail, MessageSquare, ShieldAlert } from "lucide-react";
+import { AlertTriangle, ExternalLink, HeartHandshake, Mail, MessageSquare, ShieldAlert } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 export default function ContactUs() {
@@ -85,6 +86,25 @@ export default function ContactUs() {
               <p className={`leading-6 ${muted}`}>{text}</p>
             </div>
           ))}
+        </section>
+
+        <section className={`mb-8 rounded-lg border p-6 shadow-md ${panel}`}>
+          <div className="grid gap-5 md:grid-cols-[auto_1fr_auto] md:items-center">
+            <HeartHandshake className={accent} size={34} />
+            <div>
+              <h2 className="mb-2 text-2xl font-bold">Want to support the site?</h2>
+              <p className={`leading-7 ${muted}`}>
+                Optional donations help support the development and maintenance of this community-ran resource. They do
+                not provide in-game Madden Mobile perks or EA benefits.
+              </p>
+            </div>
+            <Link
+              className="inline-flex items-center justify-center rounded bg-blue-600 px-5 py-3 font-bold text-white hover:bg-blue-700"
+              to="/support"
+            >
+              Support MMGridiron
+            </Link>
+          </div>
         </section>
 
         <section className={`rounded-lg border p-6 shadow-md ${isDark ? "border-yellow-700 bg-yellow-950/30" : "border-yellow-300 bg-yellow-50"}`}>
