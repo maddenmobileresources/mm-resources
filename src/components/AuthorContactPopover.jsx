@@ -53,7 +53,7 @@ export default function AuthorContactPopover({ author, isDark, roleColor }) {
               <span className="author-contact-icon author-contact-icon-discord">
                 <DiscordIcon />
               </span>
-              <span>skhip</span>
+              <strong>skhip</strong>
             </li>
           </ul>
         </div>

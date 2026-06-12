@@ -911,7 +911,7 @@ td {
     color: #04ecfd;
     cursor: pointer;
     font: inherit;
-    font-weight: 800;
+    font-weight: 700;
     padding: 0;
     text-align: left;
     text-decoration: none;
@@ -975,6 +975,10 @@ td {
     color: inherit;
     font-weight: 700;
     text-decoration: none;
+  }
+
+  .author-contact-list strong {
+    font-weight: 700;
   }
 
   .author-contact-list a:hover,
