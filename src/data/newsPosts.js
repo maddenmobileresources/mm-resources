@@ -316,4 +316,26 @@ export const newsPosts = [
       },
     ],
   },
+  {
+    id: "new-flashbacks-players-june-22",
+    title: "New Flashbacks Players (Coming Tomorrow)",
+    date: "June 22, 2025",
+    category: "Promo",
+    author: defaultNewsAuthor,
+    excerpt: "Here's the third batch of Flashbacks promo players dropping tomorrow, June 23rd.",
+    imageUrl: "/news/new-flashbacks-players-june-22/flashbacks-players.png",
+    showHeroImage: false,
+    content: [
+      "Here's the third batch of Flashbacks promo players dropping tomorrow, June 23rd:",
+      {
+        type: "list",
+        items: ["K Greg Zuerlein", "TE Ozzie Newsome", "QB Aaron Rodgers"],
+      },
+      {
+        type: "image",
+        src: "/news/new-flashbacks-players-june-22/flashbacks-players.png",
+        alt: "New Flashbacks promo players",
+      },
+    ],
+  },
 ];

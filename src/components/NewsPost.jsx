@@ -220,7 +220,7 @@ export default function NewsPost() {
               backgroundColor: "rgba(15,23,42,0.85)",
               color: "#ffffff",
               fontSize: "1.65rem",
-              lineHeight: "2.55rem",
+              lineHeight: 1,
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
@@ -229,7 +229,7 @@ export default function NewsPost() {
             }}
             aria-label="Close expanded image"
           >
-            x
+            <span style={{ display: "block", transform: "translateY(-2px)" }}>x</span>
           </button>
           <img
             src={zoomedImage.src}
