@@ -294,4 +294,26 @@ export const newsPosts = [
       "_Note: To avoid any potential confusion, this post was edited on June 25th to reflect that Randall Cunningham will be a Philadelphia Eagle, not a Minnesota Viking like we were previously told when this post was initially made._",
     ],
   },
+  {
+    id: "new-flashbacks-players",
+    title: "New Flashbacks Players (Coming Tomorrow)",
+    date: "June 19, 2025",
+    category: "Promo",
+    author: defaultNewsAuthor,
+    excerpt: "Here's the second batch of Flashbacks promo players dropping tomorrow, June 20th.",
+    imageUrl: "/news/new-flashbacks-players/flashbacks-players.png",
+    showHeroImage: false,
+    content: [
+      "Here's the second batch of Flashbacks promo players dropping tomorrow, June 20th:",
+      {
+        type: "list",
+        items: ["CB Jalen Ramsey", "LB Haason Reddick", "C Ted Karras"],
+      },
+      {
+        type: "image",
+        src: "/news/new-flashbacks-players/flashbacks-players.png",
+        alt: "New Flashbacks promo players",
+      },
+    ],
+  },
 ];
