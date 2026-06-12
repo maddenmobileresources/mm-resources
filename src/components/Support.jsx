@@ -1,11 +1,42 @@
-import { ExternalLink, HeartHandshake, Info, ShieldCheck, WalletCards } from "lucide-react";
+import { Crown, ExternalLink, HeartHandshake, Info, ShieldCheck, WalletCards } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 
 const paypalDonationUrl = "";
+const minimumDonationAmount = "$5";
+
+const supporterTiers = [
+  {
+    name: "Bronze",
+    range: "$5 - $9.99 donated",
+    badgeClass: "from-[#8b5a2b] via-[#b9824b] to-[#5a341b] border-[#d09a62]",
+  },
+  {
+    name: "Silver",
+    range: "$10 - $19.99 donated",
+    badgeClass: "from-[#d8dde4] via-[#ffffff] to-[#8d98a6] border-[#eef2f7]",
+  },
+  {
+    name: "Gold",
+    range: "$20 - $34.99 donated",
+    badgeClass: "from-[#f2b705] via-[#ffe77a] to-[#b07800] border-[#fff0a3]",
+  },
+  {
+    name: "Elite",
+    range: "$35 - $49.99 donated",
+    badgeClass: "from-[#d52b2b] via-[#ff5a50] to-[#8b1010] border-[#ff9a90]",
+  },
+  {
+    name: "Ultimate",
+    range: "$50+ donated",
+    badgeClass: "from-[#bcecff] via-[#ffffff] to-[#57aee8] border-[#e6f8ff]",
+  },
+];
 
 export default function Support() {
   const { theme } = useTheme();
+  const { discordUsername, isAuthConfigured, isSignedIn, signInWithDiscord } = useAuth();
   const isDark = theme === "dark";
   const hasDonationLink = Boolean(paypalDonationUrl);
 
@@ -76,6 +107,10 @@ export default function Support() {
                   Donations are completely optional. They do not unlock in-game Madden NFL Mobile perks, EA benefits,
                   competitive advantages, Pack Opener leaderboard advantages, or anything connected to Electronic Arts.
                 </p>
+                <p>
+                  The minimum donation amount is {minimumDonationAmount}. This helps keep supporter tracking practical
+                  and prevents tiny donations from being mostly eaten up by payment processing fees.
+                </p>
               </div>
             </div>
 
@@ -86,6 +121,40 @@ export default function Support() {
                 Payments are handled by PayPal. This website does not see or store your card, bank, or PayPal login
                 information.
               </p>
+              <p className={`mb-5 text-sm font-bold ${accent}`}>Minimum donation: {minimumDonationAmount}</p>
+              <div className={`mb-5 rounded-lg border p-4 text-left ${panel}`}>
+                <h4 className="mb-3 text-lg font-bold">How to receive credit for your donation</h4>
+                <ol className={`list-decimal space-y-2 pl-5 text-sm leading-6 ${muted}`}>
+                  <li>
+                    First, sign in with Discord on mmgridiron.com so your donation can be matched to your site account.
+                  </li>
+                  <li>
+                    When donating through PayPal, include your exact Discord username in the PayPal note.
+                  </li>
+                  <li>
+                    Badge credit is based on the original PayPal donation amount before PayPal processing fees.
+                  </li>
+                </ol>
+                <div className="mt-4">
+                  {!isAuthConfigured ? (
+                    <p className={`rounded border px-3 py-2 text-sm ${isDark ? "border-amber-700 bg-amber-950 text-amber-100" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
+                      Discord login is not configured yet.
+                    </p>
+                  ) : isSignedIn ? (
+                    <p className={`rounded border px-3 py-2 text-sm font-semibold ${isDark ? "border-green-700 bg-green-950 text-green-100" : "border-green-200 bg-green-50 text-green-800"}`}>
+                      Signed in with Discord as {discordUsername}
+                    </p>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={signInWithDiscord}
+                      className="inline-flex w-full items-center justify-center rounded bg-indigo-600 px-4 py-2 text-sm font-bold text-white hover:bg-indigo-700"
+                    >
+                      Sign in with Discord before donating
+                    </button>
+                  )}
+                </div>
+              </div>
               {hasDonationLink ? (
                 <a
                   href={paypalDonationUrl}
@@ -138,6 +207,48 @@ export default function Support() {
                 Cash, packs, players, points, official rewards, or account services.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className={`mb-8 rounded-lg border p-6 shadow-md ${panel}`}>
+          <h2 className="mb-4 text-2xl font-bold">Supporter badges</h2>
+          <div className={`space-y-4 leading-7 ${muted}`}>
+            <p>
+              Supporter badges are planned as an optional way to recognize people who help support the continued
+              development of Madden Mobile Gridiron. Badge tiers would be based on the total amount donated over time.
+            </p>
+            <div className={`rounded-lg border p-5 ${softPanel}`}>
+              <h3 className="mb-4 text-xl font-bold">Supporter badge tiers</h3>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {supporterTiers.map((tier) => (
+                  <div key={tier.name} className={`flex items-center gap-4 rounded-lg border p-4 ${panel}`}>
+                    <div
+                      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg border-2 bg-gradient-to-br shadow-lg ${tier.badgeClass}`}
+                    >
+                      <Crown className="text-white drop-shadow" size={26} fill="currentColor" />
+                    </div>
+                    <div>
+                      <p className="text-lg font-extrabold">{tier.name}</p>
+                      <p className={`text-sm font-semibold ${muted}`}>{tier.range}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p>
+              To connect a donation to your mmgridiron.com account, first sign in with Discord on the site. After
+              donating, include your exact Discord username with the donation note when possible, or contact us with the
+              PayPal transaction details so the donation can be matched to the correct account.
+            </p>
+            <p>
+              Badge tiers are based on the original donation amount shown on the PayPal receipt before PayPal processing
+              fees. For example, if someone donates $10 and PayPal deducts a fee before the money reaches the site, that
+              donation still counts as $10 toward the Silver badge.
+            </p>
+            <p>
+              Supporter badges are recognition only. They do not provide in-game Madden NFL Mobile rewards, EA benefits,
+              competitive advantages, or special Pack Opener odds.
+            </p>
           </div>
         </section>
 
