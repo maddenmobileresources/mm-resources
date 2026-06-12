@@ -245,4 +245,53 @@ export const newsPosts = [
       },
     ],
   },
+  {
+    id: "week-19-team-diamond-players",
+    title: "Week 19 Team Diamond Players (Coming Tomorrow)",
+    date: "June 17, 2025",
+    category: "Team Diamonds",
+    author: defaultNewsAuthor,
+    excerpt: "The new TDM Players releasing tomorrow, June 18th are QB Philip Rivers, DE Zach Allen, OG Graham Glasgow, and HB Todd Gurley II.",
+    imageUrl: "/news/week-19-team-diamond-players/team-diamonds.png",
+    showHeroImage: false,
+    content: [
+      "The new TDM Players releasing tomorrow, June 18th are:",
+      {
+        type: "list",
+        items: ["QB Philip Rivers", "DE Zach Allen", "OG Graham Glasgow", "HB Todd Gurley II"],
+      },
+      {
+        type: "image",
+        src: "/news/week-19-team-diamond-players/team-diamonds.png",
+        alt: "Week 19 Team Diamond players",
+      },
+    ],
+  },
+  {
+    id: "july-madden-heroes-revealed",
+    title: "July Madden Heroes Revealed",
+    date: "June 19, 2025",
+    category: "Madden Heroes",
+    author: defaultNewsAuthor,
+    excerpt: "July Madden Heroes have been revealed, including Randall Cunningham, Lamar Jackson, Night Train Lane, and Richard Sherman.",
+    content: [
+      {
+        type: "heading",
+        text: "QB",
+      },
+      {
+        type: "list",
+        items: ["Randall Cunningham (Eagles)", "Lamar Jackson"],
+      },
+      {
+        type: "heading",
+        text: "CB",
+      },
+      {
+        type: "list",
+        items: ["Night Train Lane", "Richard Sherman"],
+      },
+      "_Note: To avoid any potential confusion, this post was edited on June 25th to reflect that Randall Cunningham will be a Philadelphia Eagle, not a Minnesota Viking like we were previously told when this post was initially made._",
+    ],
+  },
 ];
