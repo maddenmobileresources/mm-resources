@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 
-const paypalDonationUrl = "";
+const paypalDonationUrl = "https://www.paypal.com/ncp/payment/M7WXQK4KXV4DS";
 const minimumDonationAmount = "$5";
 
 const supporterTiers = [
@@ -265,3 +265,4 @@ export default function Support() {
     </main>
   );
 }
+
